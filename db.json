@@ -1,0 +1,58 @@
+{
+    "movies": [
+      {
+        "id": 1,
+        "title": "The Batman",
+        "original_title": "The Batman",
+        "subtitle": "",
+        "overview": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed quasi excepturi neque! Excepturi facilis nemo cumque molestias numquam ipsa nihil, tempora non atque quod ut ab, nesciunt fuga maxime maiores itaque obcaecati rerum pariatur asperiores fugit debitis labore delectus assumenda. Nam facere consequatur incidunt cumque illum optio dolor ducimus at distinctio, rem autem quae assumenda accusamus eveniet perferendis molestiae expedita.",
+        "release_date": 2022,
+        "duration": 176,
+        "generes": ["Action", "Drama", "Crimen", "DC"],
+        "vote_average": 8.2,
+        "vote_count": 46,
+        "views": 52,
+        "poster": "",
+        "banner": "",
+        "trailer_iframe_url": "" 
+      }
+    ],
+    "users": [
+      {
+        "id": 1,
+        "name": "testUser01",
+        "email": "testUser01@gmail.com",
+        "password": "1234",
+        "created_at": "",
+        "profile" : {
+          "profile_img": "",
+          "friends_id_list": [2],
+          "groups_id_list": [1,2],
+          "movies_seen_id_list": [1,2],
+          "movies_favourite_id_list": [1,2]
+        }
+      },
+      {
+        "id": 2,
+        "name": "testUser02",
+        "email": "testUser02@gmail.com",
+        "password": "1234",
+        "profile_id": 2
+      }
+    ],
+    "groups": [
+      {
+        "id": 1,
+        "name": "Clásicos del cine",
+        "members_id_list": [1,2]
+      },
+      {
+        "id": 2,
+        "name": "Universo DC Comics",
+        "members_id_list": [1,2]
+      }
+    ],
+    "comments": [
+      { "id": 1, "body": "some comment", "postId": 1 }
+    ]
+  }
