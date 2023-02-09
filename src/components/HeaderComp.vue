@@ -34,7 +34,8 @@
                 <!-- Toggle theme button component -->
                 <ToggleTheme class="lg:w-8 ml-8"/>
 
-                <div class="ml-4 lg:block md:hidden">
+                <!-- Login & Register buttons | hidden on active session -->
+                <div v-if="cookieNoExists" class="ml-4 lg:block md:hidden">
                     <ul class="flex items-center">
                         <router-link :to="{name: 'login'}" class="group">
                             <li class="h-full px-8 py-2 font-bold tracking-wider text-center dark:text-d-soft-white rounded-lg border-2 border-d-soft-white dark:bg-transparent group-hover:border-d-surface group-hover:bg-d-surface group-hover:text-d-soft-white transition ease-in duration-150 xl:text-lg lg:text-sm">
@@ -50,31 +51,33 @@
                     </ul>
                 </div>
 
-                <!-- Chats icon -->
-                <!-- <a href="#" class="relative w-16 h-16 flex justify-center items-center rounded-full group hover:shadow-md transition ease-in duration-150">
-                <svg class="w-8 text-d-surface dark:text-d-soft-white group-hover:opacity-75 transition ease-in duration-150" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155" stroke-linecap="round" stroke-linejoin="round"></path>
-                </svg>
+                <div v-else class="flex justify-between items center">
+                    <!-- Chats icon -->
+                    <a href="#" class="relative w-16 h-16 flex justify-center items-center rounded-full group hover:shadow-md transition ease-in duration-150">
+                    <svg class="w-8 text-d-surface dark:text-d-soft-white group-hover:opacity-75 transition ease-in duration-150" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
 
-                <span class="absolute w-2 h-2 bg-d-secondary rounded-full top-3 right-4"></span>
-                </a> -->
+                    <span class="absolute w-2 h-2 bg-d-secondary rounded-full top-3 right-4"></span>
+                    </a>
 
-                <!-- Bell icon -->
-                <!-- <a href="#" class="relative w-16 h-16 flex justify-center items-center rounded-full group hover:shadow-md transition ease-in duration-150">
-                <svg class="w-8 text-d-surface dark:text-d-soft-white group-hover:opacity-75 transition ease-in duration-150" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" stroke-linecap="round" stroke-linejoin="round"></path>
-                </svg>
+                    <!-- Bell icon -->
+                    <a href="#" class="relative w-16 h-16 flex justify-center items-center rounded-full group hover:shadow-md transition ease-in duration-150">
+                    <svg class="w-8 text-d-surface dark:text-d-soft-white group-hover:opacity-75 transition ease-in duration-150" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
 
-                <span class="absolute w-2 h-2 bg-d-secondary rounded-full top-3 right-4"></span>
-                </a> -->
-            
-                <!-- Default Profile Image -->
-                <!-- <div class="dark:text-d-secondary dark:bg-d-surface text-4xl w-16 h-16 flex justify-center items-center rounded-full cursor-pointer">H</div> -->
+                    <span class="absolute w-2 h-2 bg-d-secondary rounded-full top-3 right-4"></span>
+                    </a>
+                
+                    <!-- Default Profile Image -->
+                    <div class="dark:text-d-secondary dark:bg-d-surface text-4xl w-16 h-16 flex justify-center items-center rounded-full cursor-pointer">H</div>
 
-                <!-- User profile image -->
-                <!-- <a href="#" class="w-16 h-16 flex justify-center items-center rounded-full overflow-hidden">
-                <img src="./assets/Images/Profiles/02.jpg" alt="ProfileImage" class="w-16 h-16">
-                </a> -->
+                    <!-- User profile image -->
+                    <a href="#" class="w-16 h-16 flex justify-center items-center rounded-full overflow-hidden">
+                        <img src="./assets/Images/Profiles/02.jpg" alt="ProfileImage" class="w-16 h-16">
+                    </a>
+                </div>
 
             </div> 
         </section>
@@ -96,10 +99,12 @@ export default{
         Logotype,
     },
     props: {
-        renderLogotype: Boolean
+        renderLogotype: Boolean,
     },
     data() {
         return {
+            cookieNoExists: true,
+            user: []
         }
     },
     methods: {
@@ -108,8 +113,25 @@ export default{
             this.$emit('showAsideMenu')
         }
     },
-    created() {
-        console.log(this.$route.name)
+    mounted() {
+        console.log('HeaderComp.vue - Actual route.name = ',this.$route.name)
+
+        // Check if session cookie exists
+        if(document.cookie != ""){
+            console.log("cookie exists")
+            this.cookieNoExists = !this.cookieNoExists
+        }
+
+        // Get authenticated user data
+        fetch('http://localhost:3000/users')
+        .then(response => response.json())
+        .then(data => {
+            for(var i = 0; i < data.length; i++){
+                if(('authCookie=' + data.cookie) == document.cookie){
+                    return this.user = data[i];
+                }
+            }
+        });
     },
 }
 </script>

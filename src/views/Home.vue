@@ -1109,7 +1109,7 @@ export default {
   data() {
     return {
       // Default on false
-      showAside : true
+      showAside : true,
     }
   },
   methods: {

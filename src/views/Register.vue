@@ -52,8 +52,6 @@
 <script>
 import HeaderComp from '../components/HeaderComp.vue';
 
-const baseURL = 'http://localhost:3000/';
-
 export default {
     name: 'Register',
     components: {
@@ -62,14 +60,22 @@ export default {
     data() {
         return {
             users: [],
+            usernameError: {
+                status: false,
+                msg: ''
+            },
+            emailError: {
+                status: false,
+                msg: ''
+            },
+            passwordError: {
+                status: false,
+                msg: ''
+            },
             repeatPassError: {
                 status: false,
                 msg: 'Las contraseñas no coinciden.'
             },
-            usernameError: {
-                status: false,
-                msg: ''
-            }
         }
     },
     created(){
@@ -77,12 +83,13 @@ export default {
         .then((response) => response.json())
         .then((data) => {
             this.users = data
-            console.log(data)
         })
 
     },
     methods: {
         async register(){
+
+            const baseURL = 'http://localhost:3000/';
             
             //POST new user
             async function postUser(baseURL, user){
@@ -102,8 +109,11 @@ export default {
             //GET ALL users
             async function getUsers(baseURL){
                 try {
+                    console.log(baseURL)
                     const response = await fetch(baseURL + 'users');
+                    console.log(response)
                     const usersList = await response.json();
+                    console.log(usersList)
                     return usersList
 
                 } catch (error){
@@ -112,7 +122,7 @@ export default {
             };
 
             // Check if user already exists
-            var allUsers = await getUsers();
+            var allUsers = await getUsers(baseURL);
 
             var alreadyExist = false;
 
@@ -122,23 +132,82 @@ export default {
             var repeatPassword = document.getElementById('repeat-password').value;
             var terms = document.getElementById('terms').value;
 
+            var fields = ['usernameError', 'emailError', 'passwordError']
+            for(var i = 0; i < 3; i++){
+                if(fields[i] == ''){
+                    this.fields[i].msg = 'El campo no puede estar vacío.';
+                    this.fields[i].status = true
+                    return false
+                }
+            }
+
+            // if(username == ''){
+            //     this.usernameError.msg = 'El campo no puede estar vacío.'
+            //     this.usernameError.status = true
+            //     return false
+            // }
+            // else if(email == ''){
+            //     this.emailError.msg = 'El campo no puede estar vacío.'
+            //     this.emailError.status = true
+            //     return false
+            // }
+            // else if(password == ''){
+            //     this.passwordError.msg = 'El campo no puede estar vacío.'
+            //     this.passwordError.status = true
+            //     return false
+            // }
+            
             if(password != repeatPassword){
                 this.repeatPassError.status = true
                 return false
             }
-            if(username == ''){
-                this.usernameError.msg = 'El campo no puede estar vacío.'
-                this.usernameError.status = true
-            }
-
             allUsers.forEach((user) => {
                 if(user.name == username){
-                    alreadyExist = true
+                    this.usernameError.msg = 'El usuario introducido ya existe.'
+                    this.usernameError.status = true
+                    return false
                 }
             })
 
+            //Generate random Cookie with length 12
+            function getRandomCookie(){
+                let random = '';
+                let chars = '0123456789ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz-_';
 
+                // Cookie Length 12
+                for(var i = 0; i < 12; i++){
+                    random += chars.charAt(Math.floor(Math.random() * chars.length))
+                }
+                return random
+            }
 
+            //Set user authCookie
+            var cookie = getRandomCookie();
+            document.cookie = `authCookie=${cookie}; max-age=3600; path=/; SameSite=None; Secure`;
+
+            //Load user template
+            var time = new Date();
+
+            const newUser = {
+                name: username,
+                email: email,
+                password: password,
+                created_at: time.getDay()+'/'+time.getMonth()+' - '+time.getHours()+':'+time.getMinutes(),
+                profile: {
+                    profile_img: '#',
+                    friends_id_list: [],
+                    groups_id_list: [],
+                    movies_seen_id_list: [],
+                    movies_pendent_id_list: [],
+                    movies_favourite_id_list: []
+                },
+                cookie: cookie
+            }
+
+            //POST user
+            await postUser(baseURL, newUser);
+            
+            window.location.href = 'http://localhost:5173/'
         }
     },
 }

@@ -129,7 +129,7 @@
             <div class="lg:block 2xl:hidden md:hidden w-full mb-8 border-b-2 border-d-background"></div>
 
             <!-- Logout -->
-            <a href="#" class="flex items-center 2xl:justify-start 2xl:pl-8 mb-8 2xl:text-lg border-l-4 border-d-surface group/logout hover:border-l-4 hover:border-d-secondary active:border-l-8 transition ease-in duration-150 lg:justify-center lg:pl-0 md:pl-8">
+            <a @click="logout" href="#" class="flex items-center 2xl:justify-start 2xl:pl-8 mb-8 2xl:text-lg border-l-4 border-d-surface group/logout hover:border-l-4 hover:border-d-secondary active:border-l-8 transition ease-in duration-150 lg:justify-center lg:pl-0 md:pl-8">
                 <svg class="w-8 lg:w-10 md:w-8 md:dark:text-d-soft-white" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" stroke-linecap="round" stroke-linejoin="round"></path>
                 </svg>
@@ -292,6 +292,11 @@ export default {
     },
     closeAsideMenu() {
         this.$emit('closeAsideMenu')
+    },
+    logout(){
+        document.cookie = 'authCookie=; max-age=0';
+        location.reload();
+        console.log('AsideMenu.vue - authCookie deleted', document.cookie);
     }
   }
 }  
