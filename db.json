@@ -92,8 +92,24 @@
         "movies_pendent_id_list": [],
         "movies_favourite_id_list": []
       },
-      "cookie": "E6ÑdFVIJ1GJk",
+      "cookie": "iP_XONgxNSEg",
       "id": 3
+    },
+    {
+      "name": "javi_potter",
+      "email": "javi@gmail.com",
+      "password": "1234",
+      "created_at": "6/1 - 21:15",
+      "profile": {
+        "profile_img": "#",
+        "friends_id_list": [],
+        "groups_id_list": [],
+        "movies_seen_id_list": [],
+        "movies_pendent_id_list": [],
+        "movies_favourite_id_list": []
+      },
+      "cookie": "vG1CxUñg_Uj7",
+      "id": 4
     }
   ],
   "groups": [

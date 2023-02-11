@@ -2,18 +2,18 @@
     <div class="grid grid-cols-12 grid-rows-6 gap-x-8 w-full h-screen  dark:bg-gradient-to-br from-d-surface via-d-variant-1 to-d-surface">
 
         <!-- Header -->
-        <HeaderComp :renderLogotype="true" class="col-start-1 col-end-11"/>
+        <HeaderComp :renderLogotype="true" class="col-start-1 col-end-11 mt-6"/>
 
         <!-- Banner -->
-        <div class="col-start-4 row-start-2 col-span-3 row-span-3 dark:bg-d-surface rounded-tl-xl rounded-bl-xl">
+        <div class="col-start-4 row-start-2 col-span-3 row-span-4 dark:bg-d-surface rounded-tl-xl rounded-bl-xl">
 
         </div>
 
-        <form class="col-start-7 row-start-2 col-span-3 row-span-3 px-8 py-10 dark:bg-d-surface rounded-tr-xl rounded-br-xl">
+        <form class="col-start-7 row-start-2 col-span-3 row-span-4 px-8 py-10 dark:bg-d-surface rounded-tr-xl rounded-br-xl">
             <!-- Username -->
             <div class="mb-6">
-                <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre</label>
-                <input type="text" id="username" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="NombreUsuario" required>
+                <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Usuario</label>
+                <input type="text" id="username" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Nombre usuario" required>
 
                 <!-- Error message -->
                 <p v-if="repeatPassError.status" class="text-sm dark:text-d-warning">{{ repeatPassError.msg }}</p>
@@ -211,7 +211,4 @@ export default {
         }
     },
 }
-</script>
-
-<script setup>
 </script>

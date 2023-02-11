@@ -6,7 +6,7 @@
     <AsideMenu ref="asideMenu" v-if="showAside" v-on:closeAsideMenu="showAside = !showAside" class="2xl:col-span-2 2xl:relative xl:col-span-1 xl:absolute xl:z-40 xl:h-full md:absolute md:top-0 md:left-0 md:w-[320px] md:z-40 md:shadow-2xl md:shadow-d-surface transition-all ease-in duration-150 lg:w-[8.4%] 2xl:w-full"/>
     <!-- Small Sidebar menu component -->
 
-    <main id="mainContainer" class="md:col-start-1 lg:col-start-2 2xl:col-start-3 col-end-13 grid grid-cols-8 gap-x-8 bg-dark-theme pt-8 2xl:px-56 xl:px-40 md:px-16">
+    <main id="mainContainer" class="md:col-start-1 lg:col-start-2 2xl:col-start-3 col-end-13 grid grid-cols-8 gap-x-8 dark:bg-gradient-to-br dark:from-d-theme-from dark:via-d-theme-via dark:to-d-theme-to pt-8 2xl:px-48 xl:px-40 md:px-16 bg-gradient-to-br from-l-theme-from to-l-theme-to">
         
     <!-- Header component / customEvent for toggle aside menu -->
     <HeaderComp v-on:showAsideMenu="toggleAsideMenu" class="col-span-full" />
@@ -217,10 +217,10 @@
         <div class="grid 3xl:grid-cols-8 2xl:grid-cols-6 xl:grid-cols-6 lg:grid-cols-4 xl:gap-x-8 xl:gap-y-24 lg:gap-x-4 lg:gap-y-24">
 
           <!-- Card -->
-          <div class="relative lg:col-span-2 h-[520px] rounded-lg overflow-visible shadow-xl shadow-d-surface bg-top bg-cover bg-[url('src/assets/Images/Posters/the_batman.jpg')] hover:shadow-md transition ease-in-out duration-300">
+          <div class="relative lg:col-span-2 h-[480px] rounded-lg overflow-visible shadow-2xl shadow-d-surface bg-center bg-cover bg-no-repeat bg-[url('src/assets/Images/Posters/the_batman.jpg')] hover:shadow-md transition ease-in-out duration-300">
 
             <!-- Score and time -->
-            <div class="h-16 w-full px-6 flex flex-row justify-between backdrop-blur-sm dark:text-d-soft-white">
+            <div class="h-10 w-full px-6 flex flex-row justify-between items-center backdrop-blur-sm dark:text-d-soft-white">
                 <!-- Score -->
                 <div class="w-fit text-sm flex flex-row items-center">
                     <img src="../assets/Icons/star-00.png" alt="star-image" class="w-8 mr-1">
@@ -229,7 +229,7 @@
                 <!-- Time -->
                 <div class="w-fit text-sm flex flex-row items-center">
                     <img src="../assets/Icons/wall-clock.png" alt="time-image" class="w-8 mr-1">
-                    <p>163min</p>
+                    <p>2h 30min</p>
                 </div>
             </div>
 
@@ -248,9 +248,94 @@
                 </a>
 
                 <!-- Title + date -->
-                <div class="flex flex-col ml-4">
-                  <p class="text-md dark:text-d-soft-white select-none">The Batman</p>
-                  <p class="text-sm dark:text-d-muted select-none">2022</p>
+                <div class="relative ml-4">
+                  <p class="w-28 text-sm font-bold dark:text-d-soft-white select-none">The Batman</p>
+                </div>
+                
+                </div>
+
+                <div class="h-full w-20 pr-4 pb-4 flex justify-between items-end">
+
+                  <!-- Add to my list -->
+                  <a href="#" id="addToListButton" data-popover-target="addToList" data-popover-placement="top" class="rounded-full h-7 w-7 flex justify-center items-center dark:bg-d-background">
+                    <svg class="w-5 h-5 hover:text-d-secondary dark:text-d-soft-white transition ease-in duration-150" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 6v12m6-6H6" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                  </a>
+                  <div data-popover id="addToList" role="tooltip" class="absolute z-10 invisible inline-block w-38 text-sm text-l-soft-black transition-opacity duration-300 bg-d-soft-white border border-d-muted rounded-lg shadow-sm opacity-0 dark:text-d-soft-white dark:border-d-muted dark:bg-d-surface">
+                    <div class="px-3 py-2 text-center select-none">
+                      <p>Agregar a mi Lista</p>
+                    </div>
+                  </div>
+
+                  <!-- Mark as seen -->
+                  <a href="#" id="markAsSeenButton" data-popover-target="markAsSeen" data-popover-placement="top" class="rounded-full h-7 w-7 flex justify-center items-center dark:bg-d-background">
+                    <svg class="w-5 h-5 dark:text-d-soft-white hover:opacity-75 transition ease-in duration-150" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" stroke-linecap="round" stroke-linejoin="round"></path>
+                      <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                  </a>
+                  <div data-popover id="markAsSeen" role="tooltip" class="absolute z-10 invisible inline-block w-38 text-sm text-l-soft-black transition-opacity duration-300 bg-d-soft-white border border-d-muted rounded-lg shadow-sm opacity-0 dark:text-d-soft-white dark:border-d-muted dark:bg-d-surface">
+                    <div class="px-3 py-2 text-center select-none">
+                      <p>Marcar como vista</p>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              <!-- Show hidden info on parent hover -->
+              <div class="absolute w-full flex flex-col items-center -translate-y-20 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transitioin ease-in-out duration-150">
+                <!-- Release date -->
+                <span class="py-1 px-3 my-2 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">
+                  2022
+                </span>
+                <!-- Generes -->
+                <div class="w-full flex flex-row justify-between items-center">
+                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
+                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
+                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
+                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+
+          <!-- Card -->
+          <div class="relative col-span-2 h-[480px] rounded-lg overflow-visible shadow-2xl shadow-d-surface bg-center bg-cover bg-no-repeat bg-[url('src/assets/Images/Posters/doctor_strange_in_the_multiverse_of_madness.jpg')] hover:shadow-md transition ease-in-out duration-300"> 
+
+            <!-- Score and time -->
+            <div class="h-10 w-full px-6 flex flex-row justify-between backdrop-blur-sm dark:text-d-soft-white">
+                <!-- Score -->
+                <div class="w-fit text-sm flex flex-row items-center">
+                    <img src="../assets/Icons/star-00.png" alt="star-image" class="w-8 mr-1">
+                    <p>8.8</p>
+                </div>
+                <!-- Time -->
+                <div class="w-fit text-sm flex flex-row items-center">
+                    <img src="../assets/Icons/wall-clock.png" alt="time-image" class="w-8 mr-1">
+                    <p>2h 6min</p>
+                </div>
+            </div>
+
+            <!-- Options -->
+            <div class="absolute bottom-0 h-20 w-full overflow-visible group">
+
+              <!-- Play button + title + add + seen -->
+              <div class="w-full h-20 z-10 flex flex-row justify-between items-center rounded-lg backdrop-blur-md">
+
+                <div class="flex items-center p-4">
+                <!-- Play button -->
+                <a href="#" class="w-10 h-10 rounded-full flex justify-center items-center dark:bg-gradient-to-br from-d-variant-1 to-d-primary dark:hover:opacity-75 cursor-pointer transition ease-in duration-150">
+                  <svg class="text-d-surface w-8 h-8" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>
+                </a>
+
+                <!-- Title + date -->
+                <div class="relative flex flex-col ml-4">
+                  <p class="w-28 text-sm font-bold dark:text-d-soft-white select-none">Doctor Strange en el multiverso de la locura</p>
                 </div>
                 
                 </div>
@@ -288,7 +373,7 @@
               <!-- Show hidden info on parent hover -->
               <div class="absolute w-full flex flex-col items-center -translate-y-20 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transitioin ease-in-out duration-150">
                 <span class="py-1 px-3 my-2 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">
-                  176 min
+                  2022
                 </span>
 
                 <div class="w-full flex flex-row justify-between items-center">
@@ -303,19 +388,19 @@
           </div>
 
           <!-- Card -->
-          <div class="relative col-span-2 h-[520px] rounded-lg overflow-visible shadow-xl shadow-d-surface bg-top bg-cover bg-[url('src/assets/Images/Posters/the_batman.jpg')] hover:shadow-md transition ease-in-out duration-300"> 
+          <div class="relative col-span-2 h-[480px] rounded-lg overflow-visible shadow-2xl shadow-d-surface bg-center bg-cover bg-no-repeat bg-[url('src/assets/Images/Posters/godzilla_king_of_the_monsters.jpg')] hover:shadow-md transition ease-in-out duration-300">
 
             <!-- Score and time -->
-            <div class="h-16 w-full px-6 flex flex-row justify-between backdrop-blur-sm dark:text-d-soft-white">
+            <div class="h-10 w-full px-6 flex flex-row justify-between backdrop-blur-sm dark:text-d-soft-white">
                 <!-- Score -->
                 <div class="w-fit text-sm flex flex-row items-center">
                     <img src="../assets/Icons/star-00.png" alt="star-image" class="w-8 mr-1">
-                    <p>8.4</p>
+                    <p>7.8</p>
                 </div>
                 <!-- Time -->
                 <div class="w-fit text-sm flex flex-row items-center">
                     <img src="../assets/Icons/wall-clock.png" alt="time-image" class="w-8 mr-1">
-                    <p>163min</p>
+                    <p>2h 12min</p>
                 </div>
             </div>
 
@@ -334,9 +419,8 @@
                 </a>
 
                 <!-- Title + date -->
-                <div class="flex flex-col ml-4">
-                  <p class="text-md dark:text-d-soft-white select-none">The Batman</p>
-                  <p class="text-sm dark:text-d-muted select-none">2022</p>
+                <div class="relative flex flex-col ml-4">
+                  <p class="w-28 text-sm font-bold dark:text-d-soft-white select-none">Godzilla rey de los monstruos</p>
                 </div>
                 
                 </div>
@@ -374,7 +458,92 @@
               <!-- Show hidden info on parent hover -->
               <div class="absolute w-full flex flex-col items-center -translate-y-20 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transitioin ease-in-out duration-150">
                 <span class="py-1 px-3 my-2 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">
-                  176 min
+                  2022
+                </span>
+
+                <div class="w-full flex flex-row justify-between items-center">
+                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
+                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
+                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
+                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+          
+          <!-- Card -->
+          <div class="relative col-span-2 h-[480px] rounded-lg overflow-visible shadow-2xl shadow-d-surface bg-center bg-cover bg-no-repeat bg-[url('src/assets/Images/Posters/blade_runner_2049.jpg')] hover:shadow-md transition ease-in-out duration-300"> 
+
+            <!-- Score and time -->
+            <div class="h-10 w-full px-6 flex flex-row justify-between backdrop-blur-sm dark:text-d-soft-white">
+                <!-- Score -->
+                <div class="w-fit text-sm flex flex-row items-center">
+                    <img src="../assets/Icons/star-00.png" alt="star-image" class="w-8 mr-1">
+                    <p>8.2</p>
+                </div>
+                <!-- Time -->
+                <div class="w-fit text-sm flex flex-row items-center">
+                    <img src="../assets/Icons/wall-clock.png" alt="time-image" class="w-8 mr-1">
+                    <p>2h 43min</p>
+                </div>
+            </div>
+
+            <!-- Options -->
+            <div class="absolute bottom-0 h-20 w-full overflow-visible group">
+
+              <!-- Play button + title + add + seen -->
+              <div class="w-full h-20 z-10 flex flex-row justify-between items-center rounded-lg backdrop-blur-md">
+
+                <div class="flex items-center p-4">
+                <!-- Play button -->
+                <a href="#" class="w-10 h-10 rounded-full flex justify-center items-center dark:bg-gradient-to-br from-d-variant-1 to-d-primary dark:hover:opacity-75 cursor-pointer transition ease-in duration-150">
+                  <svg class="text-d-surface w-8 h-8" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>
+                </a>
+
+                <!-- Title + date -->
+                <div class="relative flex flex-col ml-4">
+                  <p class="w-28 text-sm font-bold dark:text-d-soft-white select-none">Blade Runner 2049</p>
+                </div>
+                
+                </div>
+
+                <div class="h-full w-20 pr-4 pb-4 flex justify-between items-end">
+
+                  <!-- Add to my list -->
+                  <a href="#" id="addToListButton" data-popover-target="addToList" data-popover-placement="top" class="rounded-full h-7 w-7 flex justify-center items-center dark:bg-d-background">
+                    <svg class="w-5 h-5 hover:text-d-secondary dark:text-d-soft-white transition ease-in duration-150" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 6v12m6-6H6" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                  </a>
+                  <div data-popover id="addToList" role="tooltip" class="absolute z-10 invisible inline-block w-38 text-sm text-l-soft-black transition-opacity duration-300 bg-d-soft-white border border-d-muted rounded-lg shadow-sm opacity-0 dark:text-d-soft-white dark:border-d-muted dark:bg-d-surface">
+                    <div class="px-3 py-2 text-center select-none">
+                      <p>Agregar a mi Lista</p>
+                    </div>
+                  </div>
+
+                  <!-- Mark as seen -->
+                  <a href="#" id="markAsSeenButton" data-popover-target="markAsSeen" data-popover-placement="top" class="rounded-full h-7 w-7 flex justify-center items-center dark:bg-d-background">
+                    <svg class="w-5 h-5 dark:text-d-soft-white hover:opacity-75 transition ease-in duration-150" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" stroke-linecap="round" stroke-linejoin="round"></path>
+                      <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                  </a>
+                  <div data-popover id="markAsSeen" role="tooltip" class="absolute z-10 invisible inline-block w-38 text-sm text-l-soft-black transition-opacity duration-300 bg-d-soft-white border border-d-muted rounded-lg shadow-sm opacity-0 dark:text-d-soft-white dark:border-d-muted dark:bg-d-surface">
+                    <div class="px-3 py-2 text-center select-none">
+                      <p>Marcar como vista</p>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              <!-- Show hidden info on parent hover -->
+              <div class="absolute w-full flex flex-col items-center -translate-y-20 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transitioin ease-in-out duration-150">
+                <span class="py-1 px-3 my-2 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">
+                  2022
                 </span>
 
                 <div class="w-full flex flex-row justify-between items-center">
@@ -389,19 +558,19 @@
           </div>
 
           <!-- Card -->
-          <div class="relative col-span-2 h-[520px] rounded-lg overflow-visible shadow-xl shadow-d-surface bg-top bg-cover bg-[url('src/assets/Images/Posters/the_batman.jpg')] hover:shadow-md transition ease-in-out duration-300"> 
+          <div class="relative col-span-2 h-[480px] rounded-lg overflow-visible shadow-2xl shadow-d-surface bg-center bg-cover bg-no-repeat bg-[url('src/assets/Images/Posters/black_adam.jpg')] hover:shadow-md transition ease-in-out duration-300"> 
 
             <!-- Score and time -->
-            <div class="h-16 w-full px-6 flex flex-row justify-between backdrop-blur-sm dark:text-d-soft-white">
+            <div class="h-10 w-full px-6 flex flex-row justify-between backdrop-blur-sm dark:text-d-soft-white">
                 <!-- Score -->
                 <div class="w-fit text-sm flex flex-row items-center">
                     <img src="../assets/Icons/star-00.png" alt="star-image" class="w-8 mr-1">
-                    <p>8.4</p>
+                    <p>8.8</p>
                 </div>
                 <!-- Time -->
                 <div class="w-fit text-sm flex flex-row items-center">
                     <img src="../assets/Icons/wall-clock.png" alt="time-image" class="w-8 mr-1">
-                    <p>163min</p>
+                    <p>2h 6min</p>
                 </div>
             </div>
 
@@ -420,9 +589,8 @@
                 </a>
 
                 <!-- Title + date -->
-                <div class="flex flex-col ml-4">
-                  <p class="text-md dark:text-d-soft-white select-none">The Batman</p>
-                  <p class="text-sm dark:text-d-muted select-none">2022</p>
+                <div class="relative flex flex-col ml-4">
+                  <p class="w-28 text-sm font-bold dark:text-d-soft-white select-none">Black Adam</p>
                 </div>
                 
                 </div>
@@ -460,7 +628,7 @@
               <!-- Show hidden info on parent hover -->
               <div class="absolute w-full flex flex-col items-center -translate-y-20 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transitioin ease-in-out duration-150">
                 <span class="py-1 px-3 my-2 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">
-                  176 min
+                  2022
                 </span>
 
                 <div class="w-full flex flex-row justify-between items-center">
@@ -475,19 +643,19 @@
           </div>
 
           <!-- Card -->
-          <div class="relative col-span-2 h-[520px] rounded-lg overflow-visible shadow-xl shadow-d-surface bg-top bg-cover bg-[url('src/assets/Images/Posters/the_batman.jpg')] hover:shadow-md transition ease-in-out duration-300"> 
+          <div class="relative col-span-2 h-[480px] rounded-lg overflow-visible shadow-2xl shadow-d-surface bg-center bg-cover bg-no-repeat bg-[url('src/assets/Images/Posters/boku_no_hero_academia_world_heroes_mission.jpg')] hover:shadow-md transition ease-in-out duration-300"> 
 
             <!-- Score and time -->
-            <div class="h-16 w-full px-6 flex flex-row justify-between backdrop-blur-sm dark:text-d-soft-white">
+            <div class="h-10 w-full px-6 flex flex-row justify-between backdrop-blur-sm dark:text-d-soft-white">
                 <!-- Score -->
                 <div class="w-fit text-sm flex flex-row items-center">
                     <img src="../assets/Icons/star-00.png" alt="star-image" class="w-8 mr-1">
-                    <p>8.4</p>
+                    <p>8.8</p>
                 </div>
                 <!-- Time -->
                 <div class="w-fit text-sm flex flex-row items-center">
                     <img src="../assets/Icons/wall-clock.png" alt="time-image" class="w-8 mr-1">
-                    <p>163min</p>
+                    <p>2h 6min</p>
                 </div>
             </div>
 
@@ -506,9 +674,8 @@
                 </a>
 
                 <!-- Title + date -->
-                <div class="flex flex-col ml-4">
-                  <p class="text-md dark:text-d-soft-white select-none">The Batman</p>
-                  <p class="text-sm dark:text-d-muted select-none">2022</p>
+                <div class="relative flex flex-col ml-4">
+                  <p class="w-28 text-sm font-bold dark:text-d-soft-white select-none">Boku no Hero: Misión mundial de héroes</p>
                 </div>
                 
                 </div>
@@ -546,7 +713,7 @@
               <!-- Show hidden info on parent hover -->
               <div class="absolute w-full flex flex-col items-center -translate-y-20 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transitioin ease-in-out duration-150">
                 <span class="py-1 px-3 my-2 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">
-                  176 min
+                  2022
                 </span>
 
                 <div class="w-full flex flex-row justify-between items-center">
@@ -561,19 +728,19 @@
           </div>
 
           <!-- Card -->
-          <div class="relative col-span-2 h-[520px] rounded-lg overflow-visible shadow-xl shadow-d-surface bg-top bg-cover bg-[url('src/assets/Images/Posters/the_batman.jpg')] hover:shadow-md transition ease-in-out duration-300"> 
+          <div class="relative col-span-2 h-[480px] rounded-lg overflow-visible shadow-2xl shadow-d-surface bg-center bg-cover bg-no-repeat bg-[url('src/assets/Images/Posters/dune.jpg')] hover:shadow-md transition ease-in-out duration-300"> 
 
             <!-- Score and time -->
-            <div class="h-16 w-full px-6 flex flex-row justify-between backdrop-blur-sm dark:text-d-soft-white">
+            <div class="h-10 w-full px-6 flex flex-row justify-between backdrop-blur-sm dark:text-d-soft-white">
                 <!-- Score -->
                 <div class="w-fit text-sm flex flex-row items-center">
                     <img src="../assets/Icons/star-00.png" alt="star-image" class="w-8 mr-1">
-                    <p>8.4</p>
+                    <p>8.8</p>
                 </div>
                 <!-- Time -->
                 <div class="w-fit text-sm flex flex-row items-center">
                     <img src="../assets/Icons/wall-clock.png" alt="time-image" class="w-8 mr-1">
-                    <p>163min</p>
+                    <p>2h 6min</p>
                 </div>
             </div>
 
@@ -592,9 +759,8 @@
                 </a>
 
                 <!-- Title + date -->
-                <div class="flex flex-col ml-4">
-                  <p class="text-md dark:text-d-soft-white select-none">The Batman</p>
-                  <p class="text-sm dark:text-d-muted select-none">2022</p>
+                <div class="relative flex flex-col ml-4">
+                  <p class="w-28 text-sm font-bold dark:text-d-soft-white select-none">Dune</p>
                 </div>
                 
                 </div>
@@ -632,7 +798,7 @@
               <!-- Show hidden info on parent hover -->
               <div class="absolute w-full flex flex-col items-center -translate-y-20 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transitioin ease-in-out duration-150">
                 <span class="py-1 px-3 my-2 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">
-                  176 min
+                  2022
                 </span>
 
                 <div class="w-full flex flex-row justify-between items-center">
@@ -647,19 +813,19 @@
           </div>
 
           <!-- Card -->
-          <div class="relative col-span-2 h-[520px] rounded-lg overflow-visible shadow-xl shadow-d-surface bg-top bg-cover bg-[url('src/assets/Images/Posters/the_batman.jpg')] hover:shadow-md transition ease-in-out duration-300"> 
+          <div class="relative col-span-2 h-[480px] rounded-lg overflow-visible shadow-2xl shadow-d-surface bg-center bg-cover bg-no-repeat bg-[url('src/assets/Images/Posters/jurassic_world_dominion.jpg')] hover:shadow-md transition ease-in-out duration-300"> 
 
             <!-- Score and time -->
-            <div class="h-16 w-full px-6 flex flex-row justify-between backdrop-blur-sm dark:text-d-soft-white">
+            <div class="h-10 w-full px-6 flex flex-row justify-between backdrop-blur-sm dark:text-d-soft-white">
                 <!-- Score -->
                 <div class="w-fit text-sm flex flex-row items-center">
                     <img src="../assets/Icons/star-00.png" alt="star-image" class="w-8 mr-1">
-                    <p>8.4</p>
+                    <p>8.8</p>
                 </div>
                 <!-- Time -->
                 <div class="w-fit text-sm flex flex-row items-center">
                     <img src="../assets/Icons/wall-clock.png" alt="time-image" class="w-8 mr-1">
-                    <p>163min</p>
+                    <p>2h 6min</p>
                 </div>
             </div>
 
@@ -678,9 +844,8 @@
                 </a>
 
                 <!-- Title + date -->
-                <div class="flex flex-col ml-4">
-                  <p class="text-md dark:text-d-soft-white select-none">The Batman</p>
-                  <p class="text-sm dark:text-d-muted select-none">2022</p>
+                <div class="relative flex flex-col ml-4">
+                  <p class="w-28 text-sm font-bold dark:text-d-soft-white select-none">Jurasic World: Dominion </p>
                 </div>
                 
                 </div>
@@ -718,7 +883,7 @@
               <!-- Show hidden info on parent hover -->
               <div class="absolute w-full flex flex-col items-center -translate-y-20 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transitioin ease-in-out duration-150">
                 <span class="py-1 px-3 my-2 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">
-                  176 min
+                  2022
                 </span>
 
                 <div class="w-full flex flex-row justify-between items-center">
@@ -733,19 +898,19 @@
           </div>
 
           <!-- Card -->
-          <div class="relative col-span-2 h-[520px] rounded-lg overflow-visible shadow-xl shadow-d-surface bg-top bg-cover bg-[url('src/assets/Images/Posters/the_batman.jpg')] hover:shadow-md transition ease-in-out duration-300"> 
+          <div class="relative col-span-2 h-[480px] rounded-lg overflow-visible shadow-2xl shadow-d-surface bg-center bg-cover bg-no-repeat bg-[url('src/assets/Images/Posters/kimetsu_no_yaiba_mugen_ressha_hen.jpg')] hover:shadow-md transition ease-in-out duration-300"> 
 
             <!-- Score and time -->
-            <div class="h-16 w-full px-6 flex flex-row justify-between backdrop-blur-sm dark:text-d-soft-white">
+            <div class="h-10 w-full px-6 flex flex-row justify-between backdrop-blur-sm dark:text-d-soft-white">
                 <!-- Score -->
                 <div class="w-fit text-sm flex flex-row items-center">
                     <img src="../assets/Icons/star-00.png" alt="star-image" class="w-8 mr-1">
-                    <p>8.4</p>
+                    <p>8.8</p>
                 </div>
                 <!-- Time -->
                 <div class="w-fit text-sm flex flex-row items-center">
                     <img src="../assets/Icons/wall-clock.png" alt="time-image" class="w-8 mr-1">
-                    <p>163min</p>
+                    <p>2h 6min</p>
                 </div>
             </div>
 
@@ -764,9 +929,8 @@
                 </a>
 
                 <!-- Title + date -->
-                <div class="flex flex-col ml-4">
-                  <p class="text-md dark:text-d-soft-white select-none">The Batman</p>
-                  <p class="text-sm dark:text-d-muted select-none">2022</p>
+                <div class="relative flex flex-col ml-4">
+                  <p class="w-28 text-sm font-bold dark:text-d-soft-white select-none">Kimetsu no Yaiba: Mugen ressha hen</p>
                 </div>
                 
                 </div>
@@ -804,7 +968,7 @@
               <!-- Show hidden info on parent hover -->
               <div class="absolute w-full flex flex-col items-center -translate-y-20 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transitioin ease-in-out duration-150">
                 <span class="py-1 px-3 my-2 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">
-                  176 min
+                  2022
                 </span>
 
                 <div class="w-full flex flex-row justify-between items-center">
@@ -819,19 +983,19 @@
           </div>
 
           <!-- Card -->
-          <div class="relative col-span-2 h-[520px] rounded-lg overflow-visible shadow-xl shadow-d-surface bg-top bg-cover bg-[url('src/assets/Images/Posters/the_batman.jpg')] hover:shadow-md transition ease-in-out duration-300"> 
+          <div class="relative col-span-2 h-[480px] rounded-lg overflow-visible shadow-2xl shadow-d-surface bg-center bg-cover bg-no-repeat bg-[url('src/assets/Images/Posters/mortal_kombat.jpg')] hover:shadow-md transition ease-in-out duration-300"> 
 
             <!-- Score and time -->
-            <div class="h-16 w-full px-6 flex flex-row justify-between backdrop-blur-sm dark:text-d-soft-white">
+            <div class="h-10 w-full px-6 flex flex-row justify-between backdrop-blur-sm dark:text-d-soft-white">
                 <!-- Score -->
                 <div class="w-fit text-sm flex flex-row items-center">
                     <img src="../assets/Icons/star-00.png" alt="star-image" class="w-8 mr-1">
-                    <p>8.4</p>
+                    <p>8.8</p>
                 </div>
                 <!-- Time -->
                 <div class="w-fit text-sm flex flex-row items-center">
                     <img src="../assets/Icons/wall-clock.png" alt="time-image" class="w-8 mr-1">
-                    <p>163min</p>
+                    <p>2h 6min</p>
                 </div>
             </div>
 
@@ -850,9 +1014,8 @@
                 </a>
 
                 <!-- Title + date -->
-                <div class="flex flex-col ml-4">
-                  <p class="text-md dark:text-d-soft-white select-none">The Batman</p>
-                  <p class="text-sm dark:text-d-muted select-none">2022</p>
+                <div class="relative flex flex-col ml-4">
+                  <p class="w-28 text-sm font-bold dark:text-d-soft-white select-none">Mortal Kombat</p>
                 </div>
                 
                 </div>
@@ -890,7 +1053,7 @@
               <!-- Show hidden info on parent hover -->
               <div class="absolute w-full flex flex-col items-center -translate-y-20 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transitioin ease-in-out duration-150">
                 <span class="py-1 px-3 my-2 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">
-                  176 min
+                  2022
                 </span>
 
                 <div class="w-full flex flex-row justify-between items-center">
@@ -905,19 +1068,19 @@
           </div>
 
           <!-- Card -->
-          <div class="relative col-span-2 h-[520px] rounded-lg overflow-visible shadow-xl shadow-d-surface bg-top bg-cover bg-[url('src/assets/Images/Posters/the_batman.jpg')] hover:shadow-md transition ease-in-out duration-300"> 
+          <div class="relative col-span-2 h-[480px] rounded-lg overflow-visible shadow-2xl shadow-d-surface bg-center bg-cover bg-no-repeat bg-[url('src/assets/Images/Posters/spider_man_no_way_home.jpg')] hover:shadow-md transition ease-in-out duration-300"> 
 
             <!-- Score and time -->
-            <div class="h-16 w-full px-6 flex flex-row justify-between backdrop-blur-sm dark:text-d-soft-white">
+            <div class="h-10 w-full px-6 flex flex-row justify-between backdrop-blur-sm dark:text-d-soft-white">
                 <!-- Score -->
                 <div class="w-fit text-sm flex flex-row items-center">
                     <img src="../assets/Icons/star-00.png" alt="star-image" class="w-8 mr-1">
-                    <p>8.4</p>
+                    <p>8.8</p>
                 </div>
                 <!-- Time -->
                 <div class="w-fit text-sm flex flex-row items-center">
                     <img src="../assets/Icons/wall-clock.png" alt="time-image" class="w-8 mr-1">
-                    <p>163min</p>
+                    <p>2h 6min</p>
                 </div>
             </div>
 
@@ -936,9 +1099,8 @@
                 </a>
 
                 <!-- Title + date -->
-                <div class="flex flex-col ml-4">
-                  <p class="text-md dark:text-d-soft-white select-none">The Batman</p>
-                  <p class="text-sm dark:text-d-muted select-none">2022</p>
+                <div class="relative flex flex-col ml-4">
+                  <p class="w-28 text-sm font-bold dark:text-d-soft-white select-none">Spider Man: No Way Home</p>
                 </div>
                 
                 </div>
@@ -976,7 +1138,7 @@
               <!-- Show hidden info on parent hover -->
               <div class="absolute w-full flex flex-col items-center -translate-y-20 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transitioin ease-in-out duration-150">
                 <span class="py-1 px-3 my-2 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">
-                  176 min
+                  2022
                 </span>
 
                 <div class="w-full flex flex-row justify-between items-center">
@@ -991,19 +1153,19 @@
           </div>
 
           <!-- Card -->
-          <div class="relative col-span-2 h-[520px] rounded-lg overflow-visible shadow-xl shadow-d-surface bg-top bg-cover bg-[url('src/assets/Images/Posters/the_batman.jpg')] hover:shadow-md transition ease-in-out duration-300"> 
+          <div class="relative col-span-2 h-[480px] rounded-lg overflow-visible shadow-2xl shadow-d-surface bg-center bg-cover bg-no-repeat bg-[url('src/assets/Images/Posters/the_black_phone.jpg')] hover:shadow-md transition ease-in-out duration-300"> 
 
             <!-- Score and time -->
-            <div class="h-16 w-full px-6 flex flex-row justify-between backdrop-blur-sm dark:text-d-soft-white">
+            <div class="h-10 w-full px-6 flex flex-row justify-between backdrop-blur-sm dark:text-d-soft-white">
                 <!-- Score -->
                 <div class="w-fit text-sm flex flex-row items-center">
                     <img src="../assets/Icons/star-00.png" alt="star-image" class="w-8 mr-1">
-                    <p>8.4</p>
+                    <p>8.8</p>
                 </div>
                 <!-- Time -->
                 <div class="w-fit text-sm flex flex-row items-center">
                     <img src="../assets/Icons/wall-clock.png" alt="time-image" class="w-8 mr-1">
-                    <p>163min</p>
+                    <p>2h 6min</p>
                 </div>
             </div>
 
@@ -1022,9 +1184,8 @@
                 </a>
 
                 <!-- Title + date -->
-                <div class="flex flex-col ml-4">
-                  <p class="text-md dark:text-d-soft-white select-none">The Batman</p>
-                  <p class="text-sm dark:text-d-muted select-none">2022</p>
+                <div class="relative flex flex-col ml-4">
+                  <p class="w-28 text-sm font-bold dark:text-d-soft-white select-none">Black Phone</p>
                 </div>
                 
                 </div>
@@ -1062,7 +1223,7 @@
               <!-- Show hidden info on parent hover -->
               <div class="absolute w-full flex flex-col items-center -translate-y-20 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transitioin ease-in-out duration-150">
                 <span class="py-1 px-3 my-2 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">
-                  176 min
+                  2022
                 </span>
 
                 <div class="w-full flex flex-row justify-between items-center">
@@ -1076,6 +1237,345 @@
             
           </div>
 
+          <!-- Card -->
+          <div class="relative col-span-2 h-[480px] rounded-lg overflow-visible shadow-2xl shadow-d-surface bg-center bg-cover bg-no-repeat bg-[url('src/assets/Images/Posters/the_matrix_resurrections.jpg')] hover:shadow-md transition ease-in-out duration-300"> 
+
+            <!-- Score and time -->
+            <div class="h-10 w-full px-6 flex flex-row justify-between backdrop-blur-sm dark:text-d-soft-white">
+                <!-- Score -->
+                <div class="w-fit text-sm flex flex-row items-center">
+                    <img src="../assets/Icons/star-00.png" alt="star-image" class="w-8 mr-1">
+                    <p>8.8</p>
+                </div>
+                <!-- Time -->
+                <div class="w-fit text-sm flex flex-row items-center">
+                    <img src="../assets/Icons/wall-clock.png" alt="time-image" class="w-8 mr-1">
+                    <p>2h 6min</p>
+                </div>
+            </div>
+
+            <!-- Options -->
+            <div class="absolute bottom-0 h-20 w-full overflow-visible group">
+
+              <!-- Play button + title + add + seen -->
+              <div class="w-full h-20 z-10 flex flex-row justify-between items-center rounded-lg backdrop-blur-md">
+
+                <div class="flex items-center p-4">
+                <!-- Play button -->
+                <a href="#" class="w-10 h-10 rounded-full flex justify-center items-center dark:bg-gradient-to-br from-d-variant-1 to-d-primary dark:hover:opacity-75 cursor-pointer transition ease-in duration-150">
+                  <svg class="text-d-surface w-8 h-8" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>
+                </a>
+
+                <!-- Title + date -->
+                <div class="relative flex flex-col ml-4">
+                  <p class="w-28 text-sm font-bold dark:text-d-soft-white select-none">The Matrix Resurrections</p>
+                </div>
+                
+                </div>
+
+                <div class="h-full w-20 pr-4 pb-4 flex justify-between items-end">
+
+                  <!-- Add to my list -->
+                  <a href="#" id="addToListButton" data-popover-target="addToList" data-popover-placement="top" class="rounded-full h-7 w-7 flex justify-center items-center dark:bg-d-background">
+                    <svg class="w-5 h-5 hover:text-d-secondary dark:text-d-soft-white transition ease-in duration-150" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 6v12m6-6H6" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                  </a>
+                  <div data-popover id="addToList" role="tooltip" class="absolute z-10 invisible inline-block w-38 text-sm text-l-soft-black transition-opacity duration-300 bg-d-soft-white border border-d-muted rounded-lg shadow-sm opacity-0 dark:text-d-soft-white dark:border-d-muted dark:bg-d-surface">
+                    <div class="px-3 py-2 text-center select-none">
+                      <p>Agregar a mi Lista</p>
+                    </div>
+                  </div>
+
+                  <!-- Mark as seen -->
+                  <a href="#" id="markAsSeenButton" data-popover-target="markAsSeen" data-popover-placement="top" class="rounded-full h-7 w-7 flex justify-center items-center dark:bg-d-background">
+                    <svg class="w-5 h-5 dark:text-d-soft-white hover:opacity-75 transition ease-in duration-150" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" stroke-linecap="round" stroke-linejoin="round"></path>
+                      <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                  </a>
+                  <div data-popover id="markAsSeen" role="tooltip" class="absolute z-10 invisible inline-block w-38 text-sm text-l-soft-black transition-opacity duration-300 bg-d-soft-white border border-d-muted rounded-lg shadow-sm opacity-0 dark:text-d-soft-white dark:border-d-muted dark:bg-d-surface">
+                    <div class="px-3 py-2 text-center select-none">
+                      <p>Marcar como vista</p>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              <!-- Show hidden info on parent hover -->
+              <div class="absolute w-full flex flex-col items-center -translate-y-20 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transitioin ease-in-out duration-150">
+                <span class="py-1 px-3 my-2 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">
+                  2022
+                </span>
+
+                <div class="w-full flex flex-row justify-between items-center">
+                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
+                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
+                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
+                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+
+          <!-- Card -->
+          <div class="relative col-span-2 h-[480px] rounded-lg overflow-visible shadow-2xl shadow-d-surface bg-center bg-cover bg-no-repeat bg-[url('src/assets/Images/Posters/thor_love_and_thunder.jpg')] hover:shadow-md transition ease-in-out duration-300"> 
+
+            <!-- Score and time -->
+            <div class="h-10 w-full px-6 flex flex-row justify-between backdrop-blur-sm dark:text-d-soft-white">
+                <!-- Score -->
+                <div class="w-fit text-sm flex flex-row items-center">
+                    <img src="../assets/Icons/star-00.png" alt="star-image" class="w-8 mr-1">
+                    <p>8.8</p>
+                </div>
+                <!-- Time -->
+                <div class="w-fit text-sm flex flex-row items-center">
+                    <img src="../assets/Icons/wall-clock.png" alt="time-image" class="w-8 mr-1">
+                    <p>2h 6min</p>
+                </div>
+            </div>
+
+            <!-- Options -->
+            <div class="absolute bottom-0 h-20 w-full overflow-visible group">
+
+              <!-- Play button + title + add + seen -->
+              <div class="w-full h-20 z-10 flex flex-row justify-between items-center rounded-lg backdrop-blur-md">
+
+                <div class="flex items-center p-4">
+                <!-- Play button -->
+                <a href="#" class="w-10 h-10 rounded-full flex justify-center items-center dark:bg-gradient-to-br from-d-variant-1 to-d-primary dark:hover:opacity-75 cursor-pointer transition ease-in duration-150">
+                  <svg class="text-d-surface w-8 h-8" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>
+                </a>
+
+                <!-- Title + date -->
+                <div class="relative flex flex-col ml-4">
+                  <p class="w-28 text-sm font-bold dark:text-d-soft-white select-none">Thor Love and Thunder</p>
+                </div>
+                
+                </div>
+
+                <div class="h-full w-20 pr-4 pb-4 flex justify-between items-end">
+
+                  <!-- Add to my list -->
+                  <a href="#" id="addToListButton" data-popover-target="addToList" data-popover-placement="top" class="rounded-full h-7 w-7 flex justify-center items-center dark:bg-d-background">
+                    <svg class="w-5 h-5 hover:text-d-secondary dark:text-d-soft-white transition ease-in duration-150" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 6v12m6-6H6" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                  </a>
+                  <div data-popover id="addToList" role="tooltip" class="absolute z-10 invisible inline-block w-38 text-sm text-l-soft-black transition-opacity duration-300 bg-d-soft-white border border-d-muted rounded-lg shadow-sm opacity-0 dark:text-d-soft-white dark:border-d-muted dark:bg-d-surface">
+                    <div class="px-3 py-2 text-center select-none">
+                      <p>Agregar a mi Lista</p>
+                    </div>
+                  </div>
+
+                  <!-- Mark as seen -->
+                  <a href="#" id="markAsSeenButton" data-popover-target="markAsSeen" data-popover-placement="top" class="rounded-full h-7 w-7 flex justify-center items-center dark:bg-d-background">
+                    <svg class="w-5 h-5 dark:text-d-soft-white hover:opacity-75 transition ease-in duration-150" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" stroke-linecap="round" stroke-linejoin="round"></path>
+                      <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                  </a>
+                  <div data-popover id="markAsSeen" role="tooltip" class="absolute z-10 invisible inline-block w-38 text-sm text-l-soft-black transition-opacity duration-300 bg-d-soft-white border border-d-muted rounded-lg shadow-sm opacity-0 dark:text-d-soft-white dark:border-d-muted dark:bg-d-surface">
+                    <div class="px-3 py-2 text-center select-none">
+                      <p>Marcar como vista</p>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              <!-- Show hidden info on parent hover -->
+              <div class="absolute w-full flex flex-col items-center -translate-y-20 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transitioin ease-in-out duration-150">
+                <span class="py-1 px-3 my-2 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">
+                  2022
+                </span>
+
+                <div class="w-full flex flex-row justify-between items-center">
+                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
+                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
+                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
+                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+
+          <!-- Card -->
+          <div class="relative col-span-2 h-[480px] rounded-lg overflow-visible shadow-2xl shadow-d-surface bg-center bg-cover bg-no-repeat bg-[url('src/assets/Images/Posters/uncharted.jpg')] hover:shadow-md transition ease-in-out duration-300"> 
+
+            <!-- Score and time -->
+            <div class="h-10 w-full px-6 flex flex-row justify-between backdrop-blur-sm dark:text-d-soft-white">
+                <!-- Score -->
+                <div class="w-fit text-sm flex flex-row items-center">
+                    <img src="../assets/Icons/star-00.png" alt="star-image" class="w-8 mr-1">
+                    <p>8.8</p>
+                </div>
+                <!-- Time -->
+                <div class="w-fit text-sm flex flex-row items-center">
+                    <img src="../assets/Icons/wall-clock.png" alt="time-image" class="w-8 mr-1">
+                    <p>2h 6min</p>
+                </div>
+            </div>
+
+            <!-- Options -->
+            <div class="absolute bottom-0 h-20 w-full overflow-visible group">
+
+              <!-- Play button + title + add + seen -->
+              <div class="w-full h-20 z-10 flex flex-row justify-between items-center rounded-lg backdrop-blur-md">
+
+                <div class="flex items-center p-4">
+                <!-- Play button -->
+                <a href="#" class="w-10 h-10 rounded-full flex justify-center items-center dark:bg-gradient-to-br from-d-variant-1 to-d-primary dark:hover:opacity-75 cursor-pointer transition ease-in duration-150">
+                  <svg class="text-d-surface w-8 h-8" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>
+                </a>
+
+                <!-- Title + date -->
+                <div class="relative flex flex-col ml-4">
+                  <p class="w-28 text-sm font-bold dark:text-d-soft-white select-none">Uncharted</p>
+                </div>
+                
+                </div>
+
+                <div class="h-full w-20 pr-4 pb-4 flex justify-between items-end">
+
+                  <!-- Add to my list -->
+                  <a href="#" id="addToListButton" data-popover-target="addToList" data-popover-placement="top" class="rounded-full h-7 w-7 flex justify-center items-center dark:bg-d-background">
+                    <svg class="w-5 h-5 hover:text-d-secondary dark:text-d-soft-white transition ease-in duration-150" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 6v12m6-6H6" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                  </a>
+                  <div data-popover id="addToList" role="tooltip" class="absolute z-10 invisible inline-block w-38 text-sm text-l-soft-black transition-opacity duration-300 bg-d-soft-white border border-d-muted rounded-lg shadow-sm opacity-0 dark:text-d-soft-white dark:border-d-muted dark:bg-d-surface">
+                    <div class="px-3 py-2 text-center select-none">
+                      <p>Agregar a mi Lista</p>
+                    </div>
+                  </div>
+
+                  <!-- Mark as seen -->
+                  <a href="#" id="markAsSeenButton" data-popover-target="markAsSeen" data-popover-placement="top" class="rounded-full h-7 w-7 flex justify-center items-center dark:bg-d-background">
+                    <svg class="w-5 h-5 dark:text-d-soft-white hover:opacity-75 transition ease-in duration-150" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" stroke-linecap="round" stroke-linejoin="round"></path>
+                      <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                  </a>
+                  <div data-popover id="markAsSeen" role="tooltip" class="absolute z-10 invisible inline-block w-38 text-sm text-l-soft-black transition-opacity duration-300 bg-d-soft-white border border-d-muted rounded-lg shadow-sm opacity-0 dark:text-d-soft-white dark:border-d-muted dark:bg-d-surface">
+                    <div class="px-3 py-2 text-center select-none">
+                      <p>Marcar como vista</p>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              <!-- Show hidden info on parent hover -->
+              <div class="absolute w-full flex flex-col items-center -translate-y-20 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transitioin ease-in-out duration-150">
+                <span class="py-1 px-3 my-2 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">
+                  2022
+                </span>
+
+                <div class="w-full flex flex-row justify-between items-center">
+                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
+                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
+                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
+                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+
+          <!-- Card -->
+          <div class="relative col-span-2 h-[480px] rounded-lg overflow-visible shadow-2xl shadow-d-surface bg-center bg-cover bg-no-repeat bg-[url('src/assets/Images/Posters/venom_let_be_carnage.jpg')] hover:shadow-md transition ease-in-out duration-300"> 
+
+            <!-- Score and time -->
+            <div class="h-10 w-full px-6 flex flex-row justify-between backdrop-blur-sm dark:text-d-soft-white">
+                <!-- Score -->
+                <div class="w-fit text-sm flex flex-row items-center">
+                    <img src="../assets/Icons/star-00.png" alt="star-image" class="w-8 mr-1">
+                    <p>8.8</p>
+                </div>
+                <!-- Time -->
+                <div class="w-fit text-sm flex flex-row items-center">
+                    <img src="../assets/Icons/wall-clock.png" alt="time-image" class="w-8 mr-1">
+                    <p>2h 6min</p>
+                </div>
+            </div>
+
+            <!-- Options -->
+            <div class="absolute bottom-0 h-20 w-full overflow-visible group">
+
+              <!-- Play button + title + add + seen -->
+              <div class="w-full h-20 z-10 flex flex-row justify-between items-center rounded-lg backdrop-blur-md">
+
+                <div class="flex items-center p-4">
+                <!-- Play button -->
+                <a href="#" class="w-10 h-10 rounded-full flex justify-center items-center dark:bg-gradient-to-br from-d-variant-1 to-d-primary dark:hover:opacity-75 cursor-pointer transition ease-in duration-150">
+                  <svg class="text-d-surface w-8 h-8" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>
+                </a>
+
+                <!-- Title + date -->
+                <div class="relative flex flex-col ml-4">
+                  <p class="w-28 text-sm font-bold dark:text-d-soft-white select-none">Black Phone</p>
+                </div>
+                
+                </div>
+
+                <div class="h-full w-20 pr-4 pb-4 flex justify-between items-end">
+
+                  <!-- Add to my list -->
+                  <a href="#" id="addToListButton" data-popover-target="addToList" data-popover-placement="top" class="rounded-full h-7 w-7 flex justify-center items-center dark:bg-d-background">
+                    <svg class="w-5 h-5 hover:text-d-secondary dark:text-d-soft-white transition ease-in duration-150" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 6v12m6-6H6" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                  </a>
+                  <div data-popover id="addToList" role="tooltip" class="absolute z-10 invisible inline-block w-38 text-sm text-l-soft-black transition-opacity duration-300 bg-d-soft-white border border-d-muted rounded-lg shadow-sm opacity-0 dark:text-d-soft-white dark:border-d-muted dark:bg-d-surface">
+                    <div class="px-3 py-2 text-center select-none">
+                      <p>Agregar a mi Lista</p>
+                    </div>
+                  </div>
+
+                  <!-- Mark as seen -->
+                  <a href="#" id="markAsSeenButton" data-popover-target="markAsSeen" data-popover-placement="top" class="rounded-full h-7 w-7 flex justify-center items-center dark:bg-d-background">
+                    <svg class="w-5 h-5 dark:text-d-soft-white hover:opacity-75 transition ease-in duration-150" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" stroke-linecap="round" stroke-linejoin="round"></path>
+                      <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                  </a>
+                  <div data-popover id="markAsSeen" role="tooltip" class="absolute z-10 invisible inline-block w-38 text-sm text-l-soft-black transition-opacity duration-300 bg-d-soft-white border border-d-muted rounded-lg shadow-sm opacity-0 dark:text-d-soft-white dark:border-d-muted dark:bg-d-surface">
+                    <div class="px-3 py-2 text-center select-none">
+                      <p>Marcar como vista</p>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              <!-- Show hidden info on parent hover -->
+              <div class="absolute w-full flex flex-col items-center -translate-y-20 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transitioin ease-in-out duration-150">
+                <span class="py-1 px-3 my-2 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">
+                  2022
+                </span>
+
+                <div class="w-full flex flex-row justify-between items-center">
+                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
+                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
+                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
+                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
+                </div>
+              </div>
+            </div>
+            
+          </div>
 
         </div>
       </section>
@@ -1187,16 +1687,4 @@ onMounted(() => {
 
 <!-- CUSTOM STYLES SECTION -->
 <style lang="scss">
-
-  // Dark Theme (Default)
-  .bg-dark-theme {
-    width: 100%;
-    background-image: linear-gradient( 120deg,#1C1E32, #4A0A23, #11111F);
-  }
-
-  // Light Theme
-  main {
-    width: 100%;
-    background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgb(194, 215, 235) 0%, #be7d90 90% );  
-  }
 </style>

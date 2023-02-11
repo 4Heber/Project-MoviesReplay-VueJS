@@ -11,7 +11,7 @@
             </div>
 
             <!-- Logotype component only on register/login route -->
-            <Logotype v-if="this.renderLogotype"/>
+            <Logotype v-if="this.renderLogotype" />
 
             <!-- Searchbar -->
             <form v-else class="xl:w-[50%] lg:w-[55%] md:w-full">
@@ -32,7 +32,7 @@
             <div class="py-4 flex justify-between items-center">
 
                 <!-- Toggle theme button component -->
-                <ToggleTheme class="lg:w-8 ml-8"/>
+                <ToggleTheme />
 
                 <!-- Login & Register buttons | hidden on active session -->
                 <div v-if="cookieNoExists" class="ml-4 lg:block md:hidden">
@@ -71,11 +71,11 @@
                     </a>
                 
                     <!-- Default Profile Image -->
-                    <div class="dark:text-d-secondary dark:bg-d-surface text-4xl w-16 h-16 flex justify-center items-center rounded-full cursor-pointer">H</div>
+                    <!-- <div class="dark:text-d-secondary dark:bg-d-surface text-4xl w-16 h-16 flex justify-center items-center rounded-full cursor-pointer">H</div> -->
 
                     <!-- User profile image -->
                     <a href="#" class="w-16 h-16 flex justify-center items-center rounded-full overflow-hidden">
-                        <img src="./assets/Images/Profiles/02.jpg" alt="ProfileImage" class="w-16 h-16">
+                        <img src="../assets/Images/Profiles/03.jpg" alt="ProfileImage" class="w-16 h-16">
                     </a>
                 </div>
 

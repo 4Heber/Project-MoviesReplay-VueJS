@@ -2,9 +2,9 @@
 <template>
     <aside class="bg-l-surface-color dark:bg-d-surface group pt-8 md:absolute md:inset-y-0 md:left-0">
 
+        <!-- Logotype Component -->
         <div class="w-full flex justify-between items-center">
-            <!-- Logotype Component -->
-            <Logotype class="md:w-[80%]"/>
+            <Logotype />
 
             <div @click="closeAsideMenu" class="md:flex justify-between items-center lg:hidden w-16 h-12 md:dark:border-2 md:dark:border-r-0 rounded-lg rounded-tr-none rounded-br-none md:dark:border-d-soft-white -translate-y-2 cursor-pointer">
                 <svg class="w-8 ml-2 dark:text-d-soft-white" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

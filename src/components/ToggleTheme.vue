@@ -1,23 +1,6 @@
-<script>
-export default {
-    name: 'ToggleTheme'
-}
-</script>
-
-<script setup>
-const switchTheme = () => {
-  var main = document.getElementById('mainContainer')
-  main.classList.toggle('bg-dark-theme')
-
-  document.getElementById('moonIcon').classList.toggle('opacity-0')
-  document.getElementById('sunIcon').classList.toggle('opacity-0')
-
-  document.documentElement.classList.toggle('dark')
-}
-</script>
 
 <template>
-    <div @click="switchTheme" class="relative w-16 h-16 cursor-pointer flex justify-center items-center rounded-full group hover:shadow-md transition ease-in duration-150">
+    <div @click="switchTheme" class="relative xl:w-16 h-16 cursor-pointer flex justify-center items-center rounded-full group hover:shadow-md transition ease-in duration-150 lg:w-8">
       <!-- Moon icon -->
       <svg id="moonIcon" class="absolute w-8 opacity-0 text-d-surface transition ease-in-out duration-500" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -28,4 +11,33 @@ const switchTheme = () => {
       </svg>
     </div>
 </template>
-  
+
+<script>
+export default {
+    name: 'ToggleTheme',
+    methods: {
+
+    },
+}
+</script>
+
+<script setup>
+const switchTheme = () => {
+  // Home view background
+  var main = document.getElementById('mainContainer')
+  if(main){
+    main.classList.toggle('bg-dark-theme')
+  }
+
+  // Login view background
+  var loginBackground = document.getElementById('loginBackground')
+  if(loginBackground){
+    loginBackground.classList.toggle('bg-dark-theme')
+  }
+
+  document.getElementById('moonIcon').classList.toggle('opacity-0')
+  document.getElementById('sunIcon').classList.toggle('opacity-0')
+
+  document.documentElement.classList.toggle('dark')
+}
+</script>
