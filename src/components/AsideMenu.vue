@@ -95,46 +95,52 @@
             </ul>
 
             <!-- Following users -->
-            <h2 @click="goTop" class="pb-8 pl-8 sticky top-16 md:text-xl dark:text-d-primary dark:bg-d-surface dark:hover:text-d-variant-0 text-2xl italic tracking-wider font-bold cursor-pointer 2xl:block lg:hidden">SIGUIENDO</h2>
+            <h2 v-if="cookie" @click="goTop" class="pb-8 pl-8 sticky top-16 md:text-xl dark:text-d-primary dark:bg-d-surface dark:hover:text-d-variant-0 text-2xl italic tracking-wider font-bold cursor-pointer 2xl:block lg:hidden">SIGUIENDO</h2>
 
             <div class="lg:block 2xl:hidden md:hidden w-full mb-8 border-b-2 border-d-background"></div>
 
-            <ul class="2xl:text-lg tracking-wider mb-20 dark:text-d-soft-white">
-                <a href="#" class="flex items-center 2xl:justify-start 2xl:pl-8 mb-4 border-l-4 border-d-surface group/link hover:border-l-4 hover:border-d-secondary active:border-l-8 transition ease-in duration-150 lg:justify-center lg:pl-0 md:pl-8">
+            <ul v-if="cookie" class="2xl:text-lg tracking-wider mb-20 dark:text-d-soft-white">
+
+                <router-link v-for="friend in following" :to="{name: 'perfil'}" class="flex items-center 2xl:justify-start 2xl:pl-8 mb-4 border-l-4 border-d-surface group/link transition ease-in duration-150 lg:justify-center lg:pl-0 md:pl-8">
+
+                    <li class="relative flex items-center transition ease-in duration-150">
+
+                        <!-- Load friend profile image if isn't set to "none" -->
+                        <div v-if="friend.profile_img != 'none'" class="w-10 h-10 rounded-full border-2 border-custom-white-text overflow-hidden flex justify-center items-center">
+                            <img :src=friend.profile_img alt="userImage">
+                        </div>
+
+                        <!-- Default Profile Image -->
+                        <div v-else class="w-10 h-10 dark:text-d-secondary bg-d-soft-white dark:bg-gradient-to-br dark:from-d-surface dark:to-d-background text-4xl flex justify-center items-center rounded-full border-2 border-custom-white-text overflow-hidden cursor-pointer">
+                            <p class="text-2xl">{{ friend.name.charAt(0).toUpperCase() }}</p>
+                        </div>
+
+                        <p class="pl-4 lg:hidden 2xl:block">{{ friend.name }}</p>
+                        
+                        <div class="opacity-0 group-hover/link:opacity-100 absolute -right-14 h-6 w-6 z-20 rotate-45 dark:bg-d-background transition ease-in duration-150"></div>
+                        <div class="opacity-0 group-hover/link:opacity-100 flex justify-center items-center absolute -right-40 w-[115px] h-8 rounded-r-full dark:bg-gradient-to-r dark:from-d-background dark:to-d-surface transition ease-in duration-150">
+                            <p class="text-base dark:text-d-secondary tracking-widest">Ver perfil</p>
+                        </div>
+                    </li>
+                </router-link>
+
+                <!-- <a href="#" class="flex items-center 2xl:justify-start 2xl:pl-8 mb-4 border-l-4 border-d-surface group/link hover:border-l-4 hover:border-d-secondary active:border-l-8 transition ease-in duration-150 lg:justify-center lg:pl-0 md:pl-8">
                     <li class="flex items-center group-hover/link:opacity-75 transition ease-in duration-150">
                         <div class="w-10 h-10 rounded-full border-2 border-custom-white-text overflow-hidden flex justify-center items-center"><img src="../assets/Images/Profiles/01.jpg" alt="userImage"></div>
                         <p class="pl-4 lg:hidden 2xl:block">Sara</p>
                     </li>
-                </a>
-                <a href="#" class="flex items-center 2xl:justify-start 2xl:pl-8 mb-4 border-l-4 border-d-surface group/link hover:border-l-4 hover:border-d-secondary active:border-l-8 transition ease-in duration-150 lg:justify-center lg:pl-0 md:pl-8">
-                    <li class="flex items-center group-hover/link:opacity-75 transition ease-in duration-150">
-                        <div class="w-10 h-10 rounded-full border-2 border-custom-white-text overflow-hidden flex justify-center items-center"><img src="../assets/Images/Profiles/02.jpg" alt="userImage"></div>
-                        <p class="pl-4 lg:hidden 2xl:block">Sebas</p>
-                    </li>
-                </a>
-                <a href="#" class="flex items-center 2xl:justify-start 2xl:pl-8 mb-4 border-l-4 border-d-surface group/link hover:border-l-4 hover:border-d-secondary active:border-l-8 transition ease-in duration-150 lg:justify-center lg:pl-0 md:pl-8">
-                    <li class="flex items-center group-hover/link:opacity-75 transition ease-in duration-150">
-                        <div class="w-10 h-10 rounded-full border-2 border-custom-white-text overflow-hidden flex justify-center items-center"><img src="../assets/Images/Profiles/03.jpg" alt="userImage"></div>
-                        <p class="pl-4 lg:hidden 2xl:block">Paula</p>
-                    </li>
-                </a>
-                <a href="#" class="flex items-center 2xl:justify-start 2xl:pl-8 mb-4 border-l-4 border-d-surface group/link hover:border-l-4 hover:border-d-secondary active:border-l-8 transition ease-in duration-150 lg:justify-center lg:pl-0 md:pl-8">
-                    <li class="flex items-center group-hover/link:opacity-75 transition ease-in duration-150">
-                        <div class="w-10 h-10 rounded-full border-2 border-custom-white-text overflow-hidden flex justify-center items-center"><img src="../assets/Images/Profiles/04.jpg" alt="userImage"></div>
-                        <p class="pl-4 lg:hidden 2xl:block">Alex</p>
-                    </li>
-                </a>
+                </a> -->
             </ul>
 
             <div class="lg:block 2xl:hidden md:hidden w-full mb-8 border-b-2 border-d-background"></div>
 
             <!-- Logout -->
-            <a @click="logout" href="#" class="flex items-center 2xl:justify-start 2xl:pl-8 mb-8 2xl:text-lg border-l-4 border-d-surface group/logout hover:border-l-4 hover:border-d-secondary active:border-l-8 transition ease-in duration-150 lg:justify-center lg:pl-0 md:pl-8">
+            <div @click="logout" class="flex items-center 2xl:justify-start 2xl:pl-8 2xl:pt-8 mb-8 2xl:text-lg border-l-4 border-d-surface group/logout hover:border-l-4 hover:border-d-secondary active:border-l-8 transition ease-in duration-150 lg:justify-center lg:pl-0 md:pl-8 cursor-pointer">
                 <svg class="w-8 lg:w-10 md:w-8 md:dark:text-d-soft-white" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" stroke-linecap="round" stroke-linejoin="round"></path>
                 </svg>
                 <p class="pl-4 dark:text-d-soft-white group-hover/logout:opacity-75 transition ease-in duration-150 lg:hidden 2xl:block">Logout</p>
-            </a>
+            </div>
             
             <div class="lg:block 2xl:hidden md:hidden w-full mb-8 border-b-2 border-d-background"></div>
 
@@ -279,10 +285,18 @@
 </template>
 
 <script>
+// import { stringify } from 'querystring';
 import Logotype from './Logotype.vue';
 
 export default {
   name: 'AsideMenu',
+  data(){
+    return{
+        cookie: false,
+        user: [],
+        following: []
+    }
+  },
   components: {
     Logotype
   },
@@ -297,6 +311,45 @@ export default {
         document.cookie = 'authCookie=; max-age=0';
         location.reload();
         console.log('AsideMenu.vue - authCookie deleted', document.cookie);
+    }
+  },
+  async created(){
+
+    const baseURL = "http://localhost:3000/users/"
+    
+    //Get authenticated user
+    if(document.cookie == ""){
+        return this.user = []
+    }
+    else{
+        this.cookie = true;
+
+        // Get authenticated user data & friends array list
+        var friends = []
+
+        // GET ALL
+        await fetch(baseURL)
+        .then(response => response.json())
+        .then(data => {
+                // Get actual user
+                data.forEach(user => {
+                    if(document.cookie == ('authCookie=' + user.cookie)){
+                        this.user = user
+                        friends = user.profile.friends_list
+
+                        // Get friends info of this user
+                        friends.forEach( async (friend_id, i) => {
+                            // GET ONE recursive
+                            await fetch(baseURL + friend_id)
+                            .then(response => response.json())
+                            .then(friend => {
+                                var newObj = {id: friend.id, name: friend.name, profile_img: friend.profile.profile_img}
+                                this.following.push(newObj)
+                            });
+                        });
+                    }
+                });
+        });
     }
   }
 }  

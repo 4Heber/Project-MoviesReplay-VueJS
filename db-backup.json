@@ -1,0 +1,242 @@
+{
+    "movies": [
+      {
+        "id": 1,
+        "title": "The Batman",
+        "original_title": "The Batman",
+        "subtitle": "",
+        "overview": "'The Batman (2022)' es una emocionante y oscura versión del icónico personaje de DC Comics. Robert Pattinson se pone en la piel del Caballero Oscuro con una interpretación cautivadora que aporta un nuevo nivel de intensidad al papel. La película explora una versión más joven e inexperta del personaje mientras navega por las corruptas calles de Gotham City y lucha contra algunos de sus enemigos más conocidos. La película está dirigida por Matt Reeves, que aporta una visión única del personaje y crea un mundo que es a la vez familiar y fresco. El reparto, que incluye a Zoë Kravitz como Catwoman y a Paul Dano como The Riddler, también ofrece actuaciones destacadas que añaden profundidad y matices a la película. En general, 'The Batman (2022)' es una película imprescindible tanto para los fans del personaje como para los recién llegados, ya que ofrece una nueva visión del icónico héroe que resulta emocionante y que invita a la reflexión.",
+        "release_date": 2022,
+        "duration": "2h 57min",
+        "generes": [
+          "Acción",
+          "Misterio",
+          "Crimen",
+          "DC"
+        ],
+        "vote_average": 8.2,
+        "vote_count": 63,
+        "views": 82,
+        "poster": "src/assets/Images/Posters/the_batman.jpg",
+        "banner": "src/assets/Images/Posters/the_batman_banner.jpg",
+        "trailer_iframe_url": "https://www.youtube.com/embed/fWQrd6cwJ0A"
+      },
+      {
+        "id": 2,
+        "title": "Blade Runner 2049",
+        "original_title": "Blade Runner 2049",
+        "subtitle": "",
+        "overview": "'Blade Runner 2049' es una película de ciencia ficción visualmente impresionante y cargada de emoción que se basa con éxito en el icónico original. La película tiene lugar varias décadas después de la primera y está protagonizada por Ryan Gosling en el papel de un nuevo blade runner encargado de descubrir un secreto enterrado desde hace mucho tiempo que podría amenazar el frágil equilibrio de la sociedad. La película está magistralmente dirigida por Denis Villeneuve y cuenta con una asombrosa fotografía y efectos especiales que crean un mundo totalmente realista y envolvente. Las excelentes interpretaciones de Gosling, Harrison Ford y el resto del reparto, combinadas con una historia compleja que invita a la reflexión, hacen de 'Blade Runner 2049' una película imprescindible tanto para los fans de la original como para los recién llegados.",
+        "release_date": 2017,
+        "duration": "2h 44min",
+        "generes": [
+          "Acción",
+          "Drama",
+          "Ciencia-fición"
+        ],
+        "vote_average": 7.8,
+        "vote_count": 32,
+        "views": 54,
+        "poster": "src/assets/Images/Posters/blade_runner_2049.jpg",
+        "banner": "src/assets/Images/Posters/blade_runner_2049_banner.jpg",
+        "trailer_iframe_url": "https://www.youtube.com/embed/PkqHVGFAhbU"
+      },
+      {
+        "id": 3,
+        "title": "Godzilla vs. Kong",
+        "original_title": "Godzilla vs. Kong",
+        "subtitle": "",
+        "overview": "'Godzilla contra Kong' es una superproducción emocionante y explosiva que cumple sus promesas. La película enfrenta a dos de los monstruos más grandes y emblemáticos de la historia del cine en una lucha sin cuartel, y el espectáculo está a la altura. Los efectos especiales son de primera categoría y dan vida a las enormes criaturas de un modo tan convincente como sobrecogedor. La película también cuenta con un reparto de lujo, con Kyle Chandler, Millie Bobby Brown y Alexander Skarsgård, que aportan un toque humano a la acción. La película está dirigida por Adam Wingard, que aporta una visión única de los monstruos y sus batallas, creando una película visualmente impresionante y cargada de emoción. Si busca una película divertida, llena de acción y que le entretenga, 'Godzilla contra Kong' es lo que busca.",
+        "release_date": 2021,
+        "duration": "1h 54min",
+        "generes": [
+          "Action",
+          "Fantasía",
+          "Ciencia-ficción"
+        ],
+        "vote_average": 7.4,
+        "vote_count": 22,
+        "views": 38,
+        "poster": "src/assets/Images/Posters/godzilla_vs_kong.jpg",
+        "banner": "src/assets/Images/Posters/godzilla_vs_kong_banner.jpg",
+        "trailer_iframe_url": "https://www.youtube.com/embed/2PP475OUOIY"
+      },
+      {
+        "id": 4,
+        "title": "Interstellar",
+        "original_title": "Interstellar",
+        "subtitle": "",
+        "overview": "'Interstellar' es una epopeya de ciencia ficción del legendario director Christopher Nolan que invita a la reflexión y es visualmente impactante. Matthew McConaughey interpreta a un antiguo piloto que se une a una misión para encontrar un nuevo hogar para la humanidad después de que la Tierra se vuelva inhabitable. La película es una proeza cinematográfica que combina efectos especiales de vanguardia con una historia inteligente y emotiva. Su exploración del amor, el sacrificio y los límites del conocimiento humano la convierten tanto en una emocionante aventura como en una obra de arte profundamente conmovedora. El reparto, que incluye a Anne Hathaway, Jessica Chastain y Michael Caine, también ofrece sólidas interpretaciones que añaden profundidad y matices a la película. Si le gusta la ciencia ficción, o simplemente busca una película que le desafíe y le inspire, 'Interstellar' es imprescindible.",
+        "release_date": 2014,
+        "duration": "2h 49min",
+        "generes": [
+          "Aventura",
+          "Drama",
+          "Ciencia-ficción"
+        ],
+        "vote_average": 8.6,
+        "vote_count": 74,
+        "views": 95,
+        "poster": "src/assets/Images/Posters/interstellar.jpg",
+        "banner": "src/assets/Images/Posters/interstellar_banner.jpg",
+        "trailer_iframe_url": "https://www.youtube.com/embed/UoSSbmD9vqc"
+      },
+      {
+        "id": 5,
+        "title": "Jujutsu Kaisen 0",
+        "original_title": "Jujutsu Kaisen 0",
+        "subtitle": "",
+        "overview": "'Jujutsu Kaisen 0' is a thrilling and action-packed anime film that is a prequel to the popular manga and anime series. The film is set before the events of the main story and explores the origins of some of the series' key characters, including Satoru Gojo and Megumi Fushiguro. The film is directed by Sunghoo Park and features fast-paced action, intense battles, and stunning animation that will keep fans of the series and newcomers alike on the edge of their seats. The film also offers a deeper look at the world of Jujutsu and the supernatural powers that are at the heart of the series. If you're a fan of anime and manga, or just looking for a fun and exciting movie experience, then 'Jujutsu Kaisen 0' is the film for you.",
+        "release_date": 2021,
+        "duration": "1h 45min",
+        "generes": [
+          "Animación",
+          "Acción",
+          "Fantasía"
+        ],
+        "vote_average": 7.9,
+        "vote_count": 74,
+        "views": 95,
+        "poster": "src/assets/Images/Posters/jujutsu_kaisen.jpg",
+        "banner": "src/assets/Images/Posters/jujutsu_kaisen_banner.jpg",
+        "trailer_iframe_url": "https://www.youtube.com/embed/nmFQoVKj-qM"
+      },
+      {
+        "id": 6,
+        "title": "John Wick",
+        "original_title": "John Wick",
+        "subtitle": "",
+        "overview": "'John Wick' es una película elegante y llena de acción que lanzó al icónico personaje a la conciencia cultural. La película está protagonizada por Keanu Reeves en el papel del personaje titular, un asesino a sueldo retirado que se ve arrastrado de nuevo al submundo criminal tras la muerte de su querido perro. La película está dirigida por Chad Stahelski y cuenta con una fotografía asombrosa, acción trepidante y acrobacias impresionantes que mantendrán al público en vilo. Reeves interpreta a la perfección a Wick, con una actuación magnética, dura y vulnerable a partes iguales. Su historia directa y sus villanos memorables la convierten en una película imprescindible para los amantes del cine de acción. En conjunto, 'John Wick' es una película elegante y emocionante que pone el listón muy alto en el cine de acción moderno.",
+        "release_date": 2014,
+        "duration": "1h 41min",
+        "generes": [
+          "Acción",
+          "Suspense"
+        ],
+        "vote_average": 8.0,
+        "vote_count": 55,
+        "views": 89,
+        "poster": "src/assets/Images/Posters/john_wick.jpg",
+        "banner": "src/assets/Images/Posters/john_wick_banner.jpg",
+        "trailer_iframe_url": "https://www.youtube.com/embed/C0BMx-qxsP4"
+      }
+    ],
+    "users": [
+      {
+        "id": 1,
+        "name": "testUser01",
+        "email": "testUser01@gmail.com",
+        "password": "1234",
+        "created_at": "",
+        "profile": {
+          "profile_img": "",
+          "friends_id_list": [
+            2
+          ],
+          "groups_id_list": [
+            1,
+            2
+          ],
+          "movies_seen": [
+            1,
+            2
+          ],
+          "movies_pendent_id_list": [
+            3
+          ],
+          "movies_favourite_id_list": [
+            1,
+            2
+          ]
+        }
+      },
+      {
+        "id": 2,
+        "name": "testUser02",
+        "email": "testUser02@gmail.com",
+        "password": "1234",
+        "created_at": "",
+        "profile": {
+          "profile_img": "none",
+          "friends_id_list": [
+            1
+          ],
+          "groups_id_list": [
+            1,
+            2
+          ],
+          "movies_seen": [
+            1,
+            2
+          ],
+          "movies_pendent_id_list": [
+            3
+          ],
+          "movies_favourite_id_list": [
+            1,
+            2
+          ]
+        }
+      },
+      {
+        "name": "testUser03",
+        "email": "testUser03@gmail.com",
+        "password": "1234",
+        "created_at": "4/1 - 12:35",
+        "profile": {
+          "profile_img": "src/assets/Images/Profiles/03.jpg",
+          "friends_id_list": [],
+          "groups_id_list": [],
+          "movies_seen": [5,6],
+          "movies_pendent_id_list": [],
+          "movies_favourite_id_list": []
+        },
+        "cookie": "iP_XONgxNSEg",
+        "id": 3
+      },
+      {
+        "name": "random04",
+        "email": "random@gmail.com",
+        "password": "123456",
+        "created_at": "1/1 - 13:0",
+        "profile": {
+          "profile_img": "../assets/Images/Profiles/03.jpg",
+          "friends_list": [
+            2,
+            3
+          ],
+          "groups": [],
+          "movies_seen": [],
+          "movies_pendent": [],
+          "movies_favourite": []
+        },
+        "cookie": "u4Nf9mVFb9-P",
+        "id": 4
+      }
+    ],
+    "groups": [
+      {
+        "id": 1,
+        "name": "Clásicos del cine",
+        "members_id_list": [
+          1,
+          2
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Universo DC Comics",
+        "members_id_list": [
+          1,
+          2
+        ]
+      }
+    ],
+    "comments": [
+      {
+        "id": 1,
+        "body": "some comment",
+        "postId": 1
+      }
+    ]
+  }

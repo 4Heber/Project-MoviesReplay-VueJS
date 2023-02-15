@@ -35,7 +35,7 @@
                 <ToggleTheme />
 
                 <!-- Login & Register buttons | hidden on active session -->
-                <div v-if="cookieNoExists" class="ml-4 lg:block md:hidden">
+                <div v-if="!cookie" class="ml-4 lg:block md:hidden">
                     <ul class="flex items-center">
                         <router-link :to="{name: 'login'}" class="group">
                             <li class="h-full px-8 py-2 font-bold tracking-wider text-center dark:text-d-soft-white rounded-lg border-2 border-d-soft-white dark:bg-transparent group-hover:border-d-surface group-hover:bg-d-surface group-hover:text-d-soft-white transition ease-in duration-150 xl:text-lg lg:text-sm">
@@ -51,7 +51,7 @@
                     </ul>
                 </div>
 
-                <div v-else class="flex justify-between items center">
+                <div v-else-if="cookie" class="flex justify-between items center">
                     <!-- Chats icon -->
                     <a href="#" class="relative w-16 h-16 flex justify-center items-center rounded-full group hover:shadow-md transition ease-in duration-150">
                     <svg class="w-8 text-d-surface dark:text-d-soft-white group-hover:opacity-75 transition ease-in duration-150" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -71,12 +71,14 @@
                     </a>
                 
                     <!-- Default Profile Image -->
-                    <!-- <div class="dark:text-d-secondary dark:bg-d-surface text-4xl w-16 h-16 flex justify-center items-center rounded-full cursor-pointer">H</div> -->
+                    <div v-if="profile_img" class="dark:text-d-secondary bg-d-soft-white dark:bg-d-surface text-4xl w-16 h-16 flex justify-center items-center rounded-full cursor-pointer">
+                        {{ default_img }}
+                    </div>
 
                     <!-- User profile image -->
-                    <a href="#" class="w-16 h-16 flex justify-center items-center rounded-full overflow-hidden">
+                    <router-link v-else :to="{name: 'profile'}" class="w-16 h-16 flex justify-center items-center rounded-full overflow-hidden">
                         <img src="../assets/Images/Profiles/03.jpg" alt="ProfileImage" class="w-16 h-16">
-                    </a>
+                    </router-link>
                 </div>
 
             </div> 
@@ -94,44 +96,55 @@ import Logotype from './Logotype.vue';
 
 export default{
     name: 'HeaderComp',
+    data(){
+        return {
+            cookie: false,
+            user: [],
+            profile_img: Boolean,
+            default_img: String
+        }
+    },
+
     components: {
         ToggleTheme,
         Logotype,
     },
+
     props: {
         renderLogotype: Boolean,
     },
-    data() {
-        return {
-            cookieNoExists: true,
-            user: []
-        }
-    },
+
     methods: {
         showAsideMenu() {
             //Custom event
             this.$emit('showAsideMenu')
         }
     },
-    mounted() {
-        console.log('HeaderComp.vue - Actual route.name = ',this.$route.name)
+
+    async created() {
 
         // Check if session cookie exists
         if(document.cookie != ""){
             console.log("cookie exists")
-            this.cookieNoExists = !this.cookieNoExists
+            this.cookie = !this.cookie
+        }
+        else {
+            console.log('cookie NO exists')
         }
 
         // Get authenticated user data
-        fetch('http://localhost:3000/users')
+        await fetch('http://localhost:3000/users')
         .then(response => response.json())
         .then(data => {
-            for(var i = 0; i < data.length; i++){
-                if(('authCookie=' + data.cookie) == document.cookie){
-                    return this.user = data[i];
-                }
-            }
+                data.forEach(user => {
+                    if(document.cookie == ('authCookie=' + user.cookie)){
+                        this.user = user
+
+                        this.profile_img = user.profile.profile_img != "none" ? true : false
+                        this.default_img = user.name.charAt(0).toUpperCase()
+                    }
+                });
         });
-    },
+    }
 }
 </script>

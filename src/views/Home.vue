@@ -1610,6 +1610,8 @@ export default {
     return {
       // Default on false
       showAside : true,
+      cookieExists: false,
+      user: {}
     }
   },
   methods: {
@@ -1617,72 +1619,27 @@ export default {
       this.showAside = !this.showAside
       console.log('It works. ', this.showAside)
     }
+  },
+  async created(){
+
+    // Check if session cookie exists
+    if(document.cookie != ""){
+      console.log("cookie exists")
+      this.cookieExists = true
+      // Get authenticated user data
+      await fetch('http://localhost:3000/users')
+            .then(response => response.json())
+            .then(userList => {
+                for(var i = 0; i < userList.length; i++){
+                    if(('authCookie=' + userList[i].cookie) == document.cookie){
+                        return this.user = userList[i];
+                    }
+                }
+            });
+    }
+
   }
 }
-</script>
-
-<!-- FLOWBITE COMPONENTS SETUP -->
-<script setup>
-import { onMounted } from 'vue'
-import { Carousel } from 'flowbite';
-
-import { Popover } from "flowbite";
-
-// Add to list popover
-onMounted(() => {
-  // set the popover content element
-  const $targetEl = document.getElementById('addToList');
-
-  // set the element that trigger the popover using hover or click
-  const $triggerEl = document.getElementById('addToListButton');
-
-  // options with default values
-  const options = {
-    placement: 'top',
-    triggerType: 'hover',
-    offset: 10,
-    onHide: () => {
-    },
-    onShow: () => {
-    },
-    onToggle: () => {
-    }
-  };
-  
-  if($targetEl){
-    const popover = new Popover($targetEl, $triggerEl, options);
-    popover.show();
-  }
-})
-
-// Mark movie as seen popover
-onMounted(() => {
-  // set the popover content element
-  const $targetEl = document.getElementById('markAsSeen');
-
-  // set the element that trigger the popover using hover or click
-  const $triggerEl = document.getElementById('markAsSeenButton');
-
-  // options with default values
-  const options = {
-    placement: 'top',
-    triggerType: 'hover',
-    offset: 10,
-    onHide: () => {
-    },
-    onShow: () => {
-    },
-    onToggle: () => {
-    }
-  };
-
-  
-  if($targetEl){
-    const popover = new Popover($targetEl, $triggerEl, options);
-    popover.show();
-  }
-})
-
 </script>
 
 <!-- CUSTOM STYLES SECTION -->

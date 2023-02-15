@@ -1,15 +1,15 @@
 <template>
-    <div class="grid grid-cols-12 grid-rows-6 gap-x-8 w-full h-screen dark:bg-gradient-to-br dark:from-d-theme-from dark:via-d-theme-via dark:to-d-theme-to bg-gradient-to-br from-l-theme-from to-l-theme-to">
+    <div class="grid grid-cols-12 grid-rows-6 gap-x-8 w-full h-screen dark:bg-gradient-to-br dark:from-d-surface dark:via-d-theme-via dark:to-d-theme-to bg-gradient-to-br from-l-theme-from to-l-theme-to">
 
         <!-- Header -->
-        <HeaderComp :renderLogotype="true" class="col-start-1 col-end-11 mt-6"/>
+        <HeaderComp :renderLogotype="true" class="col-start-3 col-end-11 mt-6"/>
 
-        <form class="col-start-7 row-start-2 col-span-3 row-span-4 px-8 py-12 dark:bg-gradient-to-br dark:from-d-background dark:via-d-surface dark:to-d-surface rounded-tr-xl rounded-br-xl">
+        <form class="col-start-7 row-start-2 col-span-4 row-span-4 p-16 dark:bg-gradient-to-br dark:from-d-background dark:via-d-surface dark:to-d-surface rounded-tr-xl rounded-br-xl">
 
             <!-- Username -->
             <div class="mb-6">
                 <label for="username" class="block mb-2 text-sm lg:text-base font-medium text-l-soft-black dark:text-d-soft-white">Usuario</label>
-                <input type="text" id="username" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Nombre usuario" required>
+                <input type="text" id="username" class="mb-2 shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-d-soft-white focus:border-d-soft-white block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-d-soft-white dark:focus:border-d-soft-white dark:shadow-sm-light" placeholder="Nombre usuario" required>
 
                 <!-- Error message -->
                 <p v-if="usernameError.status" class="text-sm dark:text-d-warning">{{ usernameError.msg }}</p>
@@ -17,24 +17,32 @@
 
             <!-- Password -->
             <div class="mb-6">
-                <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contraseña</label>
-                <input type="password" id="password" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required>
+                <label for="password" class="block mb-2 text-sm lg:text-base font-medium text-gray-900 dark:text-white">Contraseña</label>
+                <input type="password" id="password" class="mb-2 shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-d-soft-white focus:border-d-soft-white block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-d-soft-white dark:focus:border-d-soft-white dark:shadow-sm-light" required>
 
                 <!-- Error message -->
                 <p v-if="passwordError.status" class="text-sm dark:text-d-warning">{{ passwordError.msg }}</p>
             </div>
+
+            <p class="mb-8 text-sm dark:text-d-muted">
+                Todavía no tienes cuenta?
+                <router-link :to="{name : 'register'}" class="dark:text-d-secondary underline-offset-4 cursor-pointer hover:underline hover:opacity-75 transition ease-in duration-150">Registrarse.</Router-link>
+            </p>
             
             <!-- Login button -->
-            <button type="button" v-on:click="loginAttempt" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Iniciar sesión</button>
+            <button type="button" v-on:click="loginAttempt" class="font-bold lg:text-base text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none rounded-lg text-sm px-5 py-2.5 text-center dark:text-d-surface dark:bg-d-secondary dark:hover:opacity-75  transition ease-in duration-150">Iniciar sesión</button>
         </form>
 
         <!-- Banner -->
-        <div class="col-start-4 row-start-2 col-span-3 row-span-4 relative rounded-tl-xl rounded-bl-xl overflow-hidden bg-cover bg-center bg-[url('src/assets/Images/Login-register-banner/Section_2.png')]">
+        <div class="col-start-3 row-start-2 col-span-4 row-span-4 relative rounded-tl-xl rounded-bl-xl overflow-hidden bg-cover bg-center bg-[url('src/assets/Images/Login-register-banner/Section_4.png')]">
             <!-- <img class="" src="../assets/Images/Login-register-banner/Section 2.png" alt="background-image"> -->
 
-            <div class="absolute inset-y-0 px-12 py-12 bg-gradient-to-bl from-d-background via-transparent dark:to-d-surface backdrop-brightness-50">
-                <p class="text-2xl font-sans dark:text-d-soft-white">
-                    Únete hoy mismo a la comunidad de los amantes del cine iniciando sesión. <br/>Obtén acceso exclusivo a una amplia biblioteca de críticas, valoraciones y recomendaciones de películas. <br/><br/> Comparte tus opiniones, descubre nuevas películas y conéctate con otros entusiastas del cine. <br/><br/> No pierdas la oportunidad de mejorar tu experiencia cinematográfica.
+            <div class="absolute inset-y-0 p-16 bg-gradient-to-bl from-d-background via-transparent dark:to-d-surface backdrop-brightness-50">
+                <p class="text-2xl font-sans dark:text-d-soft-white select-none">
+                    Únete hoy mismo a la comunidad de los amantes del cine iniciando sesión.<br/><br/>
+                    Obtén acceso exclusivo a una amplia biblioteca de críticas, valoraciones y recomendaciones de películas.<br/><br/>
+                    Comparte tus opiniones, descubre nuevas películas y conéctate con otros entusiastas del cine. <br/><br/>
+                    No pierdas la oportunidad de mejorar tu experiencia cinematográfica.
                 </p>
             </div>
         </div>
