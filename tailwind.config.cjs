@@ -21,7 +21,7 @@ module.exports = {
       'd-theme-via': '#4A0A23',
       'd-theme-to': '#11111F',
 
-      'l-soft-black' : '#F3F9FF',
+      'l-soft-black' : '#11111F',
 
       'l-theme-from': '#C2D7EB',
       'l-theme-to': '#BE7D90'

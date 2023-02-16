@@ -1,4 +1,171 @@
 
+<script>
+// @ is an alias to /src
+import AsideMenu from '../components/AsideMenu.vue';
+import Footer from '../components/Footer.vue';
+import Slider from '../components/Slider.vue';
+import HeaderComp from '../components/HeaderComp.vue';
+
+const theme = document.documentElement.classList.contains('dark')
+if(theme){
+  const themeSet = 'w-5/6 bg-gradient-to-tl from-d-surface via-d-variant-1 to-d-surface'
+}
+
+export default {
+  name: 'Home',
+  components: {
+    AsideMenu,
+    HeaderComp,
+    Slider,
+    Footer,
+  },
+  data() {
+    return {
+      // Default on false
+      showAside : true,
+      cookieExists: false,
+      user: {},
+      trendingMovies: [],
+      topRatedMovies: [],
+      popupModal: {
+        status: false,
+        message: String,
+        class: String
+      }
+    }
+  },
+  methods: {
+    toggleAsideMenu(){
+      this.showAside = !this.showAside
+      console.log('It works. ', this.showAside)
+    },
+
+    async updateList(operationType, film_id){
+
+      // Update the user's list of pending movies.
+      if(operationType === 1){
+
+        // If movie id is already in user's pendent list, pop-up modal warning message.
+        if(this.user.profile.movies_pendent.includes(film_id)){
+          this.popupModal.message = "La película ya se encuentra en la lista 'pendiente por ver'."
+          this.popupModal.class = "opacity-100 dark:text-d-warning border-d-warning"
+          
+          setTimeout(() => {
+            this.popupModal.class = "opacity-0"
+          },4000)
+
+        }
+        else{
+
+          this.user.profile.movies_pendent.push(film_id);
+
+          const dataUpdated = this.user;
+
+          // PATCH user movies_pendent list
+          fetch('http://localhost:3000/users/'+ this.user.id, {
+                method: 'PATCH',
+                body: JSON.stringify(dataUpdated),
+                headers: {
+                  'Content-Type': 'application/json; charset=UTF-8'
+                }
+              })
+            .then(response => response.json())
+            .then(data => {
+              console.log(data)
+            })
+
+          // Succesful pop-up modal message
+          this.popupModal.message = "Película en lista 'pendiente por ver'."
+          this.popupModal.class = "opacity-100 dark:text-d-secondary border-d-secondary"
+
+          setTimeout(() => {
+            this.popupModal.class = "opacity-0"
+          },4000)
+        }
+
+      }
+      // Update the user's list of watched movies.
+      else if(operationType === 2){
+
+        // If movie id is already in user's watched list, pop-up modal warning message.
+        if(this.user.profile.movies_seen.includes(film_id)){
+
+          this.popupModal.message = "La película ya está marcada como vista."
+          this.popupModal.class = "opacity-100 dark:text-d-warning border-d-warning"
+          
+          setTimeout(() => {
+            this.popupModal.class = "opacity-0"
+          },4000)
+        }
+        else{
+
+          this.user.profile.movies_seen.push(film_id);
+
+          const dataUpdated = this.user;
+
+          // PATCH user movies_pendent list
+          fetch('http://localhost:3000/users/'+ this.user.id, {
+                method: 'PATCH',
+                body: JSON.stringify(dataUpdated),
+                headers: {
+                  'Content-Type': 'application/json; charset=UTF-8'
+                }
+              })
+            .then(response => response.json())
+            .then(data => {
+              console.log(data)
+            })
+
+          // Succesful pop-up modal message
+          this.popupModal.message = "Película marcada como vista."
+          this.popupModal.class = "opacity-100 dark:text-d-secondary border-d-secondary"
+
+          setTimeout(() => {
+            this.popupModal.class = "opacity-0"
+          },4000)
+        }
+      }
+    },
+  },
+  async created(){
+    const baseURL = 'http://localhost:3000/';
+
+    // Check if session cookie exists
+    if(document.cookie != ""){
+      console.log("cookie exists")
+      this.cookieExists = true
+      // Get authenticated user data
+      await fetch(baseURL + 'users')
+            .then(response => response.json())
+            .then(userList => {
+                for(var i = 0; i < userList.length; i++){
+                    if(('authCookie=' + userList[i].cookie) == document.cookie){
+                        return this.user = userList[i];
+                    }
+                }
+            });
+    }
+
+    // Get trending movies (sorted by 7d_views)
+    await fetch(baseURL + 'movies')
+      .then(response => response.json())
+      .then(moviesList => {
+        this.trendingMovies = moviesList.sort((a, b) => (a.views_7d < b.views_7d) ? 1 : -1);
+
+        if(this.trendingMovies.length > 16){
+          this.trendingMovies.length = 16
+        }
+      })
+
+      console.log( 'TRENDING MOVIES: ', this.trendingMovies )
+  }
+}
+</script>
+
+<!-- CUSTOM STYLES SECTION -->
+<style lang="scss">
+</style>
+
 <!-- HTML TEMPLATE SECTION -->
 <template>
   <section class="relative grid grid-cols-12 grid-rows-12">
@@ -21,7 +188,7 @@
       </section>
 
       <!-- Groups section -->
-      <section class="col-span-full relative">
+      <section v-if="cookieExists" class="col-span-full relative">
         <!-- Icon groups -->
         <div class="mb-8 flex flex-row">
           <svg class="w-8 text-d-surface dark:text-d-soft-white" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -38,7 +205,7 @@
             <div class="h-16 mb-2 flex flex-row items-center 2xl:w-full xl:w-[50%] md:w-[40%] md:h-full">
               <!-- Card movie image -->
               <div class="relative rounded-lg overflow-hidden 2xl:h-fit md:h-full">
-                <img src="../assets/Images/Posters/blade_runner_2049_banner_2.jpg" alt="blade-runner-banner" class="2xl:w-24 xl:w-full md:w-full md:h-full">
+                <img src="../assets/Images/Posters/the_batman_banner.jpg" alt="blade-runner-banner" class="2xl:w-24 xl:w-full md:w-full md:h-full">
               </div>
 
               <!-- Members of the group -->
@@ -55,11 +222,11 @@
               </div>
             </div>
 
-            <!-- Movie title + generes -->
+            <!-- Group title -->
             <div class="h-16 flex flex-col xl:justify-between items-start 2xl:w-full xl:w-[45%] md:w-[60%]">
-                <p class="dark:text-d-soft-white lg:text-lg">Blade runner 2029</p>
-                <p class="text-sm dark:text-d-soft-white"></p>
-                <p class="text-sm dark:text-d-muted lg:text-lg">Acción - Ciencia ficción - Drama</p>
+              <p class="dark:text-d-muted 2xl:text-[12px]">Creador - <span class="text-d-warning">Username</span></p>
+                <p class="dark:text-d-soft-white lg:text-lg 2xl:text-base">Universo DC Comics</p>
+                <p class="text-sm dark:text-d-muted lg:text-lg 2xl:text-sm">Colección de las mejores películas DC</p>
 
               <!-- Members of the group -->
               <div class="relative md:block 2xl:hidden">
@@ -76,19 +243,17 @@
             </div>
           </div>
 
-          <!-- ITEMS NO ATUCALIZADOS ** -->
-
           <!-- Group card -->
-          <div class="col-span-2 h-40 p-4 rounded-lg dark:shadow-xl dark:bg-gradient-to-br from-d-surface via-d-background to-d-background transition ease-in-out duration-150 cursor-pointer">
+          <div class="col-span-2 md:flex 2xl:flex-col md:flex-row md:justify-between h-40 p-4 rounded-lg dark:shadow-xl dark:bg-gradient-to-br from-d-surface via-d-background to-d-background transition ease-in-out duration-150 cursor-pointer">
             <!-- Card header -->
-            <div class="h-16 mb-2 flex flex-row items-center">
+            <div class="h-16 mb-2 flex flex-row items-center 2xl:w-full xl:w-[50%] md:w-[40%] md:h-full">
               <!-- Card movie image -->
-              <div class="rounded-lg overflow-hidden">
-                <img src="../assets/Images/Posters/doctor_strange_in_the_multiverse_of_madness_banner.jpg" alt="banner" class="w-24">
+              <div class="relative rounded-lg overflow-hidden 2xl:h-fit md:h-full">
+                <img src="../assets/Images/Posters/the_batman_banner.jpg" alt="blade-runner-banner" class="2xl:w-24 xl:w-full md:w-full md:h-full">
               </div>
 
               <!-- Members of the group -->
-              <div class="relative h-full ml-8">
+              <div class="relative h-full ml-8 2xl:block md:hidden">
 
                 <div class="absolute top-4 left-0 w-8 h-8 flex flex-row justify-center items-center text-d-soft-white rounded-full bg-d-variant-1 border-2 border-d-muted">H</div>
 
@@ -101,27 +266,38 @@
               </div>
             </div>
 
-            <!-- Movie title + generes -->
-            <div class="h-16 flex flex-col justify-between">
-              <div>
-                <p class="dark:text-d-soft-white">Doctor Strange</p>
-                <p class="text-sm dark:text-d-soft-white">En el multiverso de la locura</p>
-                <p class="text-sm dark:text-d-muted">Acción - Ciencia ficción</p>
+            <!-- Group title -->
+            <div class="h-16 flex flex-col xl:justify-between items-start 2xl:w-full xl:w-[45%] md:w-[60%]">
+              <p class="dark:text-d-muted 2xl:text-[12px]">Creador - <span class="text-d-warning">Username</span></p>
+                <p class="dark:text-d-soft-white lg:text-lg 2xl:text-base">Universo DC Comics</p>
+                <p class="text-sm dark:text-d-muted lg:text-lg 2xl:text-sm">Colección de las mejores películas DC</p>
+
+              <!-- Members of the group -->
+              <div class="relative md:block 2xl:hidden">
+
+                <div class="absolute top-4 left-0 w-8 h-8 flex flex-row justify-center items-center text-d-soft-white rounded-full bg-d-variant-1 border-2 border-d-muted">H</div>
+
+                <div class="absolute top-4 left-4 w-8 h-8 flex flex-row justify-center items-center text-d-soft-white rounded-full bg-d-variant-1 border-2 border-d-muted">H</div>
+
+                <div class="absolute top-4 left-8 w-8 h-8 flex flex-row justify-center items-center text-d-soft-white rounded-full bg-d-variant-1 border-2 border-d-muted">H</div>
+
+                <div class="absolute top-4 left-12 w-8 h-8 flex flex-row justify-center items-center text-d-soft-white rounded-full bg-d-variant-1 border-2 border-d-muted">H</div>
+
               </div>
             </div>
           </div>
 
           <!-- Group card -->
-          <div class="col-span-2 h-40 p-4 rounded-lg dark:shadow-xl dark:bg-gradient-to-br from-d-surface via-d-background to-d-background transition ease-in-out duration-150 cursor-pointer">
+          <div class="col-span-2 md:flex 2xl:flex-col md:flex-row md:justify-between h-40 p-4 rounded-lg dark:shadow-xl dark:bg-gradient-to-br from-d-surface via-d-background to-d-background transition ease-in-out duration-150 cursor-pointer">
             <!-- Card header -->
-            <div class="h-16 mb-2 flex flex-row items-center">
+            <div class="h-16 mb-2 flex flex-row items-center 2xl:w-full xl:w-[50%] md:w-[40%] md:h-full">
               <!-- Card movie image -->
-              <div class="rounded-lg overflow-hidden">
-                <img src="../assets/Images/Posters/godzilla_king_of_the_monsters_banner.jpg" alt="banner" class="w-24">
+              <div class="relative rounded-lg overflow-hidden 2xl:h-fit md:h-full">
+                <img src="../assets/Images/Posters/the_batman_banner.jpg" alt="blade-runner-banner" class="2xl:w-24 xl:w-full md:w-full md:h-full">
               </div>
 
               <!-- Members of the group -->
-              <div class="relative h-full ml-8">
+              <div class="relative h-full ml-8 2xl:block md:hidden">
 
                 <div class="absolute top-4 left-0 w-8 h-8 flex flex-row justify-center items-center text-d-soft-white rounded-full bg-d-variant-1 border-2 border-d-muted">H</div>
 
@@ -134,25 +310,38 @@
               </div>
             </div>
 
-            <!-- Movie title + generes -->
-            <div class="h-16 flex flex-col justify-between">
-              <p class="dark:text-d-soft-white">Godzilla</p>
-              <p class="text-sm dark:text-d-soft-white">Rey de los monstruos</p>
-              <p class="text-sm dark:text-d-muted">Acción - Ciencia ficción</p>
+            <!-- Group title -->
+            <div class="h-16 flex flex-col xl:justify-between items-start 2xl:w-full xl:w-[45%] md:w-[60%]">
+              <p class="dark:text-d-muted 2xl:text-[12px]">Creador - <span class="text-d-warning">Username</span></p>
+                <p class="dark:text-d-soft-white lg:text-lg 2xl:text-base">Universo DC Comics</p>
+                <p class="text-sm dark:text-d-muted lg:text-lg 2xl:text-sm">Colección de las mejores películas DC</p>
+
+              <!-- Members of the group -->
+              <div class="relative md:block 2xl:hidden">
+
+                <div class="absolute top-4 left-0 w-8 h-8 flex flex-row justify-center items-center text-d-soft-white rounded-full bg-d-variant-1 border-2 border-d-muted">H</div>
+
+                <div class="absolute top-4 left-4 w-8 h-8 flex flex-row justify-center items-center text-d-soft-white rounded-full bg-d-variant-1 border-2 border-d-muted">H</div>
+
+                <div class="absolute top-4 left-8 w-8 h-8 flex flex-row justify-center items-center text-d-soft-white rounded-full bg-d-variant-1 border-2 border-d-muted">H</div>
+
+                <div class="absolute top-4 left-12 w-8 h-8 flex flex-row justify-center items-center text-d-soft-white rounded-full bg-d-variant-1 border-2 border-d-muted">H</div>
+
+              </div>
             </div>
           </div>
 
           <!-- Group card -->
-          <div class="col-span-2 h-40 p-4 rounded-lg dark:shadow-xl dark:bg-gradient-to-br from-d-surface via-d-background to-d-background transition ease-in-out duration-150 cursor-pointer">
+          <div class="col-span-2 md:flex 2xl:flex-col md:flex-row md:justify-between h-40 p-4 rounded-lg dark:shadow-xl dark:bg-gradient-to-br from-d-surface via-d-background to-d-background transition ease-in-out duration-150 cursor-pointer">
             <!-- Card header -->
-            <div class="h-16 mb-2 flex flex-row items-center">
+            <div class="h-16 mb-2 flex flex-row items-center 2xl:w-full xl:w-[50%] md:w-[40%] md:h-full">
               <!-- Card movie image -->
-              <div class="rounded-lg overflow-hidden">
-                <img src="../assets/Images/Posters/the_batman_banner.jpg" alt="banner" class="w-24">
+              <div class="relative rounded-lg overflow-hidden 2xl:h-fit md:h-full">
+                <img src="../assets/Images/Posters/the_batman_banner.jpg" alt="blade-runner-banner" class="2xl:w-24 xl:w-full md:w-full md:h-full">
               </div>
 
               <!-- Members of the group -->
-              <div class="relative h-full ml-8">
+              <div class="relative h-full ml-8 2xl:block md:hidden">
 
                 <div class="absolute top-4 left-0 w-8 h-8 flex flex-row justify-center items-center text-d-soft-white rounded-full bg-d-variant-1 border-2 border-d-muted">H</div>
 
@@ -165,13 +354,11 @@
               </div>
             </div>
 
-            <!-- Movie title + generes -->
-            <div class="h-16 flex xl:flex-col justify-between lg:flex-row">
-              <div class="flex flex-col">
-                <p class="dark:text-d-soft-white">The Batman</p>
-                <p class="text-sm dark:text-d-soft-white"></p>
-                <p class="text-sm dark:text-d-muted">Acción</p>
-              </div>
+            <!-- Group title -->
+            <div class="h-16 flex flex-col xl:justify-between items-start 2xl:w-full xl:w-[45%] md:w-[60%]">
+              <p class="dark:text-d-muted 2xl:text-[12px]">Creador - <span class="text-d-warning">Username</span></p>
+                <p class="dark:text-d-soft-white lg:text-lg 2xl:text-base">Universo DC Comics</p>
+                <p class="text-sm dark:text-d-muted lg:text-lg 2xl:text-sm">Colección de las mejores películas DC</p>
 
               <!-- Members of the group -->
               <div class="relative md:block 2xl:hidden">
@@ -217,19 +404,24 @@
         <div class="grid 3xl:grid-cols-8 2xl:grid-cols-6 xl:grid-cols-6 lg:grid-cols-4 xl:gap-x-8 xl:gap-y-24 lg:gap-x-4 lg:gap-y-24">
 
           <!-- Card -->
-          <div class="relative lg:col-span-2 h-[480px] rounded-lg overflow-visible shadow-2xl shadow-d-surface bg-center bg-cover bg-no-repeat bg-[url('src/assets/Images/Posters/the_batman.jpg')] hover:shadow-md transition ease-in-out duration-300">
+          <div v-for="film in trendingMovies" class="relative lg:col-span-2 h-[480px] rounded-lg overflow-visible shadow-2xl shadow-d-surface hover:shadow-md transition ease-in-out duration-300 cursor-pointer group">
+
+            <!-- Background-poster -->
+            <div class="absolute bottom-0 h-full rounded-lg overflow-hidden">
+              <img :src="film.poster" :alt="film.title" class="h-full group-hover:scale-110 transition ease-in-out duration-150">
+            </div>
 
             <!-- Score and time -->
             <div class="h-10 w-full px-6 flex flex-row justify-between items-center backdrop-blur-sm dark:text-d-soft-white">
                 <!-- Score -->
                 <div class="w-fit text-sm flex flex-row items-center">
                     <img src="../assets/Icons/star-00.png" alt="star-image" class="w-8 mr-1">
-                    <p>8.4</p>
+                    <p>{{ film.vote_average }}</p>
                 </div>
                 <!-- Time -->
                 <div class="w-fit text-sm flex flex-row items-center">
                     <img src="../assets/Icons/wall-clock.png" alt="time-image" class="w-8 mr-1">
-                    <p>2h 30min</p>
+                    <p>{{ film.duration }}</p>
                 </div>
             </div>
 
@@ -240,43 +432,52 @@
               <div class="w-full h-20 z-10 flex flex-row justify-between items-center rounded-lg backdrop-blur-md">
 
                 <div class="flex items-center p-4">
-                <!-- Play button -->
-                <a href="#" class="w-10 h-10 rounded-full flex justify-center items-center dark:bg-gradient-to-br from-d-variant-1 to-d-primary dark:hover:opacity-75 cursor-pointer transition ease-in duration-150">
-                  <svg class="text-d-surface w-8 h-8" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" stroke-linecap="round" stroke-linejoin="round"></path>
-                  </svg>
-                </a>
+                  <!-- Play button -->
+                  <router-link :to="{name: 'login'}" class="w-10 h-10 rounded-full flex justify-center items-center dark:bg-gradient-to-br from-d-variant-1 to-d-primary cursor-pointer transition ease-in duration-150 group/play">
+                    <svg class="text-d-surface w-8 h-8" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
 
-                <!-- Title + date -->
-                <div class="relative ml-4">
-                  <p class="w-28 text-sm font-bold dark:text-d-soft-white select-none">The Batman</p>
-                </div>
+                    <!-- Pop-over info -->
+                    <div class="absolute opacity-0 group-hover/play:opacity-100 -top-9 left-[2px] w-26 px-4 py-2 flex justify-center items-center rounded-lg dark:bg-d-surface border border-d-muted transition ease-in duration-100">
+                        <p class="text-sm dark:text-d-soft-white">Ver tráiler</p>
+                    </div>
+                  </router-link>
+
+                  <!-- Title + date -->
+                  <div class="relative ml-4">
+                    <p class="w-28 text-sm font-bold dark:text-d-soft-white select-none">{{ film.title }}</p>
+                  </div>
                 
                 </div>
 
-                <div class="h-full w-20 pr-4 pb-4 flex justify-between items-end">
+                <div v-show="cookieExists" class="relative h-full w-20 pr-4 pb-4 flex justify-between items-end">
 
                   <!-- Add to my list -->
-                  <a href="#" id="addToListButton" data-popover-target="addToList" data-popover-placement="top" class="rounded-full h-7 w-7 flex justify-center items-center dark:bg-d-background">
-                    <svg class="w-5 h-5 hover:text-d-secondary dark:text-d-soft-white transition ease-in duration-150" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <div @click="updateList(1,film.id)" id="addToListButton" data-popover-target="addToList" data-popover-placement="top" class="relative rounded-full h-7 w-7 flex justify-center items-center dark:bg-d-background cursor-pointer group/pendent">
+
+                    <svg class="w-5 h-5 dark:text-d-soft-white hover:opacity-75 transition ease-in duration-150" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path d="M12 6v12m6-6H6" stroke-linecap="round" stroke-linejoin="round"></path>
                     </svg>
-                  </a>
-                  <div data-popover id="addToList" role="tooltip" class="absolute z-10 invisible inline-block w-38 text-sm text-l-soft-black transition-opacity duration-300 bg-d-soft-white border border-d-muted rounded-lg shadow-sm opacity-0 dark:text-d-soft-white dark:border-d-muted dark:bg-d-surface">
-                    <div class="px-3 py-2 text-center select-none">
-                      <p>Agregar a mi Lista</p>
+
+                    <!-- Pop-over info -->
+                    <div class="absolute opacity-0 group-hover/pendent:opacity-100 -top-16 -left-18 flex justify-center items-center w-44 px-4 py-2 rounded-lg border border-d-muted dark:text-d-soft-white text-sm dark:bg-d-surface">
+                      <p>Añadir a 'pendientes'</p>
                     </div>
                   </div>
 
+                  
+
                   <!-- Mark as seen -->
-                  <a href="#" id="markAsSeenButton" data-popover-target="markAsSeen" data-popover-placement="top" class="rounded-full h-7 w-7 flex justify-center items-center dark:bg-d-background">
+                  <div @click="updateList(2,film.id)" id="markAsSeenButton" data-popover-target="markAsSeen" data-popover-placement="top" class="relative rounded-full h-7 w-7 flex justify-center items-center dark:bg-d-background cursor-pointer group/watched">
+
                     <svg class="w-5 h-5 dark:text-d-soft-white hover:opacity-75 transition ease-in duration-150" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" stroke-linecap="round" stroke-linejoin="round"></path>
                       <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"></path>
                     </svg>
-                  </a>
-                  <div data-popover id="markAsSeen" role="tooltip" class="absolute z-10 invisible inline-block w-38 text-sm text-l-soft-black transition-opacity duration-300 bg-d-soft-white border border-d-muted rounded-lg shadow-sm opacity-0 dark:text-d-soft-white dark:border-d-muted dark:bg-d-surface">
-                    <div class="px-3 py-2 text-center select-none">
+
+                    <!-- Pop-over info -->
+                    <div class="absolute opacity-0 group-hover/watched:opacity-100 -top-16 -left-24 flex justify-center items-center w-40 px-4 py-2 rounded-lg border border-d-muted dark:text-d-soft-white text-sm dark:bg-d-surface">
                       <p>Marcar como vista</p>
                     </div>
                   </div>
@@ -287,1290 +488,14 @@
               <!-- Show hidden info on parent hover -->
               <div class="absolute w-full flex flex-col items-center -translate-y-20 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transitioin ease-in-out duration-150">
                 <!-- Release date -->
-                <span class="py-1 px-3 my-2 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">
-                  2022
+                <span class="py-1 px-3 my-2 text-sm rounded-2xl dark:bg-d-surface dark:text-d-soft-white">
+                  {{ film.release_date }}
                 </span>
                 <!-- Generes -->
-                <div class="w-full flex flex-row justify-between items-center">
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                </div>
-              </div>
-            </div>
-            
-          </div>
-
-          <!-- Card -->
-          <div class="relative col-span-2 h-[480px] rounded-lg overflow-visible shadow-2xl shadow-d-surface bg-center bg-cover bg-no-repeat bg-[url('src/assets/Images/Posters/doctor_strange_in_the_multiverse_of_madness.jpg')] hover:shadow-md transition ease-in-out duration-300"> 
-
-            <!-- Score and time -->
-            <div class="h-10 w-full px-6 flex flex-row justify-between backdrop-blur-sm dark:text-d-soft-white">
-                <!-- Score -->
-                <div class="w-fit text-sm flex flex-row items-center">
-                    <img src="../assets/Icons/star-00.png" alt="star-image" class="w-8 mr-1">
-                    <p>8.8</p>
-                </div>
-                <!-- Time -->
-                <div class="w-fit text-sm flex flex-row items-center">
-                    <img src="../assets/Icons/wall-clock.png" alt="time-image" class="w-8 mr-1">
-                    <p>2h 6min</p>
-                </div>
-            </div>
-
-            <!-- Options -->
-            <div class="absolute bottom-0 h-20 w-full overflow-visible group">
-
-              <!-- Play button + title + add + seen -->
-              <div class="w-full h-20 z-10 flex flex-row justify-between items-center rounded-lg backdrop-blur-md">
-
-                <div class="flex items-center p-4">
-                <!-- Play button -->
-                <a href="#" class="w-10 h-10 rounded-full flex justify-center items-center dark:bg-gradient-to-br from-d-variant-1 to-d-primary dark:hover:opacity-75 cursor-pointer transition ease-in duration-150">
-                  <svg class="text-d-surface w-8 h-8" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" stroke-linecap="round" stroke-linejoin="round"></path>
-                  </svg>
-                </a>
-
-                <!-- Title + date -->
-                <div class="relative flex flex-col ml-4">
-                  <p class="w-28 text-sm font-bold dark:text-d-soft-white select-none">Doctor Strange en el multiverso de la locura</p>
-                </div>
-                
-                </div>
-
-                <div class="h-full w-20 pr-4 pb-4 flex justify-between items-end">
-
-                  <!-- Add to my list -->
-                  <a href="#" id="addToListButton" data-popover-target="addToList" data-popover-placement="top" class="rounded-full h-7 w-7 flex justify-center items-center dark:bg-d-background">
-                    <svg class="w-5 h-5 hover:text-d-secondary dark:text-d-soft-white transition ease-in duration-150" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M12 6v12m6-6H6" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                  </a>
-                  <div data-popover id="addToList" role="tooltip" class="absolute z-10 invisible inline-block w-38 text-sm text-l-soft-black transition-opacity duration-300 bg-d-soft-white border border-d-muted rounded-lg shadow-sm opacity-0 dark:text-d-soft-white dark:border-d-muted dark:bg-d-surface">
-                    <div class="px-3 py-2 text-center select-none">
-                      <p>Agregar a mi Lista</p>
-                    </div>
-                  </div>
-
-                  <!-- Mark as seen -->
-                  <a href="#" id="markAsSeenButton" data-popover-target="markAsSeen" data-popover-placement="top" class="rounded-full h-7 w-7 flex justify-center items-center dark:bg-d-background">
-                    <svg class="w-5 h-5 dark:text-d-soft-white hover:opacity-75 transition ease-in duration-150" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" stroke-linecap="round" stroke-linejoin="round"></path>
-                      <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                  </a>
-                  <div data-popover id="markAsSeen" role="tooltip" class="absolute z-10 invisible inline-block w-38 text-sm text-l-soft-black transition-opacity duration-300 bg-d-soft-white border border-d-muted rounded-lg shadow-sm opacity-0 dark:text-d-soft-white dark:border-d-muted dark:bg-d-surface">
-                    <div class="px-3 py-2 text-center select-none">
-                      <p>Marcar como vista</p>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-
-              <!-- Show hidden info on parent hover -->
-              <div class="absolute w-full flex flex-col items-center -translate-y-20 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transitioin ease-in-out duration-150">
-                <span class="py-1 px-3 my-2 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">
-                  2022
-                </span>
-
-                <div class="w-full flex flex-row justify-between items-center">
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                </div>
-              </div>
-            </div>
-            
-          </div>
-
-          <!-- Card -->
-          <div class="relative col-span-2 h-[480px] rounded-lg overflow-visible shadow-2xl shadow-d-surface bg-center bg-cover bg-no-repeat bg-[url('src/assets/Images/Posters/godzilla_king_of_the_monsters.jpg')] hover:shadow-md transition ease-in-out duration-300">
-
-            <!-- Score and time -->
-            <div class="h-10 w-full px-6 flex flex-row justify-between backdrop-blur-sm dark:text-d-soft-white">
-                <!-- Score -->
-                <div class="w-fit text-sm flex flex-row items-center">
-                    <img src="../assets/Icons/star-00.png" alt="star-image" class="w-8 mr-1">
-                    <p>7.8</p>
-                </div>
-                <!-- Time -->
-                <div class="w-fit text-sm flex flex-row items-center">
-                    <img src="../assets/Icons/wall-clock.png" alt="time-image" class="w-8 mr-1">
-                    <p>2h 12min</p>
-                </div>
-            </div>
-
-            <!-- Options -->
-            <div class="absolute bottom-0 h-20 w-full overflow-visible group">
-
-              <!-- Play button + title + add + seen -->
-              <div class="w-full h-20 z-10 flex flex-row justify-between items-center rounded-lg backdrop-blur-md">
-
-                <div class="flex items-center p-4">
-                <!-- Play button -->
-                <a href="#" class="w-10 h-10 rounded-full flex justify-center items-center dark:bg-gradient-to-br from-d-variant-1 to-d-primary dark:hover:opacity-75 cursor-pointer transition ease-in duration-150">
-                  <svg class="text-d-surface w-8 h-8" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" stroke-linecap="round" stroke-linejoin="round"></path>
-                  </svg>
-                </a>
-
-                <!-- Title + date -->
-                <div class="relative flex flex-col ml-4">
-                  <p class="w-28 text-sm font-bold dark:text-d-soft-white select-none">Godzilla rey de los monstruos</p>
-                </div>
-                
-                </div>
-
-                <div class="h-full w-20 pr-4 pb-4 flex justify-between items-end">
-
-                  <!-- Add to my list -->
-                  <a href="#" id="addToListButton" data-popover-target="addToList" data-popover-placement="top" class="rounded-full h-7 w-7 flex justify-center items-center dark:bg-d-background">
-                    <svg class="w-5 h-5 hover:text-d-secondary dark:text-d-soft-white transition ease-in duration-150" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M12 6v12m6-6H6" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                  </a>
-                  <div data-popover id="addToList" role="tooltip" class="absolute z-10 invisible inline-block w-38 text-sm text-l-soft-black transition-opacity duration-300 bg-d-soft-white border border-d-muted rounded-lg shadow-sm opacity-0 dark:text-d-soft-white dark:border-d-muted dark:bg-d-surface">
-                    <div class="px-3 py-2 text-center select-none">
-                      <p>Agregar a mi Lista</p>
-                    </div>
-                  </div>
-
-                  <!-- Mark as seen -->
-                  <a href="#" id="markAsSeenButton" data-popover-target="markAsSeen" data-popover-placement="top" class="rounded-full h-7 w-7 flex justify-center items-center dark:bg-d-background">
-                    <svg class="w-5 h-5 dark:text-d-soft-white hover:opacity-75 transition ease-in duration-150" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" stroke-linecap="round" stroke-linejoin="round"></path>
-                      <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                  </a>
-                  <div data-popover id="markAsSeen" role="tooltip" class="absolute z-10 invisible inline-block w-38 text-sm text-l-soft-black transition-opacity duration-300 bg-d-soft-white border border-d-muted rounded-lg shadow-sm opacity-0 dark:text-d-soft-white dark:border-d-muted dark:bg-d-surface">
-                    <div class="px-3 py-2 text-center select-none">
-                      <p>Marcar como vista</p>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-
-              <!-- Show hidden info on parent hover -->
-              <div class="absolute w-full flex flex-col items-center -translate-y-20 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transitioin ease-in-out duration-150">
-                <span class="py-1 px-3 my-2 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">
-                  2022
-                </span>
-
-                <div class="w-full flex flex-row justify-between items-center">
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                </div>
-              </div>
-            </div>
-            
-          </div>
-          
-          <!-- Card -->
-          <div class="relative col-span-2 h-[480px] rounded-lg overflow-visible shadow-2xl shadow-d-surface bg-center bg-cover bg-no-repeat bg-[url('src/assets/Images/Posters/blade_runner_2049.jpg')] hover:shadow-md transition ease-in-out duration-300"> 
-
-            <!-- Score and time -->
-            <div class="h-10 w-full px-6 flex flex-row justify-between backdrop-blur-sm dark:text-d-soft-white">
-                <!-- Score -->
-                <div class="w-fit text-sm flex flex-row items-center">
-                    <img src="../assets/Icons/star-00.png" alt="star-image" class="w-8 mr-1">
-                    <p>8.2</p>
-                </div>
-                <!-- Time -->
-                <div class="w-fit text-sm flex flex-row items-center">
-                    <img src="../assets/Icons/wall-clock.png" alt="time-image" class="w-8 mr-1">
-                    <p>2h 43min</p>
-                </div>
-            </div>
-
-            <!-- Options -->
-            <div class="absolute bottom-0 h-20 w-full overflow-visible group">
-
-              <!-- Play button + title + add + seen -->
-              <div class="w-full h-20 z-10 flex flex-row justify-between items-center rounded-lg backdrop-blur-md">
-
-                <div class="flex items-center p-4">
-                <!-- Play button -->
-                <a href="#" class="w-10 h-10 rounded-full flex justify-center items-center dark:bg-gradient-to-br from-d-variant-1 to-d-primary dark:hover:opacity-75 cursor-pointer transition ease-in duration-150">
-                  <svg class="text-d-surface w-8 h-8" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" stroke-linecap="round" stroke-linejoin="round"></path>
-                  </svg>
-                </a>
-
-                <!-- Title + date -->
-                <div class="relative flex flex-col ml-4">
-                  <p class="w-28 text-sm font-bold dark:text-d-soft-white select-none">Blade Runner 2049</p>
-                </div>
-                
-                </div>
-
-                <div class="h-full w-20 pr-4 pb-4 flex justify-between items-end">
-
-                  <!-- Add to my list -->
-                  <a href="#" id="addToListButton" data-popover-target="addToList" data-popover-placement="top" class="rounded-full h-7 w-7 flex justify-center items-center dark:bg-d-background">
-                    <svg class="w-5 h-5 hover:text-d-secondary dark:text-d-soft-white transition ease-in duration-150" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M12 6v12m6-6H6" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                  </a>
-                  <div data-popover id="addToList" role="tooltip" class="absolute z-10 invisible inline-block w-38 text-sm text-l-soft-black transition-opacity duration-300 bg-d-soft-white border border-d-muted rounded-lg shadow-sm opacity-0 dark:text-d-soft-white dark:border-d-muted dark:bg-d-surface">
-                    <div class="px-3 py-2 text-center select-none">
-                      <p>Agregar a mi Lista</p>
-                    </div>
-                  </div>
-
-                  <!-- Mark as seen -->
-                  <a href="#" id="markAsSeenButton" data-popover-target="markAsSeen" data-popover-placement="top" class="rounded-full h-7 w-7 flex justify-center items-center dark:bg-d-background">
-                    <svg class="w-5 h-5 dark:text-d-soft-white hover:opacity-75 transition ease-in duration-150" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" stroke-linecap="round" stroke-linejoin="round"></path>
-                      <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                  </a>
-                  <div data-popover id="markAsSeen" role="tooltip" class="absolute z-10 invisible inline-block w-38 text-sm text-l-soft-black transition-opacity duration-300 bg-d-soft-white border border-d-muted rounded-lg shadow-sm opacity-0 dark:text-d-soft-white dark:border-d-muted dark:bg-d-surface">
-                    <div class="px-3 py-2 text-center select-none">
-                      <p>Marcar como vista</p>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-
-              <!-- Show hidden info on parent hover -->
-              <div class="absolute w-full flex flex-col items-center -translate-y-20 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transitioin ease-in-out duration-150">
-                <span class="py-1 px-3 my-2 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">
-                  2022
-                </span>
-
-                <div class="w-full flex flex-row justify-between items-center">
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                </div>
-              </div>
-            </div>
-            
-          </div>
-
-          <!-- Card -->
-          <div class="relative col-span-2 h-[480px] rounded-lg overflow-visible shadow-2xl shadow-d-surface bg-center bg-cover bg-no-repeat bg-[url('src/assets/Images/Posters/black_adam.jpg')] hover:shadow-md transition ease-in-out duration-300"> 
-
-            <!-- Score and time -->
-            <div class="h-10 w-full px-6 flex flex-row justify-between backdrop-blur-sm dark:text-d-soft-white">
-                <!-- Score -->
-                <div class="w-fit text-sm flex flex-row items-center">
-                    <img src="../assets/Icons/star-00.png" alt="star-image" class="w-8 mr-1">
-                    <p>8.8</p>
-                </div>
-                <!-- Time -->
-                <div class="w-fit text-sm flex flex-row items-center">
-                    <img src="../assets/Icons/wall-clock.png" alt="time-image" class="w-8 mr-1">
-                    <p>2h 6min</p>
-                </div>
-            </div>
-
-            <!-- Options -->
-            <div class="absolute bottom-0 h-20 w-full overflow-visible group">
-
-              <!-- Play button + title + add + seen -->
-              <div class="w-full h-20 z-10 flex flex-row justify-between items-center rounded-lg backdrop-blur-md">
-
-                <div class="flex items-center p-4">
-                <!-- Play button -->
-                <a href="#" class="w-10 h-10 rounded-full flex justify-center items-center dark:bg-gradient-to-br from-d-variant-1 to-d-primary dark:hover:opacity-75 cursor-pointer transition ease-in duration-150">
-                  <svg class="text-d-surface w-8 h-8" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" stroke-linecap="round" stroke-linejoin="round"></path>
-                  </svg>
-                </a>
-
-                <!-- Title + date -->
-                <div class="relative flex flex-col ml-4">
-                  <p class="w-28 text-sm font-bold dark:text-d-soft-white select-none">Black Adam</p>
-                </div>
-                
-                </div>
-
-                <div class="h-full w-20 pr-4 pb-4 flex justify-between items-end">
-
-                  <!-- Add to my list -->
-                  <a href="#" id="addToListButton" data-popover-target="addToList" data-popover-placement="top" class="rounded-full h-7 w-7 flex justify-center items-center dark:bg-d-background">
-                    <svg class="w-5 h-5 hover:text-d-secondary dark:text-d-soft-white transition ease-in duration-150" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M12 6v12m6-6H6" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                  </a>
-                  <div data-popover id="addToList" role="tooltip" class="absolute z-10 invisible inline-block w-38 text-sm text-l-soft-black transition-opacity duration-300 bg-d-soft-white border border-d-muted rounded-lg shadow-sm opacity-0 dark:text-d-soft-white dark:border-d-muted dark:bg-d-surface">
-                    <div class="px-3 py-2 text-center select-none">
-                      <p>Agregar a mi Lista</p>
-                    </div>
-                  </div>
-
-                  <!-- Mark as seen -->
-                  <a href="#" id="markAsSeenButton" data-popover-target="markAsSeen" data-popover-placement="top" class="rounded-full h-7 w-7 flex justify-center items-center dark:bg-d-background">
-                    <svg class="w-5 h-5 dark:text-d-soft-white hover:opacity-75 transition ease-in duration-150" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" stroke-linecap="round" stroke-linejoin="round"></path>
-                      <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                  </a>
-                  <div data-popover id="markAsSeen" role="tooltip" class="absolute z-10 invisible inline-block w-38 text-sm text-l-soft-black transition-opacity duration-300 bg-d-soft-white border border-d-muted rounded-lg shadow-sm opacity-0 dark:text-d-soft-white dark:border-d-muted dark:bg-d-surface">
-                    <div class="px-3 py-2 text-center select-none">
-                      <p>Marcar como vista</p>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-
-              <!-- Show hidden info on parent hover -->
-              <div class="absolute w-full flex flex-col items-center -translate-y-20 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transitioin ease-in-out duration-150">
-                <span class="py-1 px-3 my-2 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">
-                  2022
-                </span>
-
-                <div class="w-full flex flex-row justify-between items-center">
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                </div>
-              </div>
-            </div>
-            
-          </div>
-
-          <!-- Card -->
-          <div class="relative col-span-2 h-[480px] rounded-lg overflow-visible shadow-2xl shadow-d-surface bg-center bg-cover bg-no-repeat bg-[url('src/assets/Images/Posters/boku_no_hero_academia_world_heroes_mission.jpg')] hover:shadow-md transition ease-in-out duration-300"> 
-
-            <!-- Score and time -->
-            <div class="h-10 w-full px-6 flex flex-row justify-between backdrop-blur-sm dark:text-d-soft-white">
-                <!-- Score -->
-                <div class="w-fit text-sm flex flex-row items-center">
-                    <img src="../assets/Icons/star-00.png" alt="star-image" class="w-8 mr-1">
-                    <p>8.8</p>
-                </div>
-                <!-- Time -->
-                <div class="w-fit text-sm flex flex-row items-center">
-                    <img src="../assets/Icons/wall-clock.png" alt="time-image" class="w-8 mr-1">
-                    <p>2h 6min</p>
-                </div>
-            </div>
-
-            <!-- Options -->
-            <div class="absolute bottom-0 h-20 w-full overflow-visible group">
-
-              <!-- Play button + title + add + seen -->
-              <div class="w-full h-20 z-10 flex flex-row justify-between items-center rounded-lg backdrop-blur-md">
-
-                <div class="flex items-center p-4">
-                <!-- Play button -->
-                <a href="#" class="w-10 h-10 rounded-full flex justify-center items-center dark:bg-gradient-to-br from-d-variant-1 to-d-primary dark:hover:opacity-75 cursor-pointer transition ease-in duration-150">
-                  <svg class="text-d-surface w-8 h-8" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" stroke-linecap="round" stroke-linejoin="round"></path>
-                  </svg>
-                </a>
-
-                <!-- Title + date -->
-                <div class="relative flex flex-col ml-4">
-                  <p class="w-28 text-sm font-bold dark:text-d-soft-white select-none">Boku no Hero: Misión mundial de héroes</p>
-                </div>
-                
-                </div>
-
-                <div class="h-full w-20 pr-4 pb-4 flex justify-between items-end">
-
-                  <!-- Add to my list -->
-                  <a href="#" id="addToListButton" data-popover-target="addToList" data-popover-placement="top" class="rounded-full h-7 w-7 flex justify-center items-center dark:bg-d-background">
-                    <svg class="w-5 h-5 hover:text-d-secondary dark:text-d-soft-white transition ease-in duration-150" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M12 6v12m6-6H6" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                  </a>
-                  <div data-popover id="addToList" role="tooltip" class="absolute z-10 invisible inline-block w-38 text-sm text-l-soft-black transition-opacity duration-300 bg-d-soft-white border border-d-muted rounded-lg shadow-sm opacity-0 dark:text-d-soft-white dark:border-d-muted dark:bg-d-surface">
-                    <div class="px-3 py-2 text-center select-none">
-                      <p>Agregar a mi Lista</p>
-                    </div>
-                  </div>
-
-                  <!-- Mark as seen -->
-                  <a href="#" id="markAsSeenButton" data-popover-target="markAsSeen" data-popover-placement="top" class="rounded-full h-7 w-7 flex justify-center items-center dark:bg-d-background">
-                    <svg class="w-5 h-5 dark:text-d-soft-white hover:opacity-75 transition ease-in duration-150" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" stroke-linecap="round" stroke-linejoin="round"></path>
-                      <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                  </a>
-                  <div data-popover id="markAsSeen" role="tooltip" class="absolute z-10 invisible inline-block w-38 text-sm text-l-soft-black transition-opacity duration-300 bg-d-soft-white border border-d-muted rounded-lg shadow-sm opacity-0 dark:text-d-soft-white dark:border-d-muted dark:bg-d-surface">
-                    <div class="px-3 py-2 text-center select-none">
-                      <p>Marcar como vista</p>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-
-              <!-- Show hidden info on parent hover -->
-              <div class="absolute w-full flex flex-col items-center -translate-y-20 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transitioin ease-in-out duration-150">
-                <span class="py-1 px-3 my-2 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">
-                  2022
-                </span>
-
-                <div class="w-full flex flex-row justify-between items-center">
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                </div>
-              </div>
-            </div>
-            
-          </div>
-
-          <!-- Card -->
-          <div class="relative col-span-2 h-[480px] rounded-lg overflow-visible shadow-2xl shadow-d-surface bg-center bg-cover bg-no-repeat bg-[url('src/assets/Images/Posters/dune.jpg')] hover:shadow-md transition ease-in-out duration-300"> 
-
-            <!-- Score and time -->
-            <div class="h-10 w-full px-6 flex flex-row justify-between backdrop-blur-sm dark:text-d-soft-white">
-                <!-- Score -->
-                <div class="w-fit text-sm flex flex-row items-center">
-                    <img src="../assets/Icons/star-00.png" alt="star-image" class="w-8 mr-1">
-                    <p>8.8</p>
-                </div>
-                <!-- Time -->
-                <div class="w-fit text-sm flex flex-row items-center">
-                    <img src="../assets/Icons/wall-clock.png" alt="time-image" class="w-8 mr-1">
-                    <p>2h 6min</p>
-                </div>
-            </div>
-
-            <!-- Options -->
-            <div class="absolute bottom-0 h-20 w-full overflow-visible group">
-
-              <!-- Play button + title + add + seen -->
-              <div class="w-full h-20 z-10 flex flex-row justify-between items-center rounded-lg backdrop-blur-md">
-
-                <div class="flex items-center p-4">
-                <!-- Play button -->
-                <a href="#" class="w-10 h-10 rounded-full flex justify-center items-center dark:bg-gradient-to-br from-d-variant-1 to-d-primary dark:hover:opacity-75 cursor-pointer transition ease-in duration-150">
-                  <svg class="text-d-surface w-8 h-8" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" stroke-linecap="round" stroke-linejoin="round"></path>
-                  </svg>
-                </a>
-
-                <!-- Title + date -->
-                <div class="relative flex flex-col ml-4">
-                  <p class="w-28 text-sm font-bold dark:text-d-soft-white select-none">Dune</p>
-                </div>
-                
-                </div>
-
-                <div class="h-full w-20 pr-4 pb-4 flex justify-between items-end">
-
-                  <!-- Add to my list -->
-                  <a href="#" id="addToListButton" data-popover-target="addToList" data-popover-placement="top" class="rounded-full h-7 w-7 flex justify-center items-center dark:bg-d-background">
-                    <svg class="w-5 h-5 hover:text-d-secondary dark:text-d-soft-white transition ease-in duration-150" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M12 6v12m6-6H6" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                  </a>
-                  <div data-popover id="addToList" role="tooltip" class="absolute z-10 invisible inline-block w-38 text-sm text-l-soft-black transition-opacity duration-300 bg-d-soft-white border border-d-muted rounded-lg shadow-sm opacity-0 dark:text-d-soft-white dark:border-d-muted dark:bg-d-surface">
-                    <div class="px-3 py-2 text-center select-none">
-                      <p>Agregar a mi Lista</p>
-                    </div>
-                  </div>
-
-                  <!-- Mark as seen -->
-                  <a href="#" id="markAsSeenButton" data-popover-target="markAsSeen" data-popover-placement="top" class="rounded-full h-7 w-7 flex justify-center items-center dark:bg-d-background">
-                    <svg class="w-5 h-5 dark:text-d-soft-white hover:opacity-75 transition ease-in duration-150" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" stroke-linecap="round" stroke-linejoin="round"></path>
-                      <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                  </a>
-                  <div data-popover id="markAsSeen" role="tooltip" class="absolute z-10 invisible inline-block w-38 text-sm text-l-soft-black transition-opacity duration-300 bg-d-soft-white border border-d-muted rounded-lg shadow-sm opacity-0 dark:text-d-soft-white dark:border-d-muted dark:bg-d-surface">
-                    <div class="px-3 py-2 text-center select-none">
-                      <p>Marcar como vista</p>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-
-              <!-- Show hidden info on parent hover -->
-              <div class="absolute w-full flex flex-col items-center -translate-y-20 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transitioin ease-in-out duration-150">
-                <span class="py-1 px-3 my-2 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">
-                  2022
-                </span>
-
-                <div class="w-full flex flex-row justify-between items-center">
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                </div>
-              </div>
-            </div>
-            
-          </div>
-
-          <!-- Card -->
-          <div class="relative col-span-2 h-[480px] rounded-lg overflow-visible shadow-2xl shadow-d-surface bg-center bg-cover bg-no-repeat bg-[url('src/assets/Images/Posters/jurassic_world_dominion.jpg')] hover:shadow-md transition ease-in-out duration-300"> 
-
-            <!-- Score and time -->
-            <div class="h-10 w-full px-6 flex flex-row justify-between backdrop-blur-sm dark:text-d-soft-white">
-                <!-- Score -->
-                <div class="w-fit text-sm flex flex-row items-center">
-                    <img src="../assets/Icons/star-00.png" alt="star-image" class="w-8 mr-1">
-                    <p>8.8</p>
-                </div>
-                <!-- Time -->
-                <div class="w-fit text-sm flex flex-row items-center">
-                    <img src="../assets/Icons/wall-clock.png" alt="time-image" class="w-8 mr-1">
-                    <p>2h 6min</p>
-                </div>
-            </div>
-
-            <!-- Options -->
-            <div class="absolute bottom-0 h-20 w-full overflow-visible group">
-
-              <!-- Play button + title + add + seen -->
-              <div class="w-full h-20 z-10 flex flex-row justify-between items-center rounded-lg backdrop-blur-md">
-
-                <div class="flex items-center p-4">
-                <!-- Play button -->
-                <a href="#" class="w-10 h-10 rounded-full flex justify-center items-center dark:bg-gradient-to-br from-d-variant-1 to-d-primary dark:hover:opacity-75 cursor-pointer transition ease-in duration-150">
-                  <svg class="text-d-surface w-8 h-8" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" stroke-linecap="round" stroke-linejoin="round"></path>
-                  </svg>
-                </a>
-
-                <!-- Title + date -->
-                <div class="relative flex flex-col ml-4">
-                  <p class="w-28 text-sm font-bold dark:text-d-soft-white select-none">Jurasic World: Dominion </p>
-                </div>
-                
-                </div>
-
-                <div class="h-full w-20 pr-4 pb-4 flex justify-between items-end">
-
-                  <!-- Add to my list -->
-                  <a href="#" id="addToListButton" data-popover-target="addToList" data-popover-placement="top" class="rounded-full h-7 w-7 flex justify-center items-center dark:bg-d-background">
-                    <svg class="w-5 h-5 hover:text-d-secondary dark:text-d-soft-white transition ease-in duration-150" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M12 6v12m6-6H6" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                  </a>
-                  <div data-popover id="addToList" role="tooltip" class="absolute z-10 invisible inline-block w-38 text-sm text-l-soft-black transition-opacity duration-300 bg-d-soft-white border border-d-muted rounded-lg shadow-sm opacity-0 dark:text-d-soft-white dark:border-d-muted dark:bg-d-surface">
-                    <div class="px-3 py-2 text-center select-none">
-                      <p>Agregar a mi Lista</p>
-                    </div>
-                  </div>
-
-                  <!-- Mark as seen -->
-                  <a href="#" id="markAsSeenButton" data-popover-target="markAsSeen" data-popover-placement="top" class="rounded-full h-7 w-7 flex justify-center items-center dark:bg-d-background">
-                    <svg class="w-5 h-5 dark:text-d-soft-white hover:opacity-75 transition ease-in duration-150" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" stroke-linecap="round" stroke-linejoin="round"></path>
-                      <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                  </a>
-                  <div data-popover id="markAsSeen" role="tooltip" class="absolute z-10 invisible inline-block w-38 text-sm text-l-soft-black transition-opacity duration-300 bg-d-soft-white border border-d-muted rounded-lg shadow-sm opacity-0 dark:text-d-soft-white dark:border-d-muted dark:bg-d-surface">
-                    <div class="px-3 py-2 text-center select-none">
-                      <p>Marcar como vista</p>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-
-              <!-- Show hidden info on parent hover -->
-              <div class="absolute w-full flex flex-col items-center -translate-y-20 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transitioin ease-in-out duration-150">
-                <span class="py-1 px-3 my-2 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">
-                  2022
-                </span>
-
-                <div class="w-full flex flex-row justify-between items-center">
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                </div>
-              </div>
-            </div>
-            
-          </div>
-
-          <!-- Card -->
-          <div class="relative col-span-2 h-[480px] rounded-lg overflow-visible shadow-2xl shadow-d-surface bg-center bg-cover bg-no-repeat bg-[url('src/assets/Images/Posters/kimetsu_no_yaiba_mugen_ressha_hen.jpg')] hover:shadow-md transition ease-in-out duration-300"> 
-
-            <!-- Score and time -->
-            <div class="h-10 w-full px-6 flex flex-row justify-between backdrop-blur-sm dark:text-d-soft-white">
-                <!-- Score -->
-                <div class="w-fit text-sm flex flex-row items-center">
-                    <img src="../assets/Icons/star-00.png" alt="star-image" class="w-8 mr-1">
-                    <p>8.8</p>
-                </div>
-                <!-- Time -->
-                <div class="w-fit text-sm flex flex-row items-center">
-                    <img src="../assets/Icons/wall-clock.png" alt="time-image" class="w-8 mr-1">
-                    <p>2h 6min</p>
-                </div>
-            </div>
-
-            <!-- Options -->
-            <div class="absolute bottom-0 h-20 w-full overflow-visible group">
-
-              <!-- Play button + title + add + seen -->
-              <div class="w-full h-20 z-10 flex flex-row justify-between items-center rounded-lg backdrop-blur-md">
-
-                <div class="flex items-center p-4">
-                <!-- Play button -->
-                <a href="#" class="w-10 h-10 rounded-full flex justify-center items-center dark:bg-gradient-to-br from-d-variant-1 to-d-primary dark:hover:opacity-75 cursor-pointer transition ease-in duration-150">
-                  <svg class="text-d-surface w-8 h-8" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" stroke-linecap="round" stroke-linejoin="round"></path>
-                  </svg>
-                </a>
-
-                <!-- Title + date -->
-                <div class="relative flex flex-col ml-4">
-                  <p class="w-28 text-sm font-bold dark:text-d-soft-white select-none">Kimetsu no Yaiba: Mugen ressha hen</p>
-                </div>
-                
-                </div>
-
-                <div class="h-full w-20 pr-4 pb-4 flex justify-between items-end">
-
-                  <!-- Add to my list -->
-                  <a href="#" id="addToListButton" data-popover-target="addToList" data-popover-placement="top" class="rounded-full h-7 w-7 flex justify-center items-center dark:bg-d-background">
-                    <svg class="w-5 h-5 hover:text-d-secondary dark:text-d-soft-white transition ease-in duration-150" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M12 6v12m6-6H6" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                  </a>
-                  <div data-popover id="addToList" role="tooltip" class="absolute z-10 invisible inline-block w-38 text-sm text-l-soft-black transition-opacity duration-300 bg-d-soft-white border border-d-muted rounded-lg shadow-sm opacity-0 dark:text-d-soft-white dark:border-d-muted dark:bg-d-surface">
-                    <div class="px-3 py-2 text-center select-none">
-                      <p>Agregar a mi Lista</p>
-                    </div>
-                  </div>
-
-                  <!-- Mark as seen -->
-                  <a href="#" id="markAsSeenButton" data-popover-target="markAsSeen" data-popover-placement="top" class="rounded-full h-7 w-7 flex justify-center items-center dark:bg-d-background">
-                    <svg class="w-5 h-5 dark:text-d-soft-white hover:opacity-75 transition ease-in duration-150" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" stroke-linecap="round" stroke-linejoin="round"></path>
-                      <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                  </a>
-                  <div data-popover id="markAsSeen" role="tooltip" class="absolute z-10 invisible inline-block w-38 text-sm text-l-soft-black transition-opacity duration-300 bg-d-soft-white border border-d-muted rounded-lg shadow-sm opacity-0 dark:text-d-soft-white dark:border-d-muted dark:bg-d-surface">
-                    <div class="px-3 py-2 text-center select-none">
-                      <p>Marcar como vista</p>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-
-              <!-- Show hidden info on parent hover -->
-              <div class="absolute w-full flex flex-col items-center -translate-y-20 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transitioin ease-in-out duration-150">
-                <span class="py-1 px-3 my-2 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">
-                  2022
-                </span>
-
-                <div class="w-full flex flex-row justify-between items-center">
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                </div>
-              </div>
-            </div>
-            
-          </div>
-
-          <!-- Card -->
-          <div class="relative col-span-2 h-[480px] rounded-lg overflow-visible shadow-2xl shadow-d-surface bg-center bg-cover bg-no-repeat bg-[url('src/assets/Images/Posters/mortal_kombat.jpg')] hover:shadow-md transition ease-in-out duration-300"> 
-
-            <!-- Score and time -->
-            <div class="h-10 w-full px-6 flex flex-row justify-between backdrop-blur-sm dark:text-d-soft-white">
-                <!-- Score -->
-                <div class="w-fit text-sm flex flex-row items-center">
-                    <img src="../assets/Icons/star-00.png" alt="star-image" class="w-8 mr-1">
-                    <p>8.8</p>
-                </div>
-                <!-- Time -->
-                <div class="w-fit text-sm flex flex-row items-center">
-                    <img src="../assets/Icons/wall-clock.png" alt="time-image" class="w-8 mr-1">
-                    <p>2h 6min</p>
-                </div>
-            </div>
-
-            <!-- Options -->
-            <div class="absolute bottom-0 h-20 w-full overflow-visible group">
-
-              <!-- Play button + title + add + seen -->
-              <div class="w-full h-20 z-10 flex flex-row justify-between items-center rounded-lg backdrop-blur-md">
-
-                <div class="flex items-center p-4">
-                <!-- Play button -->
-                <a href="#" class="w-10 h-10 rounded-full flex justify-center items-center dark:bg-gradient-to-br from-d-variant-1 to-d-primary dark:hover:opacity-75 cursor-pointer transition ease-in duration-150">
-                  <svg class="text-d-surface w-8 h-8" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" stroke-linecap="round" stroke-linejoin="round"></path>
-                  </svg>
-                </a>
-
-                <!-- Title + date -->
-                <div class="relative flex flex-col ml-4">
-                  <p class="w-28 text-sm font-bold dark:text-d-soft-white select-none">Mortal Kombat</p>
-                </div>
-                
-                </div>
-
-                <div class="h-full w-20 pr-4 pb-4 flex justify-between items-end">
-
-                  <!-- Add to my list -->
-                  <a href="#" id="addToListButton" data-popover-target="addToList" data-popover-placement="top" class="rounded-full h-7 w-7 flex justify-center items-center dark:bg-d-background">
-                    <svg class="w-5 h-5 hover:text-d-secondary dark:text-d-soft-white transition ease-in duration-150" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M12 6v12m6-6H6" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                  </a>
-                  <div data-popover id="addToList" role="tooltip" class="absolute z-10 invisible inline-block w-38 text-sm text-l-soft-black transition-opacity duration-300 bg-d-soft-white border border-d-muted rounded-lg shadow-sm opacity-0 dark:text-d-soft-white dark:border-d-muted dark:bg-d-surface">
-                    <div class="px-3 py-2 text-center select-none">
-                      <p>Agregar a mi Lista</p>
-                    </div>
-                  </div>
-
-                  <!-- Mark as seen -->
-                  <a href="#" id="markAsSeenButton" data-popover-target="markAsSeen" data-popover-placement="top" class="rounded-full h-7 w-7 flex justify-center items-center dark:bg-d-background">
-                    <svg class="w-5 h-5 dark:text-d-soft-white hover:opacity-75 transition ease-in duration-150" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" stroke-linecap="round" stroke-linejoin="round"></path>
-                      <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                  </a>
-                  <div data-popover id="markAsSeen" role="tooltip" class="absolute z-10 invisible inline-block w-38 text-sm text-l-soft-black transition-opacity duration-300 bg-d-soft-white border border-d-muted rounded-lg shadow-sm opacity-0 dark:text-d-soft-white dark:border-d-muted dark:bg-d-surface">
-                    <div class="px-3 py-2 text-center select-none">
-                      <p>Marcar como vista</p>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-
-              <!-- Show hidden info on parent hover -->
-              <div class="absolute w-full flex flex-col items-center -translate-y-20 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transitioin ease-in-out duration-150">
-                <span class="py-1 px-3 my-2 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">
-                  2022
-                </span>
-
-                <div class="w-full flex flex-row justify-between items-center">
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                </div>
-              </div>
-            </div>
-            
-          </div>
-
-          <!-- Card -->
-          <div class="relative col-span-2 h-[480px] rounded-lg overflow-visible shadow-2xl shadow-d-surface bg-center bg-cover bg-no-repeat bg-[url('src/assets/Images/Posters/spider_man_no_way_home.jpg')] hover:shadow-md transition ease-in-out duration-300"> 
-
-            <!-- Score and time -->
-            <div class="h-10 w-full px-6 flex flex-row justify-between backdrop-blur-sm dark:text-d-soft-white">
-                <!-- Score -->
-                <div class="w-fit text-sm flex flex-row items-center">
-                    <img src="../assets/Icons/star-00.png" alt="star-image" class="w-8 mr-1">
-                    <p>8.8</p>
-                </div>
-                <!-- Time -->
-                <div class="w-fit text-sm flex flex-row items-center">
-                    <img src="../assets/Icons/wall-clock.png" alt="time-image" class="w-8 mr-1">
-                    <p>2h 6min</p>
-                </div>
-            </div>
-
-            <!-- Options -->
-            <div class="absolute bottom-0 h-20 w-full overflow-visible group">
-
-              <!-- Play button + title + add + seen -->
-              <div class="w-full h-20 z-10 flex flex-row justify-between items-center rounded-lg backdrop-blur-md">
-
-                <div class="flex items-center p-4">
-                <!-- Play button -->
-                <a href="#" class="w-10 h-10 rounded-full flex justify-center items-center dark:bg-gradient-to-br from-d-variant-1 to-d-primary dark:hover:opacity-75 cursor-pointer transition ease-in duration-150">
-                  <svg class="text-d-surface w-8 h-8" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" stroke-linecap="round" stroke-linejoin="round"></path>
-                  </svg>
-                </a>
-
-                <!-- Title + date -->
-                <div class="relative flex flex-col ml-4">
-                  <p class="w-28 text-sm font-bold dark:text-d-soft-white select-none">Spider Man: No Way Home</p>
-                </div>
-                
-                </div>
-
-                <div class="h-full w-20 pr-4 pb-4 flex justify-between items-end">
-
-                  <!-- Add to my list -->
-                  <a href="#" id="addToListButton" data-popover-target="addToList" data-popover-placement="top" class="rounded-full h-7 w-7 flex justify-center items-center dark:bg-d-background">
-                    <svg class="w-5 h-5 hover:text-d-secondary dark:text-d-soft-white transition ease-in duration-150" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M12 6v12m6-6H6" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                  </a>
-                  <div data-popover id="addToList" role="tooltip" class="absolute z-10 invisible inline-block w-38 text-sm text-l-soft-black transition-opacity duration-300 bg-d-soft-white border border-d-muted rounded-lg shadow-sm opacity-0 dark:text-d-soft-white dark:border-d-muted dark:bg-d-surface">
-                    <div class="px-3 py-2 text-center select-none">
-                      <p>Agregar a mi Lista</p>
-                    </div>
-                  </div>
-
-                  <!-- Mark as seen -->
-                  <a href="#" id="markAsSeenButton" data-popover-target="markAsSeen" data-popover-placement="top" class="rounded-full h-7 w-7 flex justify-center items-center dark:bg-d-background">
-                    <svg class="w-5 h-5 dark:text-d-soft-white hover:opacity-75 transition ease-in duration-150" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" stroke-linecap="round" stroke-linejoin="round"></path>
-                      <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                  </a>
-                  <div data-popover id="markAsSeen" role="tooltip" class="absolute z-10 invisible inline-block w-38 text-sm text-l-soft-black transition-opacity duration-300 bg-d-soft-white border border-d-muted rounded-lg shadow-sm opacity-0 dark:text-d-soft-white dark:border-d-muted dark:bg-d-surface">
-                    <div class="px-3 py-2 text-center select-none">
-                      <p>Marcar como vista</p>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-
-              <!-- Show hidden info on parent hover -->
-              <div class="absolute w-full flex flex-col items-center -translate-y-20 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transitioin ease-in-out duration-150">
-                <span class="py-1 px-3 my-2 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">
-                  2022
-                </span>
-
-                <div class="w-full flex flex-row justify-between items-center">
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                </div>
-              </div>
-            </div>
-            
-          </div>
-
-          <!-- Card -->
-          <div class="relative col-span-2 h-[480px] rounded-lg overflow-visible shadow-2xl shadow-d-surface bg-center bg-cover bg-no-repeat bg-[url('src/assets/Images/Posters/the_black_phone.jpg')] hover:shadow-md transition ease-in-out duration-300"> 
-
-            <!-- Score and time -->
-            <div class="h-10 w-full px-6 flex flex-row justify-between backdrop-blur-sm dark:text-d-soft-white">
-                <!-- Score -->
-                <div class="w-fit text-sm flex flex-row items-center">
-                    <img src="../assets/Icons/star-00.png" alt="star-image" class="w-8 mr-1">
-                    <p>8.8</p>
-                </div>
-                <!-- Time -->
-                <div class="w-fit text-sm flex flex-row items-center">
-                    <img src="../assets/Icons/wall-clock.png" alt="time-image" class="w-8 mr-1">
-                    <p>2h 6min</p>
-                </div>
-            </div>
-
-            <!-- Options -->
-            <div class="absolute bottom-0 h-20 w-full overflow-visible group">
-
-              <!-- Play button + title + add + seen -->
-              <div class="w-full h-20 z-10 flex flex-row justify-between items-center rounded-lg backdrop-blur-md">
-
-                <div class="flex items-center p-4">
-                <!-- Play button -->
-                <a href="#" class="w-10 h-10 rounded-full flex justify-center items-center dark:bg-gradient-to-br from-d-variant-1 to-d-primary dark:hover:opacity-75 cursor-pointer transition ease-in duration-150">
-                  <svg class="text-d-surface w-8 h-8" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" stroke-linecap="round" stroke-linejoin="round"></path>
-                  </svg>
-                </a>
-
-                <!-- Title + date -->
-                <div class="relative flex flex-col ml-4">
-                  <p class="w-28 text-sm font-bold dark:text-d-soft-white select-none">Black Phone</p>
-                </div>
-                
-                </div>
-
-                <div class="h-full w-20 pr-4 pb-4 flex justify-between items-end">
-
-                  <!-- Add to my list -->
-                  <a href="#" id="addToListButton" data-popover-target="addToList" data-popover-placement="top" class="rounded-full h-7 w-7 flex justify-center items-center dark:bg-d-background">
-                    <svg class="w-5 h-5 hover:text-d-secondary dark:text-d-soft-white transition ease-in duration-150" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M12 6v12m6-6H6" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                  </a>
-                  <div data-popover id="addToList" role="tooltip" class="absolute z-10 invisible inline-block w-38 text-sm text-l-soft-black transition-opacity duration-300 bg-d-soft-white border border-d-muted rounded-lg shadow-sm opacity-0 dark:text-d-soft-white dark:border-d-muted dark:bg-d-surface">
-                    <div class="px-3 py-2 text-center select-none">
-                      <p>Agregar a mi Lista</p>
-                    </div>
-                  </div>
-
-                  <!-- Mark as seen -->
-                  <a href="#" id="markAsSeenButton" data-popover-target="markAsSeen" data-popover-placement="top" class="rounded-full h-7 w-7 flex justify-center items-center dark:bg-d-background">
-                    <svg class="w-5 h-5 dark:text-d-soft-white hover:opacity-75 transition ease-in duration-150" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" stroke-linecap="round" stroke-linejoin="round"></path>
-                      <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                  </a>
-                  <div data-popover id="markAsSeen" role="tooltip" class="absolute z-10 invisible inline-block w-38 text-sm text-l-soft-black transition-opacity duration-300 bg-d-soft-white border border-d-muted rounded-lg shadow-sm opacity-0 dark:text-d-soft-white dark:border-d-muted dark:bg-d-surface">
-                    <div class="px-3 py-2 text-center select-none">
-                      <p>Marcar como vista</p>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-
-              <!-- Show hidden info on parent hover -->
-              <div class="absolute w-full flex flex-col items-center -translate-y-20 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transitioin ease-in-out duration-150">
-                <span class="py-1 px-3 my-2 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">
-                  2022
-                </span>
-
-                <div class="w-full flex flex-row justify-between items-center">
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                </div>
-              </div>
-            </div>
-            
-          </div>
-
-          <!-- Card -->
-          <div class="relative col-span-2 h-[480px] rounded-lg overflow-visible shadow-2xl shadow-d-surface bg-center bg-cover bg-no-repeat bg-[url('src/assets/Images/Posters/the_matrix_resurrections.jpg')] hover:shadow-md transition ease-in-out duration-300"> 
-
-            <!-- Score and time -->
-            <div class="h-10 w-full px-6 flex flex-row justify-between backdrop-blur-sm dark:text-d-soft-white">
-                <!-- Score -->
-                <div class="w-fit text-sm flex flex-row items-center">
-                    <img src="../assets/Icons/star-00.png" alt="star-image" class="w-8 mr-1">
-                    <p>8.8</p>
-                </div>
-                <!-- Time -->
-                <div class="w-fit text-sm flex flex-row items-center">
-                    <img src="../assets/Icons/wall-clock.png" alt="time-image" class="w-8 mr-1">
-                    <p>2h 6min</p>
-                </div>
-            </div>
-
-            <!-- Options -->
-            <div class="absolute bottom-0 h-20 w-full overflow-visible group">
-
-              <!-- Play button + title + add + seen -->
-              <div class="w-full h-20 z-10 flex flex-row justify-between items-center rounded-lg backdrop-blur-md">
-
-                <div class="flex items-center p-4">
-                <!-- Play button -->
-                <a href="#" class="w-10 h-10 rounded-full flex justify-center items-center dark:bg-gradient-to-br from-d-variant-1 to-d-primary dark:hover:opacity-75 cursor-pointer transition ease-in duration-150">
-                  <svg class="text-d-surface w-8 h-8" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" stroke-linecap="round" stroke-linejoin="round"></path>
-                  </svg>
-                </a>
-
-                <!-- Title + date -->
-                <div class="relative flex flex-col ml-4">
-                  <p class="w-28 text-sm font-bold dark:text-d-soft-white select-none">The Matrix Resurrections</p>
-                </div>
-                
-                </div>
-
-                <div class="h-full w-20 pr-4 pb-4 flex justify-between items-end">
-
-                  <!-- Add to my list -->
-                  <a href="#" id="addToListButton" data-popover-target="addToList" data-popover-placement="top" class="rounded-full h-7 w-7 flex justify-center items-center dark:bg-d-background">
-                    <svg class="w-5 h-5 hover:text-d-secondary dark:text-d-soft-white transition ease-in duration-150" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M12 6v12m6-6H6" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                  </a>
-                  <div data-popover id="addToList" role="tooltip" class="absolute z-10 invisible inline-block w-38 text-sm text-l-soft-black transition-opacity duration-300 bg-d-soft-white border border-d-muted rounded-lg shadow-sm opacity-0 dark:text-d-soft-white dark:border-d-muted dark:bg-d-surface">
-                    <div class="px-3 py-2 text-center select-none">
-                      <p>Agregar a mi Lista</p>
-                    </div>
-                  </div>
-
-                  <!-- Mark as seen -->
-                  <a href="#" id="markAsSeenButton" data-popover-target="markAsSeen" data-popover-placement="top" class="rounded-full h-7 w-7 flex justify-center items-center dark:bg-d-background">
-                    <svg class="w-5 h-5 dark:text-d-soft-white hover:opacity-75 transition ease-in duration-150" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" stroke-linecap="round" stroke-linejoin="round"></path>
-                      <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                  </a>
-                  <div data-popover id="markAsSeen" role="tooltip" class="absolute z-10 invisible inline-block w-38 text-sm text-l-soft-black transition-opacity duration-300 bg-d-soft-white border border-d-muted rounded-lg shadow-sm opacity-0 dark:text-d-soft-white dark:border-d-muted dark:bg-d-surface">
-                    <div class="px-3 py-2 text-center select-none">
-                      <p>Marcar como vista</p>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-
-              <!-- Show hidden info on parent hover -->
-              <div class="absolute w-full flex flex-col items-center -translate-y-20 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transitioin ease-in-out duration-150">
-                <span class="py-1 px-3 my-2 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">
-                  2022
-                </span>
-
-                <div class="w-full flex flex-row justify-between items-center">
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                </div>
-              </div>
-            </div>
-            
-          </div>
-
-          <!-- Card -->
-          <div class="relative col-span-2 h-[480px] rounded-lg overflow-visible shadow-2xl shadow-d-surface bg-center bg-cover bg-no-repeat bg-[url('src/assets/Images/Posters/thor_love_and_thunder.jpg')] hover:shadow-md transition ease-in-out duration-300"> 
-
-            <!-- Score and time -->
-            <div class="h-10 w-full px-6 flex flex-row justify-between backdrop-blur-sm dark:text-d-soft-white">
-                <!-- Score -->
-                <div class="w-fit text-sm flex flex-row items-center">
-                    <img src="../assets/Icons/star-00.png" alt="star-image" class="w-8 mr-1">
-                    <p>8.8</p>
-                </div>
-                <!-- Time -->
-                <div class="w-fit text-sm flex flex-row items-center">
-                    <img src="../assets/Icons/wall-clock.png" alt="time-image" class="w-8 mr-1">
-                    <p>2h 6min</p>
-                </div>
-            </div>
-
-            <!-- Options -->
-            <div class="absolute bottom-0 h-20 w-full overflow-visible group">
-
-              <!-- Play button + title + add + seen -->
-              <div class="w-full h-20 z-10 flex flex-row justify-between items-center rounded-lg backdrop-blur-md">
-
-                <div class="flex items-center p-4">
-                <!-- Play button -->
-                <a href="#" class="w-10 h-10 rounded-full flex justify-center items-center dark:bg-gradient-to-br from-d-variant-1 to-d-primary dark:hover:opacity-75 cursor-pointer transition ease-in duration-150">
-                  <svg class="text-d-surface w-8 h-8" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" stroke-linecap="round" stroke-linejoin="round"></path>
-                  </svg>
-                </a>
-
-                <!-- Title + date -->
-                <div class="relative flex flex-col ml-4">
-                  <p class="w-28 text-sm font-bold dark:text-d-soft-white select-none">Thor Love and Thunder</p>
-                </div>
-                
-                </div>
-
-                <div class="h-full w-20 pr-4 pb-4 flex justify-between items-end">
-
-                  <!-- Add to my list -->
-                  <a href="#" id="addToListButton" data-popover-target="addToList" data-popover-placement="top" class="rounded-full h-7 w-7 flex justify-center items-center dark:bg-d-background">
-                    <svg class="w-5 h-5 hover:text-d-secondary dark:text-d-soft-white transition ease-in duration-150" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M12 6v12m6-6H6" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                  </a>
-                  <div data-popover id="addToList" role="tooltip" class="absolute z-10 invisible inline-block w-38 text-sm text-l-soft-black transition-opacity duration-300 bg-d-soft-white border border-d-muted rounded-lg shadow-sm opacity-0 dark:text-d-soft-white dark:border-d-muted dark:bg-d-surface">
-                    <div class="px-3 py-2 text-center select-none">
-                      <p>Agregar a mi Lista</p>
-                    </div>
-                  </div>
-
-                  <!-- Mark as seen -->
-                  <a href="#" id="markAsSeenButton" data-popover-target="markAsSeen" data-popover-placement="top" class="rounded-full h-7 w-7 flex justify-center items-center dark:bg-d-background">
-                    <svg class="w-5 h-5 dark:text-d-soft-white hover:opacity-75 transition ease-in duration-150" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" stroke-linecap="round" stroke-linejoin="round"></path>
-                      <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                  </a>
-                  <div data-popover id="markAsSeen" role="tooltip" class="absolute z-10 invisible inline-block w-38 text-sm text-l-soft-black transition-opacity duration-300 bg-d-soft-white border border-d-muted rounded-lg shadow-sm opacity-0 dark:text-d-soft-white dark:border-d-muted dark:bg-d-surface">
-                    <div class="px-3 py-2 text-center select-none">
-                      <p>Marcar como vista</p>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-
-              <!-- Show hidden info on parent hover -->
-              <div class="absolute w-full flex flex-col items-center -translate-y-20 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transitioin ease-in-out duration-150">
-                <span class="py-1 px-3 my-2 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">
-                  2022
-                </span>
-
-                <div class="w-full flex flex-row justify-between items-center">
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                </div>
-              </div>
-            </div>
-            
-          </div>
-
-          <!-- Card -->
-          <div class="relative col-span-2 h-[480px] rounded-lg overflow-visible shadow-2xl shadow-d-surface bg-center bg-cover bg-no-repeat bg-[url('src/assets/Images/Posters/uncharted.jpg')] hover:shadow-md transition ease-in-out duration-300"> 
-
-            <!-- Score and time -->
-            <div class="h-10 w-full px-6 flex flex-row justify-between backdrop-blur-sm dark:text-d-soft-white">
-                <!-- Score -->
-                <div class="w-fit text-sm flex flex-row items-center">
-                    <img src="../assets/Icons/star-00.png" alt="star-image" class="w-8 mr-1">
-                    <p>8.8</p>
-                </div>
-                <!-- Time -->
-                <div class="w-fit text-sm flex flex-row items-center">
-                    <img src="../assets/Icons/wall-clock.png" alt="time-image" class="w-8 mr-1">
-                    <p>2h 6min</p>
-                </div>
-            </div>
-
-            <!-- Options -->
-            <div class="absolute bottom-0 h-20 w-full overflow-visible group">
-
-              <!-- Play button + title + add + seen -->
-              <div class="w-full h-20 z-10 flex flex-row justify-between items-center rounded-lg backdrop-blur-md">
-
-                <div class="flex items-center p-4">
-                <!-- Play button -->
-                <a href="#" class="w-10 h-10 rounded-full flex justify-center items-center dark:bg-gradient-to-br from-d-variant-1 to-d-primary dark:hover:opacity-75 cursor-pointer transition ease-in duration-150">
-                  <svg class="text-d-surface w-8 h-8" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" stroke-linecap="round" stroke-linejoin="round"></path>
-                  </svg>
-                </a>
-
-                <!-- Title + date -->
-                <div class="relative flex flex-col ml-4">
-                  <p class="w-28 text-sm font-bold dark:text-d-soft-white select-none">Uncharted</p>
-                </div>
-                
-                </div>
-
-                <div class="h-full w-20 pr-4 pb-4 flex justify-between items-end">
-
-                  <!-- Add to my list -->
-                  <a href="#" id="addToListButton" data-popover-target="addToList" data-popover-placement="top" class="rounded-full h-7 w-7 flex justify-center items-center dark:bg-d-background">
-                    <svg class="w-5 h-5 hover:text-d-secondary dark:text-d-soft-white transition ease-in duration-150" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M12 6v12m6-6H6" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                  </a>
-                  <div data-popover id="addToList" role="tooltip" class="absolute z-10 invisible inline-block w-38 text-sm text-l-soft-black transition-opacity duration-300 bg-d-soft-white border border-d-muted rounded-lg shadow-sm opacity-0 dark:text-d-soft-white dark:border-d-muted dark:bg-d-surface">
-                    <div class="px-3 py-2 text-center select-none">
-                      <p>Agregar a mi Lista</p>
-                    </div>
-                  </div>
-
-                  <!-- Mark as seen -->
-                  <a href="#" id="markAsSeenButton" data-popover-target="markAsSeen" data-popover-placement="top" class="rounded-full h-7 w-7 flex justify-center items-center dark:bg-d-background">
-                    <svg class="w-5 h-5 dark:text-d-soft-white hover:opacity-75 transition ease-in duration-150" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" stroke-linecap="round" stroke-linejoin="round"></path>
-                      <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                  </a>
-                  <div data-popover id="markAsSeen" role="tooltip" class="absolute z-10 invisible inline-block w-38 text-sm text-l-soft-black transition-opacity duration-300 bg-d-soft-white border border-d-muted rounded-lg shadow-sm opacity-0 dark:text-d-soft-white dark:border-d-muted dark:bg-d-surface">
-                    <div class="px-3 py-2 text-center select-none">
-                      <p>Marcar como vista</p>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-
-              <!-- Show hidden info on parent hover -->
-              <div class="absolute w-full flex flex-col items-center -translate-y-20 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transitioin ease-in-out duration-150">
-                <span class="py-1 px-3 my-2 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">
-                  2022
-                </span>
-
-                <div class="w-full flex flex-row justify-between items-center">
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                </div>
-              </div>
-            </div>
-            
-          </div>
-
-          <!-- Card -->
-          <div class="relative col-span-2 h-[480px] rounded-lg overflow-visible shadow-2xl shadow-d-surface bg-center bg-cover bg-no-repeat bg-[url('src/assets/Images/Posters/venom_let_be_carnage.jpg')] hover:shadow-md transition ease-in-out duration-300"> 
-
-            <!-- Score and time -->
-            <div class="h-10 w-full px-6 flex flex-row justify-between backdrop-blur-sm dark:text-d-soft-white">
-                <!-- Score -->
-                <div class="w-fit text-sm flex flex-row items-center">
-                    <img src="../assets/Icons/star-00.png" alt="star-image" class="w-8 mr-1">
-                    <p>8.8</p>
-                </div>
-                <!-- Time -->
-                <div class="w-fit text-sm flex flex-row items-center">
-                    <img src="../assets/Icons/wall-clock.png" alt="time-image" class="w-8 mr-1">
-                    <p>2h 6min</p>
-                </div>
-            </div>
-
-            <!-- Options -->
-            <div class="absolute bottom-0 h-20 w-full overflow-visible group">
-
-              <!-- Play button + title + add + seen -->
-              <div class="w-full h-20 z-10 flex flex-row justify-between items-center rounded-lg backdrop-blur-md">
-
-                <div class="flex items-center p-4">
-                <!-- Play button -->
-                <a href="#" class="w-10 h-10 rounded-full flex justify-center items-center dark:bg-gradient-to-br from-d-variant-1 to-d-primary dark:hover:opacity-75 cursor-pointer transition ease-in duration-150">
-                  <svg class="text-d-surface w-8 h-8" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" stroke-linecap="round" stroke-linejoin="round"></path>
-                  </svg>
-                </a>
-
-                <!-- Title + date -->
-                <div class="relative flex flex-col ml-4">
-                  <p class="w-28 text-sm font-bold dark:text-d-soft-white select-none">Black Phone</p>
-                </div>
-                
-                </div>
-
-                <div class="h-full w-20 pr-4 pb-4 flex justify-between items-end">
-
-                  <!-- Add to my list -->
-                  <a href="#" id="addToListButton" data-popover-target="addToList" data-popover-placement="top" class="rounded-full h-7 w-7 flex justify-center items-center dark:bg-d-background">
-                    <svg class="w-5 h-5 hover:text-d-secondary dark:text-d-soft-white transition ease-in duration-150" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M12 6v12m6-6H6" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                  </a>
-                  <div data-popover id="addToList" role="tooltip" class="absolute z-10 invisible inline-block w-38 text-sm text-l-soft-black transition-opacity duration-300 bg-d-soft-white border border-d-muted rounded-lg shadow-sm opacity-0 dark:text-d-soft-white dark:border-d-muted dark:bg-d-surface">
-                    <div class="px-3 py-2 text-center select-none">
-                      <p>Agregar a mi Lista</p>
-                    </div>
-                  </div>
-
-                  <!-- Mark as seen -->
-                  <a href="#" id="markAsSeenButton" data-popover-target="markAsSeen" data-popover-placement="top" class="rounded-full h-7 w-7 flex justify-center items-center dark:bg-d-background">
-                    <svg class="w-5 h-5 dark:text-d-soft-white hover:opacity-75 transition ease-in duration-150" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" stroke-linecap="round" stroke-linejoin="round"></path>
-                      <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                  </a>
-                  <div data-popover id="markAsSeen" role="tooltip" class="absolute z-10 invisible inline-block w-38 text-sm text-l-soft-black transition-opacity duration-300 bg-d-soft-white border border-d-muted rounded-lg shadow-sm opacity-0 dark:text-d-soft-white dark:border-d-muted dark:bg-d-surface">
-                    <div class="px-3 py-2 text-center select-none">
-                      <p>Marcar como vista</p>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-
-              <!-- Show hidden info on parent hover -->
-              <div class="absolute w-full flex flex-col items-center -translate-y-20 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transitioin ease-in-out duration-150">
-                <span class="py-1 px-3 my-2 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">
-                  2022
-                </span>
-
-                <div class="w-full flex flex-row justify-between items-center">
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
-                  <span class="py-1 px-3 text-sm rounded-2xl dark:bg-d-background dark:text-d-soft-white">Action</span>
+                <div class="w-full flex flex-row justify-center items-center">
+                  <span v-for="genere in film.generes" class="py-1 px-3 mx-1 text-sm rounded-2xl dark:bg-d-surface dark:text-d-soft-white">
+                    {{ genere }}
+                  </span>
                 </div>
               </div>
             </div>
@@ -1578,6 +503,11 @@
           </div>
 
         </div>
+
+        <!-- Pop-up Modal cards options -->
+        <span class="fixed bottom-14 right-14 px-8 py-4 rounded-lg text-l-soft-black dark:border-l-8 dark:bg-d-surface bg-d-soft-white opacity-0 transition ease-in-out duration-200" :class="this.popupModal.class">
+          <p>{{ this.popupModal.message }}</p>
+        </span>
       </section>
 
     </main>
@@ -1585,63 +515,3 @@
   <!-- Footer component -->
   <Footer />
 </template>
-
-<script>
-// @ is an alias to /src
-import AsideMenu from '../components/AsideMenu.vue';
-import Footer from '../components/Footer.vue';
-import Slider from '../components/Slider.vue';
-import HeaderComp from '../components/HeaderComp.vue';
-
-const theme = document.documentElement.classList.contains('dark')
-if(theme){
-  const themeSet = 'w-5/6 bg-gradient-to-tl from-d-surface via-d-variant-1 to-d-surface'
-}
-
-export default {
-  name: 'Home',
-  components: {
-    AsideMenu,
-    HeaderComp,
-    Slider,
-    Footer,
-  },
-  data() {
-    return {
-      // Default on false
-      showAside : true,
-      cookieExists: false,
-      user: {}
-    }
-  },
-  methods: {
-    toggleAsideMenu(){
-      this.showAside = !this.showAside
-      console.log('It works. ', this.showAside)
-    }
-  },
-  async created(){
-
-    // Check if session cookie exists
-    if(document.cookie != ""){
-      console.log("cookie exists")
-      this.cookieExists = true
-      // Get authenticated user data
-      await fetch('http://localhost:3000/users')
-            .then(response => response.json())
-            .then(userList => {
-                for(var i = 0; i < userList.length; i++){
-                    if(('authCookie=' + userList[i].cookie) == document.cookie){
-                        return this.user = userList[i];
-                    }
-                }
-            });
-    }
-
-  }
-}
-</script>
-
-<!-- CUSTOM STYLES SECTION -->
-<style lang="scss">
-</style>

@@ -55,8 +55,7 @@ export default {
             });
         }
 
-        console.log('Slider top 6 movies: ',this.topMovies)
-        console.log('Athenticated user friends watched top 6: ',this.friendsMovies)
+        // console.log('Slider top 6 movies: ',this.topMovies)
 
         // SLIDER CONFIG
         // Access items by id's
@@ -86,8 +85,6 @@ export default {
                 el: document.getElementById("carousel-item-6")
             },
         ];
-
-        console.log('ITEMS: ',items)
 
         // Access indicator by id and set position to slide
         const options = {
