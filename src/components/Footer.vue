@@ -28,7 +28,7 @@
         </svg>
 
         <!-- Content -->
-        <div class="relative 2xl:h-64 2xl:w-1/2 xl:h-fit xl:w-full xl:px-32 lg:w-full lg:px-24 mb-2 flex justify-between">
+        <div class="relative 2xl:h-64 2xl:w-3/4 xl:h-fit xl:w-full xl:px-32 lg:w-full lg:px-24 mb-2 flex justify-between">
             <!-- Social media -->
             <div>
                 <!-- Logotype -->
