@@ -242,7 +242,8 @@ export default {
                         groups: [],
                         movies_seen: [],
                         movies_pendent: [],
-                        movies_favourite: []
+                        movies_favourite: [],
+                        movies_voted: []
                     },
                     cookie: cookie
                 }

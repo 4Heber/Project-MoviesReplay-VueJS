@@ -205,11 +205,11 @@ export default {
 
                     <div class="2xl:w-[40%] xl:w-[60%] flex flex-row items-center">
                         <!-- +Info bttn -->
-                        <router-link :to="{name: 'login'}" class="2xl:px-5 2xl:py-2.5 xl:w-24 xl:py-2 lg:py-1 lg:px-2 text-l-surface-color bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-bold tracking-wider rounded-lg text-sm dark:text-d-soft-white dark:bg-d-background dark:hover:bg-d-secondary dark:hover:text-d-surface transition ease-in duration-150">
+                        <router-link :to="{name: 'review', params: {movie_id: movie.id}}" class="2xl:px-5 2xl:py-2.5 xl:w-24 xl:py-2 lg:py-1 lg:px-2 text-l-surface-color bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-bold tracking-wider rounded-lg text-sm dark:text-d-soft-white dark:bg-d-background dark:hover:bg-d-secondary dark:hover:text-d-surface transition ease-in duration-150">
                             + INFO
                         </router-link>
 
-                        <!-- Friends who watch the movie -->
+                        <!-- Friends who watched the movie -->
                         <!-- <div class="relative w-96 h-10 flex flex-row justify-between items-center">
                             <div class="absolute top-0 left-8 w-10 h-10 flex flex-row justify-center items-center text-d-soft-white rounded-full bg-d-variant-1 border-2 border-d-muted">
                             H

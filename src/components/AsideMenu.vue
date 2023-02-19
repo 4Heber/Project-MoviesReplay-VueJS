@@ -38,34 +38,37 @@
 
             <ul class="lg:flex-col 2xl:text-lg mb-8 dark:text-d-soft-white">
                 <!-- Home link -->
-                <a href="#" class="flex 2xl:justify-start items-center 2xl:pl-8 mb-4 border-l-4 border-d-surface group/link hover:border-l-4 active:border-l-8 hover:border-d-secondary transition ease-in duration-150 lg:justify-center lg:pl-0 xl:text-lg lg:text-base md:pl-8">
+                <router-link :to="{name: 'home'}" class="flex 2xl:justify-start items-center 2xl:pl-8 mb-4 border-l-4 border-d-surface group/link hover:border-l-4 active:border-l-8 hover:border-d-secondary transition ease-in duration-150 lg:justify-center lg:pl-0 xl:text-lg lg:text-base md:pl-8">
                     <svg class="lg:w-8 md:w-8" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" stroke-linecap="round" stroke-linejoin="round"></path>
                     </svg>
                     <li class="2xl:block lg:hidden pl-4 tracking-widertransition group-hover/link:opacity-75 ease-in duration-150">
                         Inicio
                     </li>
-                </a>
+                </router-link>
+
                 <!-- Explorar link -->
-                <a href="#" class="flex 2xl:justify-start items-center 2xl:pl-8 mb-4 border-l-4 border-d-surface group/link hover:border-l-4 active:border-l-8 hover:border-d-secondary transition ease-in duration-150 lg:justify-center lg:pl-0 xl:text-lg lg:text-base md:pl-8">
+                <router-link :to="{name: 'home'}" class="flex 2xl:justify-start items-center 2xl:pl-8 mb-4 border-l-4 border-d-surface group/link hover:border-l-4 active:border-l-8 hover:border-d-secondary transition ease-in duration-150 lg:justify-center lg:pl-0 xl:text-lg lg:text-base md:pl-8">
                     <svg class="lg:w-8 md:w-8" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M15.75 15.75l-2.489-2.489m0 0a3.375 3.375 0 10-4.773-4.773 3.375 3.375 0 004.774 4.774zM21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"></path>
                     </svg>
                     <li class="2xl:block lg:hidden pl-4 tracking-widertransition group-hover/link:opacity-75 ease-in duration-150">
                         Explorar
                     </li>
-                </a>
+                </router-link>
+
                 <!-- Mi lista link -->
-                <a href="#" class="flex 2xl:justify-start items-center 2xl:pl-8 mb-4 border-l-4 border-d-surface group/link hover:border-l-4 active:border-l-8 hover:border-d-secondary transition ease-in duration-150 lg:justify-center lg:pl-0 xl:text-lg lg:text-base md:pl-8">
+                <router-link :to="{name: 'home'}" class="flex 2xl:justify-start items-center 2xl:pl-8 mb-4 border-l-4 border-d-surface group/link hover:border-l-4 active:border-l-8 hover:border-d-secondary transition ease-in duration-150 lg:justify-center lg:pl-0 xl:text-lg lg:text-base md:pl-8">
                     <svg class="lg:w-8 md:w-8" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM3.75 12h.007v.008H3.75V12zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm-.375 5.25h.007v.008H3.75v-.008zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" stroke-linecap="round" stroke-linejoin="round"></path>
                     </svg>
                     <li class="2xl:block lg:hidden pl-4 tracking-widertransition group-hover/link:opacity-75 ease-in duration-150">
                         Mi lista
                     </li>
-                </a>
+                </router-link>
+
                 <!-- Tendencias -->
-                <a href="#" class="flex 2xl:justify-start items-center 2xl:pl-8 mb-4 border-l-4 border-d-surface group/link hover:border-l-4 active:border-l-8 hover:border-d-secondary transition ease-in duration-150 lg:justify-center lg:pl-0 xl:text-lg lg:text-base md:pl-8">
+                <router-link :to="{name: 'home'}" class="flex 2xl:justify-start items-center 2xl:pl-8 mb-4 border-l-4 border-d-surface group/link hover:border-l-4 active:border-l-8 hover:border-d-secondary transition ease-in duration-150 lg:justify-center lg:pl-0 xl:text-lg lg:text-base md:pl-8">
                     <svg class="lg:w-8 md:w-8" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z" stroke-linecap="round" stroke-linejoin="round"></path>
                         <path d="M12 18a3.75 3.75 0 00.495-7.467 5.99 5.99 0 00-1.925 3.546 5.974 5.974 0 01-2.133-1A3.75 3.75 0 0012 18z" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -73,29 +76,33 @@
                     <li class="2xl:block lg:hidden pl-4 tracking-widertransition group-hover/link:opacity-75 ease-in duration-150">
                         Tendencias
                     </li>
-                </a>
+                </router-link>
+
                 <!-- Estrenos -->
-                <a href="#" class="flex 2xl:justify-start items-center 2xl:pl-8 mb-4 border-l-4 border-d-surface group/link hover:border-l-4 active:border-l-8 hover:border-d-secondary transition ease-in duration-150 lg:justify-center lg:pl-0 xl:text-lg lg:text-base md:pl-8">
+                <router-link :to="{name: 'home'}" class="flex 2xl:justify-start items-center 2xl:pl-8 mb-4 border-l-4 border-d-surface group/link hover:border-l-4 active:border-l-8 hover:border-d-secondary transition ease-in duration-150 lg:justify-center lg:pl-0 xl:text-lg lg:text-base md:pl-8">
                     <svg class="lg:w-8 md:w-8" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z" stroke-linecap="round" stroke-linejoin="round"></path>
                     </svg>
                     <li class="2xl:block lg:hidden pl-4 tracking-widertransition group-hover/link:opacity-75 ease-in duration-150">
                         Estrenos
                     </li>
-                </a>
+                </router-link>
+
                 <!-- Mejor puntuadas -->
-                <a href="#" class="flex 2xl:justify-start items-center 2xl:pl-8 mb-4 border-l-4 border-d-surface group/link hover:border-l-4 active:border-l-8 hover:border-d-secondary transition ease-in duration-150 lg:justify-center lg:pl-0 xl:text-lg lg:text-base md:pl-8">
+                <router-link :to="{name: 'home'}" class="flex 2xl:justify-start items-center 2xl:pl-8 mb-4 border-l-4 border-d-surface group/link hover:border-l-4 active:border-l-8 hover:border-d-secondary transition ease-in duration-150 lg:justify-center lg:pl-0 xl:text-lg lg:text-base md:pl-8">
                     <svg class="lg:w-8 md:w-8" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" stroke-linecap="round" stroke-linejoin="round"></path>
                     </svg>
                     <li class="2xl:block lg:hidden pl-4 tracking-widertransition group-hover/link:opacity-75 ease-in duration-150">
                         Mejor puntuadas
                     </li>
-                </a>
+                </router-link>
             </ul>
 
             <!-- Following users -->
-            <h2 v-if="cookie" @click="goTop" class="pb-8 pl-8 sticky top-16 md:text-xl dark:text-d-primary dark:bg-d-surface dark:hover:text-d-variant-0 text-2xl italic tracking-wider font-bold cursor-pointer 2xl:block lg:hidden">SIGUIENDO</h2>
+            <h2 v-if="cookie" @click="goTop" class="pb-8 pl-8 sticky top-16 md:text-xl dark:text-d-primary dark:bg-d-surface dark:hover:text-d-variant-0 text-2xl italic tracking-wider font-bold cursor-pointer 2xl:block lg:hidden">
+                SIGUIENDO
+            </h2>
 
             <div class="lg:block 2xl:hidden md:hidden w-full mb-8 border-b-2 border-d-background"></div>
 
@@ -107,7 +114,7 @@
 
                         <!-- Load friend profile image if isn't set to "none" -->
                         <div v-if="friend.profile_img != 'none'" class="w-10 h-10 rounded-full border-2 border-custom-white-text overflow-hidden flex justify-center items-center">
-                            <img :src=friend.profile_img alt="userImage">
+                            <img :src="'../'+friend.profile_img" alt="userImage">
                         </div>
 
                         <!-- Default Profile Image -->
@@ -124,12 +131,6 @@
                     </li>
                 </router-link>
 
-                <!-- <a href="#" class="flex items-center 2xl:justify-start 2xl:pl-8 mb-4 border-l-4 border-d-surface group/link hover:border-l-4 hover:border-d-secondary active:border-l-8 transition ease-in duration-150 lg:justify-center lg:pl-0 md:pl-8">
-                    <li class="flex items-center group-hover/link:opacity-75 transition ease-in duration-150">
-                        <div class="w-10 h-10 rounded-full border-2 border-custom-white-text overflow-hidden flex justify-center items-center"><img src="../assets/Images/Profiles/01.jpg" alt="userImage"></div>
-                        <p class="pl-4 lg:hidden 2xl:block">Sara</p>
-                    </li>
-                </a> -->
             </ul>
 
             <div class="lg:block 2xl:hidden md:hidden w-full mb-8 border-b-2 border-d-background"></div>

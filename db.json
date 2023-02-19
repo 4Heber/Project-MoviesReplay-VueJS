@@ -15,7 +15,8 @@
         "DC"
       ],
       "vote_average": 8.2,
-      "vote_count": 63,
+      "vote_count": 10,
+      "vote_values": [],
       "total_views": 82,
       "views_24h": 0,
       "views_7d": 64,
@@ -39,6 +40,7 @@
       ],
       "vote_average": 7.8,
       "vote_count": 32,
+      "vote_values": [],
       "total_views": 90,
       "views_24h": 0,
       "views_7d": 23,
@@ -62,6 +64,7 @@
       ],
       "vote_average": 7.4,
       "vote_count": 22,
+      "vote_values": [],
       "total_views": 73,
       "views_24h": 0,
       "views_7d": 16,
@@ -85,6 +88,7 @@
       ],
       "vote_average": 8.6,
       "vote_count": 74,
+      "vote_values": [],
       "total_views": 232,
       "views_24h": 0,
       "views_7d": 90,
@@ -108,6 +112,7 @@
       ],
       "vote_average": 7.9,
       "vote_count": 74,
+      "vote_values": [],
       "total_views": 95,
       "views_24h": 0,
       "views_7d": 10,
@@ -128,8 +133,14 @@
         "Acción",
         "Suspense"
       ],
-      "vote_average": 8,
-      "vote_count": 55,
+      "vote_average": "8.8",
+      "vote_count": 5,
+      "vote_values": [
+        8,
+        8,
+        10,
+        9
+      ],
       "total_views": 132,
       "views_24h": 0,
       "views_7d": 42,
@@ -241,9 +252,13 @@
         "movies_favourite": [
           2,
           6
+        ],
+        "movies_voted": [
+          1,
+          2
         ]
       },
-      "cookie": "ñNdGaMqBgpQ_",
+      "cookie": "hCsmHvlW50ñY",
       "id": 4
     }
   ],

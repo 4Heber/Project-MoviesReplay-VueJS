@@ -265,14 +265,14 @@
 
                 <div class="flex items-center p-4">
                   <!-- Play button -->
-                  <router-link :to="{name: 'login'}" class="w-10 h-10 rounded-full flex justify-center items-center dark:bg-gradient-to-br from-d-variant-1 to-d-primary cursor-pointer transition ease-in duration-150 group/play">
+                  <router-link :to="{name: 'review', params: {movie_id: movie.id}}" class="w-10 h-10 rounded-full flex justify-center items-center dark:bg-gradient-to-br from-d-variant-1 to-d-primary cursor-pointer transition ease-in duration-150 group/play">
                     <svg class="text-d-surface w-8 h-8" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" stroke-linecap="round" stroke-linejoin="round"></path>
                     </svg>
 
                     <!-- Pop-over info -->
                     <div class="absolute opacity-0 group-hover/play:opacity-100 -top-9 left-[2px] w-26 px-4 py-2 flex justify-center items-center rounded-lg dark:bg-d-surface border border-d-muted transition ease-in duration-100">
-                        <p class="text-sm dark:text-d-soft-white">Ver tráiler</p>
+                        <p class="text-sm dark:text-d-soft-white">re<strong>play tráiler</strong></p>
                     </div>
                   </router-link>
 
@@ -334,7 +334,7 @@
         </div>
 
         <!-- Pop-up Modal cards options -->
-        <span class="fixed bottom-14 right-14 px-8 py-4 rounded-lg text-l-soft-black dark:border-l-8 dark:bg-d-surface bg-d-soft-white opacity-0 transition ease-in-out duration-200" :class="this.popupModal.class">
+        <span class="opacity-0 fixed bottom-14 right-14 px-8 py-4 rounded-lg text-l-soft-black dark:border-l-8 dark:bg-d-surface bg-d-soft-white transition ease-in-out duration-200" :class="this.popupModal.class">
           <p>{{ this.popupModal.message }}</p>
         </span>
       </section>
