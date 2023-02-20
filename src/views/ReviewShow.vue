@@ -7,7 +7,7 @@
 
             <!-- Movie banner-background container -->
             <div class="absolute top-0 w-full">
-                <img :src="'../'+movie.banner" :alt="movie.title" class="w-full h-screen brightness-50">
+                <img :src="movie.banner_size_xl" :alt="movie.title" class="w-full h-screen brightness-50">
             </div>
 
             <section class="col-span-full relative">
@@ -19,13 +19,16 @@
                 <article class="relative flex flex-row backdrop-blur-md mb-32 rounded-lg">
 
                     <div class="relative h-[480px] w-[30%] rounded-lg overflow-hidden">
-                        <img :src="'../'+movie.poster" :alt="movie.title" class="absolute top-0 h-full"/>
+                        <img :src="movie.poster" :alt="movie.title" class="absolute top-0 h-full"/>
                     </div>
 
                     <!-- Movie info -->
                     <div class="flex-col pt-4 w-[70%]">
                         <!-- Title -->
-                        <h1 class="mb-6 2xl:text-5xl font-bold tracking-wider dark:text-d-soft-white select-none">{{ movie.title }}</h1>
+                        <h1 class="mb-2 2xl:text-5xl font-bold tracking-wider dark:text-d-soft-white select-none">{{ movie.title }}</h1>
+                        
+                        <!-- Subtitle -->
+                        <h2 class="mb-6 2xl:text-xl tracking-wider dark:text-d-soft-white select-none">{{ movie.subtitle }}</h2>
 
                         <!-- Date, generes, duration -->
                         <div class="flex flex-row justify-between w-fit mb-6">
@@ -52,6 +55,14 @@
 
                                 <p class="select-none">{{ movie.duration }}</p>
                             </div>
+
+                            <div class="flex flex-row items-center mr-6 dark:text-d-soft-white">
+                                <svg class="lg:w-6 md:w-6 mr-2" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" stroke-linecap="round" stroke-linejoin="round"></path>
+                                </svg>
+
+                                <p class="select-none">Colaborador: <span class="font-bold tracking-wide">{{ movie.published_by }}</span></p>
+                            </div>
                         </div>
 
                         <!-- User actions -->
@@ -71,8 +82,8 @@
                             </div>
 
                             <!-- Vote -->
-                            <div class="relative flex flex-row justify-center items-center mr-4 w-12 h-12 dark:bg-d-surface rounded-full border-2 dark:border-d-muted dark:hover:border-d-primary transition ease-in-out duration-150 cursor-pointer group">
-                                <svg class="w-6 h-6 dark:text-d-soft-white transition ease-in-out duration-150" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <div class="relative flex flex-row justify-center items-center mr-4 w-12 h-12 dark:bg-d-surface rounded-full border-2 dark:border-d-muted dark:hover:border-d-secondary transition ease-in-out duration-150 cursor-pointer group">
+                                <svg class="w-6 h-6 dark:text-d-soft-white transition ease-in-out duration-150" :class="alreadyVoteClass" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" stroke-linecap="round" stroke-linejoin="round"></path>
                                 </svg>
 
@@ -89,13 +100,13 @@
 
                                     <img :src="'../src/assets/Icons/stars-'+ starImgNum +'.png'" alt="stars" class="absolute z-10 top-2 right-6 opacity-100">
 
-                                    <div v-for="star in 10" @mouseover="setStarImg(star)" @click="voteMovie(movie.id, star)" class="z-20 w-4 h-8"></div>
+                                    <div v-for="star in 10" @mouseover="setStarImg(star)" @click="userActions(1, movie.id, star)" class="z-20 w-4 h-8"></div>
                                 </div>
                             </div>
 
                             <!-- Add to favourite list -->
-                            <div @click="addToFav(movie.id)" class="relative flex flex-row justify-center items-center mr-4 w-12 h-12 dark:bg-d-surface rounded-full border-2 dark:border-d-muted dark:hover:border-d-primary transition ease-in-out duration-150 cursor-pointer group">
-                                <svg class="w-6 h-6 dark:text-d-soft-white transition ease-in-out duration-150" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <div @click="userActions(2, movie.id)" class="relative flex flex-row justify-center items-center mr-4 w-12 h-12 dark:bg-d-surface rounded-full border-2 dark:border-d-muted dark:hover:border-d-secondary transition ease-in-out duration-150 cursor-pointer group">
+                                <svg class="w-6 h-6 dark:text-d-soft-white transition ease-in-out duration-150" :class="alreadyFavClass" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" stroke-linecap="round" stroke-linejoin="round"></path>
                                 </svg>
 
@@ -105,20 +116,20 @@
                             </div>
 
                             <!-- Add to pendent list -->
-                            <div class="relative flex flex-row justify-center items-center mr-4 w-12 h-12 dark:bg-d-surface rounded-full border-2 dark:border-d-muted dark:hover:border-d-primary transition ease-in-out duration-150 cursor-pointer group">
-                                <svg class="w-6 h-6 dark:text-d-soft-white transition ease-in-out duration-150" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <div @click="userActions(3, movie.id)" class="relative flex flex-row justify-center items-center mr-4 w-12 h-12 dark:bg-d-surface rounded-full border-2 dark:border-d-muted dark:hover:border-d-secondary transition ease-in-out duration-150 cursor-pointer group">
+                                <svg class="w-6 h-6 dark:text-d-soft-white transition ease-in-out duration-150" :class="alreadyPendentClass" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M3 4.5h14.25M3 9h9.75M3 13.5h5.25m5.25-.75L17.25 9m0 0L21 12.75M17.25 9v12" stroke-linecap="round" stroke-linejoin="round"></path>
                                 </svg>
 
                                 <span class="absolute opacity-0 group-hover:opacity-100 -bottom-14 flex justify-center items-center w-44 px-4 py-2 rounded-lg border-2 border-d-muted dark:text-d-soft-white text-sm dark:bg-d-surface">
-                                    Añadir a Pendiente
+                                    Añadir a Pendientes
                                 </span>
                             </div>
 
                             <!-- Mark as seen -->
-                            <div class="relative flex flex-row justify-center items-center mr-4 w-12 h-12 dark:bg-d-surface rounded-full border-2 dark:border-d-muted dark:hover:border-d-primary transition ease-in-out duration-150 cursor-pointer group">
+                            <div @click="userActions(4, movie.id)" class="relative flex flex-row justify-center items-center mr-4 w-12 h-12 dark:bg-d-surface rounded-full border-2 dark:border-d-muted dark:hover:border-d-secondary transition ease-in-out duration-150 cursor-pointer group">
                                 
-                                <svg class="w-6 h-6 dark:text-d-soft-white transition ease-in-out duration-150" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <svg class="w-6 h-6 dark:text-d-soft-white transition ease-in-out duration-150" :class="alreadySeenClass" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M4.5 12.75l6 6 9-13.5" stroke-linecap="round" stroke-linejoin="round"></path>
                                 </svg>
 
@@ -148,6 +159,11 @@
                                 {{ movie.overview }}
                             </p>
                         </div>
+                    </div>
+
+                    <!-- Delete review (only admin role) -->
+                    <div v-show="this.userAdmin" @click="deleteReview(movie.id)" class="absolute top-6 right-6 dark:bg-d-surface px-4 py-2 rounded-xl dark:text-d-primary cursor-pointer">
+                        Eliminar review
                     </div>
                 </article>
 
@@ -208,7 +224,6 @@
         </span>
     </section>
 
-
     <!-- Footer component -->
     <Footer />
 </template>
@@ -229,6 +244,7 @@ export default {
         return{
             cookieStatus: false, // Default (no session active)
             user: Object,
+            userAdmin: false,
             movie: Object,
             showAside : true,
             showTrailer: false,
@@ -243,6 +259,10 @@ export default {
                 info_icon: false,
                 check_icon: false
             },
+            alreadyVoteClass: String,
+            alreadyFavClass: String,
+            alreadyPendentClass: String,
+            alreadySeenClass: String,
             baseURL: "http://localhost:3000/"
         }
     },
@@ -258,53 +278,12 @@ export default {
             this.focus_modal_active = "brightness-50"
             this.showTrailer = !this.showTrailer
         },
+
         modalTrailerOff(){
             this.showTrailer = !this.showTrailer
             this.focus_modal_active = ""
         },
-        userActions(action_type, movie_id, vote_value){
 
-            if(this.cookieStatus){
-
-                switch(action_type){
-
-                    // User vote on movie / PATCH movie.vote_count/.vote_average/.vote_values
-                    case 1:
-
-                        break;
-                    case 2:
-                        this.modal_401_msg = "añadir a favoritos";
-                        break;
-                    case 3:
-                        this.modal_401_msg = "añadir a pendientes";
-                        break;
-                    case 4:
-                        this.modal_401_msg = "marcar como vista";
-                        break;
-                }
-            }
-            else{
-                // User unauthenticated modal warning / register call to action
-                this.focus_modal_active = "brightness-50";
-
-                switch(action_type){
-                    case 1:
-                        this.modal_401_msg = "puntuar";
-                        break;
-                    case 2:
-                        this.modal_401_msg = "añadir a favoritos";
-                        break;
-                    case 3:
-                        this.modal_401_msg = "añadir a pendientes";
-                        break;
-                    case 4:
-                        this.modal_401_msg = "marcar como vista";
-                        break;
-
-                }
-                this.modal_401 = true;
-            }
-        },
         modal_401_off(){
             this.focus_modal_active = "";
             this.modal_401 = !this.modal_401;
@@ -313,132 +292,273 @@ export default {
             this.starImgNum = imgNum;
         },
 
-        async voteMovie(movie_id, vote_value){
+        userActions(actionType, movieId, voteValue){
 
             if(this.cookieStatus){
-                // Check if user already voted the movie
-                if(this.user.profile.movies_voted.includes(movie_id)){
-                    
-                    this.popupModal.message = "Ya has votado esta película, consulta la lista de tu perfil."
-                    this.popupModal.class = "opacity-100 dark:text-d-warning border-d-warning"
-                    this.popupModal.info_icon = true;
-                    this.popupModal.check_icon = false;
-                    this.popupModal.status = true;
 
-                    setTimeout(() => {
-                        this.popupModal.class = "opacity-0"
-                    },6000)
+                switch(actionType){
+                    case 1:
+                        this.voteMovie(movieId, voteValue);
+                        break;
 
-                    return
-                }
-                else{
+                    case 2:
+                        this.addToFav(movieId);
+                        break;
 
-                    this.movie.vote_count += 1;
-                    this.movie.vote_values.push(vote_value);
+                    case 3:
+                        this.addToPendent(movieId);
+                        break;
 
-                    var new_vote_average = 0;
-                    this.movie.vote_values.forEach((vote) => {
-                        new_vote_average += vote
-                    })
-
-                    new_vote_average = new_vote_average / this.movie.vote_values.length;
-
-                    this.movie.vote_average = new_vote_average.toFixed(1);
-
-                    // PATCH movie vote_count, vote_average
-                    await fetch('http://localhost:3000/movies/'+ this.movie.id, {
-                            method: 'PATCH',
-                            body: JSON.stringify(this.movie),
-                            headers: {
-                                'Content-Type': 'application/json; charset=UTF-8'
-                            }
-                        })
-                        .then(response => response.json())
-                        .then(data => console.log('MOVIE VOTE AVERAGE UPDATED'))
-
-                    // PATCH add movie-id to user's movies_voted list
-                    this.user.profile.movies_voted.push(movie_id);
-
-                    await fetch('http://localhost:3000/users/'+ this.user.id, {
-                            method: 'PATCH',
-                            body: JSON.stringify(this.user),
-                            headers: {
-                                'Content-Type': 'application/json; charset=UTF-8'
-                            }
-                        })
-                        .then(response => response.json())
-                        .then(data => console.log("user's movies_voted list updated"))
-
-                    // Succesful pop-up modal message
-                    this.popupModal.message = "Has puntuado "+ this.movie.title +"con un: "+ vote_value +" !"
-                    this.popupModal.check_icon = true;
-                    this.popupModal.info_icon = false;
-                    this.popupModal.class = "opacity-100 dark:text-d-secondary border-d-secondary"
-
-                    setTimeout(() => {
-                        this.popupModal.class = "opacity-0"
-                    },6000)
+                    case 4:
+                        this.markAsSeen(movieId);
+                        break;
                 }
             }
             else{
                 // User unauthenticated modal warning / register call to action
                 this.focus_modal_active = "brightness-50";
 
-                this.modal_401_msg = "puntuar";
+                switch(actionType){
+                    case 1:
+                        this.modal_401_msg = "puntuar";
+                        break;
+                    case 2:
+                        this.modal_401_msg = "añadir a favoritas";
+                        break;
+                    case 3:
+                        this.modal_401_msg = "añadir a pendientes";
+                        break;
+                    case 4:
+                        this.modal_401_msg = "marcar como vista";
+                        break;
+                }
+
                 this.modal_401 = true;
             }
         },
 
-        async addToFav(movie_id){
-            
-            if(this.cookieStatus){
-                //Check if user already has the movie on favourite
-                if(this.user.profile.movies_favourite.includes(movie_id)){
+        async voteMovie(movie_id, vote_value){
 
-                    this.popupModal.message = "La película '"+ this.movie.title +"' ya está en tu lista de favoritas."
-                    this.popupModal.class = "opacity-100 dark:text-d-warning border-d-warning"
-                    this.popupModal.info_icon = true;
-                    this.popupModal.check_icon = false;
-                    this.popupModal.status = true;
-
-                    setTimeout(() => {
-                        this.popupModal.class = "opacity-0"
-                    },6000)
-
-                    return
-                }
-                else{
+            // Check if user already voted the movie
+            if(this.user.profile.movies_voted.includes(movie_id)){
                     
-                    // Add movie id on user's movies_favourite list
-                    this.user.profile.movies_favourite.push(movie_id);
+                this.popupModal.message = "Ya has votado esta película, consulta la lista de tu perfil."
+                this.popupModal.class = "opacity-100 dark:text-d-warning border-d-warning"
+                this.popupModal.info_icon = true;
+                this.popupModal.check_icon = false;
+                this.popupModal.status = true;
 
-                    await fetch(this.baseURL + 'users/' + this.user.id,{
+                setTimeout(() => {
+                    this.popupModal.class = "opacity-0"
+                },6000)
+
+                return
+            }
+            else{
+
+                this.movie.vote_count += 1;
+                this.movie.vote_values.push(vote_value);
+
+                var new_vote_average = 0;
+                this.movie.vote_values.forEach((vote) => {
+                    new_vote_average += vote
+                })
+
+                new_vote_average = new_vote_average / this.movie.vote_values.length;
+
+                this.movie.vote_average = new_vote_average.toFixed(1);
+
+                // PATCH movie vote_count, vote_average
+                await fetch('http://localhost:3000/movies/'+ this.movie.id, {
+                        method: 'PATCH',
+                        body: JSON.stringify(this.movie),
+                        headers: {
+                            'Content-Type': 'application/json; charset=UTF-8'
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => console.log('MOVIE VOTE AVERAGE UPDATED'))
+
+                // PATCH add movie-id to user's movies_voted list
+                this.user.profile.movies_voted.push(movie_id);
+
+                await fetch('http://localhost:3000/users/'+ this.user.id, {
                         method: 'PATCH',
                         body: JSON.stringify(this.user),
                         headers: {
                             'Content-Type': 'application/json; charset=UTF-8'
                         }
                     })
-                        .then(response => response.json())
-                        .then(data => console.log("User's movies favourites updated"))
+                    .then(response => response.json())
+                    .then(data => console.log("user's movies_voted list updated"))
 
-                    // Succesful pop-up modal message
-                    this.popupModal.message = "Película '"+ this.movie.title +"' añadida a favoritas."
-                    this.popupModal.class = "opacity-100 dark:text-d-secondary border-d-secondary"
-                    this.popupModal.info_icon = false;
-                    this.popupModal.check_icon = true;
+                // Change svg class to secondary color
+                this.alreadyVoteClass = "dark:text-d-secondary";
 
-                    setTimeout(() => {
-                        this.popupModal.class = "opacity-0"
-                    },4000)
-                }
+                // Succesful pop-up modal message
+                this.popupModal.message = "Has puntuado '"+ this.movie.title +"' con un: "+ vote_value +" !"
+                this.popupModal.check_icon = true;
+                this.popupModal.info_icon = false;
+                this.popupModal.class = "opacity-100 dark:text-d-secondary border-d-secondary"
+
+                setTimeout(() => {
+                    this.popupModal.class = "opacity-0"
+                },6000)
+            }
+        },
+
+        async addToFav(movie_id){
+            
+            //Check if user already has the movie on favourite
+            if(this.user.profile.movies_favourite.includes(movie_id)){
+
+            this.popupModal.message = "La película '"+ this.movie.title +"' ya está en tu lista de favoritas."
+            this.popupModal.class = "opacity-100 dark:text-d-warning border-d-warning"
+            this.popupModal.info_icon = true;
+            this.popupModal.check_icon = false;
+            this.popupModal.status = true;
+
+            setTimeout(() => {
+                this.popupModal.class = "opacity-0"
+            },6000)
+
+            return
             }
             else{
-                // User unauthenticated modal warning / register call to action
-                this.focus_modal_active = "brightness-50";
 
-                this.modal_401_msg = "añadir a favoritas";
-                this.modal_401 = true;
+                // Add movie id on user's movies_favourite list
+                this.user.profile.movies_favourite.push(movie_id);
+
+                await fetch(this.baseURL + 'users/' + this.user.id,{
+                    method: 'PATCH',
+                    body: JSON.stringify(this.user),
+                    headers: {
+                        'Content-Type': 'application/json; charset=UTF-8'
+                    }
+                })
+                    .then(response => response.json())
+                    .then(data => console.log("User's movies favourites updated"))
+
+                // Change svg class to secondary color
+                this.alreadyFavClass = "dark:text-d-secondary";
+
+                // Succesful pop-up modal message
+                this.popupModal.message = "Película '"+ this.movie.title +"' añadida a favoritas."
+                this.popupModal.class = "opacity-100 dark:text-d-secondary border-d-secondary"
+                this.popupModal.info_icon = false;
+                this.popupModal.check_icon = true;
+
+                setTimeout(() => {
+                    this.popupModal.class = "opacity-0"
+                },6000)
+            }
+        },
+
+        async addToPendent(movie_id){
+
+            //Check if user already has the movie on pendent
+            if(this.user.profile.movies_pendent.includes(movie_id)){
+
+                this.popupModal.message = "La película '"+ this.movie.title +"' ya está en tu lista de pendientes."
+                this.popupModal.class = "opacity-100 dark:text-d-warning border-d-warning"
+                this.popupModal.info_icon = true;
+                this.popupModal.check_icon = false;
+                this.popupModal.status = true;
+
+                setTimeout(() => {
+                    this.popupModal.class = "opacity-0"
+                },6000)
+
+                return
+            }
+            else{
+                // Add movie id on user's movies_pendent list
+                this.user.profile.movies_pendent.push(movie_id);
+
+                await fetch(this.baseURL + 'users/' + this.user.id,{
+                    method: 'PATCH',
+                    body: JSON.stringify(this.user),
+                    headers: {
+                        'Content-Type': 'application/json; charset=UTF-8'
+                    }
+                })
+                    .then(response => response.json())
+                    .then(data => console.log("User's movies pendent updated"))
+
+                // Change svg class to secondary color
+                this.alreadyPendentClass = "dark:text-d-secondary";
+
+                // Succesful pop-up modal message
+                this.popupModal.message = "Película '"+ this.movie.title +"' añadida a pendientes."
+                this.popupModal.class = "opacity-100 dark:text-d-secondary border-d-secondary"
+                this.popupModal.info_icon = false;
+                this.popupModal.check_icon = true;
+
+                setTimeout(() => {
+                    this.popupModal.class = "opacity-0"
+                },6000)
+            }
+        },
+
+        async markAsSeen(movie_id){
+
+            //Check if user already has the movie as seen
+            if(this.user.profile.movies_seen.includes(movie_id)){
+
+                this.popupModal.message = "Ya has marcado la película '"+ this.movie.title +"' como vista."
+                this.popupModal.class = "opacity-100 dark:text-d-warning border-d-warning"
+                this.popupModal.info_icon = true;
+                this.popupModal.check_icon = false;
+                this.popupModal.status = true;
+
+                setTimeout(() => {
+                    this.popupModal.class = "opacity-0"
+                },6000)
+
+                return
+            }
+            else{
+                // Add movie id on user's movies_seen list
+                this.user.profile.movies_seen.push(movie_id);
+
+                await fetch(this.baseURL + 'users/' + this.user.id,{
+                    method: 'PATCH',
+                    body: JSON.stringify(this.user),
+                    headers: {
+                        'Content-Type': 'application/json; charset=UTF-8'
+                    }
+                })
+                    .then(response => response.json())
+                    .then(data => console.log("User's movies seen updated"))
+
+                // Change svg class to secondary color
+                this.alreadySeenClass = "dark:text-d-secondary";
+
+                // Succesful pop-up modal message
+                this.popupModal.message = "Has marcado la película '"+ this.movie.title +"' como vista."
+                this.popupModal.class = "opacity-100 dark:text-d-secondary border-d-secondary"
+                this.popupModal.info_icon = false;
+                this.popupModal.check_icon = true;
+
+                setTimeout(() => {
+                    this.popupModal.class = "opacity-0"
+                },6000)
+            }
+        },
+
+        async deleteReview(movie_id){
+
+            if(this.userAdmin){
+                await fetch('http://localhost:3000/movies/'+movie_id,{
+                    method: 'DELETE',
+                    mode: 'cors',
+                    credentials: 'same-origin',
+                    headers: { 'Content-Type': 'application/json' }
+                })
+                .then(response => response.json())
+                .then(data => console.log('REVIEW DELETED'))
+
+                window.location.href = 'http://localhost:5173/'
             }
         }
     },
@@ -460,6 +580,8 @@ export default {
                     data.forEach(user => {
                         if(document.cookie == ('authCookie=' + user.cookie)){
                             this.user = user
+
+                            user.role.includes('Admin') ? this.userAdmin = true : this.userAdmin = false;
                         }
                     })
                 })
@@ -478,6 +600,17 @@ export default {
 
         window.scrollTo(0,0);
         console.log('SELECTED MOVIE: ', this.movie)
+
+        // Check user's actions status (vote, add to fav, add to pendent, mark as seen)
+
+        // If already voted, svg class on primary color
+        this.user.profile.movies_voted.includes(this.movie.id) ? this.alreadyVoteClass = "dark:text-d-secondary" : this.alreadyVoteClass = "";
+        // If already on favourite list, svg class on primary color
+        this.user.profile.movies_favourite.includes(this.movie.id) ? this.alreadyFavClass = "dark:text-d-secondary" : this.alreadyVoteClass = "";
+        // If already on pendent list, svg class on primary color
+        this.user.profile.movies_pendent.includes(this.movie.id) ? this.alreadyPendentClass = "dark:text-d-secondary" : this.alreadyVoteClass = "";
+        // If already on seen list, svg class on primary color
+        this.user.profile.movies_seen.includes(this.movie.id) ? this.alreadySeenClass = "dark:text-d-secondary" : this.alreadyVoteClass = "";
     }
 }
 </script>

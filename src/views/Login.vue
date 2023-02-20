@@ -34,8 +34,9 @@
         </form>
 
         <!-- Banner -->
-        <div class="col-start-3 row-start-2 col-span-4 row-span-4 relative rounded-tl-xl rounded-bl-xl overflow-hidden bg-cover bg-center bg-[url('src/assets/Images/Login-register-banner/Section_4.png')]">
-            <!-- <img class="" src="../assets/Images/Login-register-banner/Section 2.png" alt="background-image"> -->
+        <div class="col-start-3 row-start-2 col-span-4 row-span-4 relative rounded-tl-xl rounded-bl-xl overflow-hidden bg-cover bg-center">
+            
+            <img src="src/assets/Images/Login-register-banner/Section_4.png" alt="background-image" >
 
             <div class="absolute inset-y-0 p-16 bg-gradient-to-bl from-d-background via-transparent dark:to-d-surface backdrop-brightness-50">
                 <p class="text-2xl font-sans dark:text-d-soft-white select-none">

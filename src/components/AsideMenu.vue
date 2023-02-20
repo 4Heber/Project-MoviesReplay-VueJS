@@ -145,141 +145,35 @@
             
             <div class="lg:block 2xl:hidden md:hidden w-full mb-8 border-b-2 border-d-background"></div>
 
-            <!-- Top comments -->
-            <h2 class="pb-8 pl-8 md:text-xl dark:text-d-primary dark:bg-d-surface text-2xl italic tracking-wider font-bold lg:hidden 2xl:block">COMENTARIOS TOP</h2>
-            
-            <!-- Comment -->
-            <article class="group 2xl:h-56 m-8 2xl:p-4 lg:p-2 md:p-4 lg:w-fit rounded-lg shadow-lg dark:bg-gradient-to-br from-d-surface via-d-background to-d-background dark:text-d-soft-white hover:h-fit cursor-pointer transition ease-in duration-200 overflow-hidden">
-                <div class="flex justify-between mb-2 lg:hidden lg:h-fit 2xl:flex">
-                    <svg class="w-8 dark:text-d-soft-white" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M3.375 19.5h17.25m-17.25 0a1.125 1.125 0 01-1.125-1.125M3.375 19.5h1.5C5.496 19.5 6 18.996 6 18.375m-3.75 0V5.625m0 12.75v-1.5c0-.621.504-1.125 1.125-1.125m18.375 2.625V5.625m0 12.75c0 .621-.504 1.125-1.125 1.125m1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125m0 3.75h-1.5A1.125 1.125 0 0118 18.375M20.625 4.5H3.375m17.25 0c.621 0 1.125.504 1.125 1.125M20.625 4.5h-1.5C18.504 4.5 18 5.004 18 5.625m3.75 0v1.5c0 .621-.504 1.125-1.125 1.125M3.375 4.5c-.621 0-1.125.504-1.125 1.125M3.375 4.5h1.5C5.496 4.5 6 5.004 6 5.625m-3.75 0v1.5c0 .621.504 1.125 1.125 1.125m0 0h1.5m-1.5 0c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125m1.5-3.75C5.496 8.25 6 7.746 6 7.125v-1.5M4.875 8.25C5.496 8.25 6 8.754 6 9.375v1.5m0-5.25v5.25m0-5.25C6 5.004 6.504 4.5 7.125 4.5h9.75c.621 0 1.125.504 1.125 1.125m1.125 2.625h1.5m-1.5 0A1.125 1.125 0 0118 7.125v-1.5m1.125 2.625c-.621 0-1.125.504-1.125 1.125v1.5m2.625-2.625c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125M18 5.625v5.25M7.125 12h9.75m-9.75 0A1.125 1.125 0 016 10.875M7.125 12C6.504 12 6 12.504 6 13.125m0-2.25C6 11.496 5.496 12 4.875 12M18 10.875c0 .621-.504 1.125-1.125 1.125M18 10.875c0 .621.504 1.125 1.125 1.125m-2.25 0c.621 0 1.125.504 1.125 1.125m-12 5.25v-5.25m0 5.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125m-12 0v-1.5c0-.621-.504-1.125-1.125-1.125M18 18.375v-5.25m0 5.25v-1.5c0-.621.504-1.125 1.125-1.125M18 13.125v1.5c0 .621.504 1.125 1.125 1.125M18 13.125c0-.621.504-1.125 1.125-1.125M6 13.125v1.5c0 .621-.504 1.125-1.125 1.125M6 13.125C6 12.504 5.496 12 4.875 12m-1.5 0h1.5m-1.5 0c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125M19.125 12h1.5m0 0c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125m-17.25 0h1.5m14.25 0h1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                    <div class="flex items-center">
+            <!-- Top colaboradores -->
+            <h2 class="pb-8 pl-8 md:text-xl dark:text-d-primary dark:bg-d-surface text-2xl italic tracking-wider font-bold lg:hidden 2xl:block">COLABORADORES TOP</h2>
 
-                        <img src="../assets/Icons/star-00.png" alt="star-icon" class="w-6 mr-1">
-                        <p>8.4</p>
+            <router-link v-for="contributor in contributors" :to="{name: 'perfil'}" class="flex items-center 2xl:justify-start 2xl:pl-8 mb-4 border-l-4 border-d-surface group/link transition ease-in duration-150 lg:justify-center lg:pl-0 md:pl-8">
+
+                <li class="relative w-full flex items-center transition ease-in duration-150">
+
+                    <!-- Load friend profile image if isn't set to "none" -->
+                    <div v-if="contributor.profile_img != 'none'" class="w-10 h-10 rounded-full border-2 border-custom-white-text overflow-hidden flex justify-center items-center">
+                        <img :src="'../'+friend.profile_img" alt="userImage">
                     </div>
-                </div>
-                <h3 class="mb-4 text-lg md:text-base font-bold tracking-wider dark:text-d-soft-white lg:hidden 2xl:block">Spider Man</h3>
-                <div class="lg:hidden 2xl:block">
-                    <a href="#" class="flex items-center mb-4 group transition ease-in duration-150">
-                        <li class="flex items-center group-hover:text-d-secondary transition ease-in duration-150">
-                            <div class="w-10 h-10 rounded-full border-2 border-custom-white-text overflow-hidden flex justify-center items-center">
-                            <img src="../assets/Images/Profiles/01.jpg" alt="userImage"></div>
-                            <p class="pl-4">Sara</p>
-                        </li>
-                    </a>
-                </div>
-                <div class="transition-all ease-in duration-200 lg:hidden 2xl:block">
-                    <p class="text-ellipsis overflow-hidden dark:text-d-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci porro doloremque similique repellendus ipsam debitis officiis temporibus odio nemo quam laborum deserunt recusandae voluptas natus, nostrum voluptate animi? Quidem, modi?</p>
-                </div>
 
-                <!-- lg:TABLE breakpoint show icon -->
-                <svg class="lg:block lg:w-6 xl:w-8 2xl:hidden md:hidden" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M8.625 9.75a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 01.778-.332 48.294 48.294 0 005.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" stroke-linecap="round" stroke-linejoin="round"></path>
-                </svg>
-            </article>
-
-            <!-- ITEMS NO ACTUALIZADOS **** -->
-            
-            <!-- Comment -->
-            <article class="group 2xl:h-56 m-8 p-4 rounded-lg shadow-lg dark:bg-gradient-to-br from-d-surface via-d-background to-d-background dark:text-d-soft-white hover:h-fit cursor-pointer transition ease-in duration-200 overflow-hidden">
-                <div class="flex justify-between mb-2 xl:hidden xl:h-fit 2xl:flex">
-                    <svg class="w-8 dark:text-d-muted" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M3.375 19.5h17.25m-17.25 0a1.125 1.125 0 01-1.125-1.125M3.375 19.5h1.5C5.496 19.5 6 18.996 6 18.375m-3.75 0V5.625m0 12.75v-1.5c0-.621.504-1.125 1.125-1.125m18.375 2.625V5.625m0 12.75c0 .621-.504 1.125-1.125 1.125m1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125m0 3.75h-1.5A1.125 1.125 0 0118 18.375M20.625 4.5H3.375m17.25 0c.621 0 1.125.504 1.125 1.125M20.625 4.5h-1.5C18.504 4.5 18 5.004 18 5.625m3.75 0v1.5c0 .621-.504 1.125-1.125 1.125M3.375 4.5c-.621 0-1.125.504-1.125 1.125M3.375 4.5h1.5C5.496 4.5 6 5.004 6 5.625m-3.75 0v1.5c0 .621.504 1.125 1.125 1.125m0 0h1.5m-1.5 0c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125m1.5-3.75C5.496 8.25 6 7.746 6 7.125v-1.5M4.875 8.25C5.496 8.25 6 8.754 6 9.375v1.5m0-5.25v5.25m0-5.25C6 5.004 6.504 4.5 7.125 4.5h9.75c.621 0 1.125.504 1.125 1.125m1.125 2.625h1.5m-1.5 0A1.125 1.125 0 0118 7.125v-1.5m1.125 2.625c-.621 0-1.125.504-1.125 1.125v1.5m2.625-2.625c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125M18 5.625v5.25M7.125 12h9.75m-9.75 0A1.125 1.125 0 016 10.875M7.125 12C6.504 12 6 12.504 6 13.125m0-2.25C6 11.496 5.496 12 4.875 12M18 10.875c0 .621-.504 1.125-1.125 1.125M18 10.875c0 .621.504 1.125 1.125 1.125m-2.25 0c.621 0 1.125.504 1.125 1.125m-12 5.25v-5.25m0 5.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125m-12 0v-1.5c0-.621-.504-1.125-1.125-1.125M18 18.375v-5.25m0 5.25v-1.5c0-.621.504-1.125 1.125-1.125M18 13.125v1.5c0 .621.504 1.125 1.125 1.125M18 13.125c0-.621.504-1.125 1.125-1.125M6 13.125v1.5c0 .621-.504 1.125-1.125 1.125M6 13.125C6 12.504 5.496 12 4.875 12m-1.5 0h1.5m-1.5 0c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125M19.125 12h1.5m0 0c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125m-17.25 0h1.5m14.25 0h1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                    <div class="flex items-center">
-
-                        <svg class="w-6 mr-1" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" stroke-linecap="round" stroke-linejoin="round"></path>
-                        </svg>
-                        <p>8.4</p>
+                    <!-- Default Profile Image -->
+                    <div v-else class="w-11 h-10 dark:text-d-secondary bg-d-soft-white dark:bg-gradient-to-br dark:from-d-surface dark:to-d-background text-4xl flex justify-center items-center rounded-full border-2 border-d-soft-white overflow-hidden cursor-pointer">
+                        <p class="text-2xl">{{ contributor.name.charAt(0).toUpperCase() }}</p>
                     </div>
-                </div>
-                <h3 class="mb-4 text-lg font-bold tracking-wider dark:text-d-soft-white xl:hidden 2xl:block">Spider Man</h3>
-                <div class="xl:hidden 2xl:block">
-                    <a href="#" class="flex items-center mb-4 group transition ease-in duration-150">
-                        <li class="flex items-center group-hover:text-d-secondary transition ease-in duration-150">
-                            <div class="w-10 h-10 rounded-full border-2 border-custom-white-text overflow-hidden flex justify-center items-center"><img src="../assets/Images/Profiles/01.jpg" alt="userImage"></div>
-                            <p class="pl-4">Sara</p>
-                        </li>
-                    </a>
-                </div>
-                <div class="transition-all ease-in duration-200 xl:hidden 2xl:block">
-                    <p class="text-ellipsis overflow-hidden dark:text-d-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci porro doloremque similique repellendus ipsam debitis officiis temporibus odio nemo quam laborum deserunt recusandae voluptas natus, nostrum voluptate animi? Quidem, modi?</p>
-                </div>
 
-                <!-- xl:TABLE breakpoint show icon -->
-                <svg class="xl:block xl:w-8 2xl:hidden" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M8.625 9.75a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 01.778-.332 48.294 48.294 0 005.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" stroke-linecap="round" stroke-linejoin="round"></path>
-                </svg>
-            </article>
-            
-            <!-- Comment -->
-            <article class="group 2xl:h-56 m-8 p-4 rounded-lg shadow-lg dark:bg-gradient-to-br from-d-surface via-d-background to-d-background dark:text-d-soft-white hover:h-fit cursor-pointer transition ease-in duration-200 overflow-hidden">
-                <div class="flex justify-between mb-2 xl:hidden xl:h-fit 2xl:flex">
-                    <svg class="w-8 dark:text-d-muted" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M3.375 19.5h17.25m-17.25 0a1.125 1.125 0 01-1.125-1.125M3.375 19.5h1.5C5.496 19.5 6 18.996 6 18.375m-3.75 0V5.625m0 12.75v-1.5c0-.621.504-1.125 1.125-1.125m18.375 2.625V5.625m0 12.75c0 .621-.504 1.125-1.125 1.125m1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125m0 3.75h-1.5A1.125 1.125 0 0118 18.375M20.625 4.5H3.375m17.25 0c.621 0 1.125.504 1.125 1.125M20.625 4.5h-1.5C18.504 4.5 18 5.004 18 5.625m3.75 0v1.5c0 .621-.504 1.125-1.125 1.125M3.375 4.5c-.621 0-1.125.504-1.125 1.125M3.375 4.5h1.5C5.496 4.5 6 5.004 6 5.625m-3.75 0v1.5c0 .621.504 1.125 1.125 1.125m0 0h1.5m-1.5 0c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125m1.5-3.75C5.496 8.25 6 7.746 6 7.125v-1.5M4.875 8.25C5.496 8.25 6 8.754 6 9.375v1.5m0-5.25v5.25m0-5.25C6 5.004 6.504 4.5 7.125 4.5h9.75c.621 0 1.125.504 1.125 1.125m1.125 2.625h1.5m-1.5 0A1.125 1.125 0 0118 7.125v-1.5m1.125 2.625c-.621 0-1.125.504-1.125 1.125v1.5m2.625-2.625c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125M18 5.625v5.25M7.125 12h9.75m-9.75 0A1.125 1.125 0 016 10.875M7.125 12C6.504 12 6 12.504 6 13.125m0-2.25C6 11.496 5.496 12 4.875 12M18 10.875c0 .621-.504 1.125-1.125 1.125M18 10.875c0 .621.504 1.125 1.125 1.125m-2.25 0c.621 0 1.125.504 1.125 1.125m-12 5.25v-5.25m0 5.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125m-12 0v-1.5c0-.621-.504-1.125-1.125-1.125M18 18.375v-5.25m0 5.25v-1.5c0-.621.504-1.125 1.125-1.125M18 13.125v1.5c0 .621.504 1.125 1.125 1.125M18 13.125c0-.621.504-1.125 1.125-1.125M6 13.125v1.5c0 .621-.504 1.125-1.125 1.125M6 13.125C6 12.504 5.496 12 4.875 12m-1.5 0h1.5m-1.5 0c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125M19.125 12h1.5m0 0c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125m-17.25 0h1.5m14.25 0h1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                    <div class="flex items-center">
-
-                        <svg class="w-6 mr-1" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" stroke-linecap="round" stroke-linejoin="round"></path>
-                        </svg>
-                        <p>8.4</p>
+                    <div class="w-full flex flex-row justify-between items-center">
+                        <p class="pl-4 2xl:text-base lg:hidden 2xl:block dark:text-d-soft-white">{{ contributor.name }}</p>
+                        <span class="dark:text-d-warning mr-4">{{ contributor.reviews_count }} - Publicaciones</span>
                     </div>
-                </div>
-                <h3 class="mb-4 text-lg font-bold tracking-wider dark:text-d-soft-white xl:hidden 2xl:block">Spider Man</h3>
-                <div class="xl:hidden 2xl:block">
-                    <a href="#" class="flex items-center mb-4 group transition ease-in duration-150">
-                        <li class="flex items-center group-hover:text-d-secondary transition ease-in duration-150">
-                            <div class="w-10 h-10 rounded-full border-2 border-custom-white-text overflow-hidden flex justify-center items-center"><img src="../assets/Images/Profiles/01.jpg" alt="userImage"></div>
-                            <p class="pl-4">Sara</p>
-                        </li>
-                    </a>
-                </div>
-                <div class="transition-all ease-in duration-200 xl:hidden 2xl:block">
-                    <p class="text-ellipsis overflow-hidden dark:text-d-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci porro doloremque similique repellendus ipsam debitis officiis temporibus odio nemo quam laborum deserunt recusandae voluptas natus, nostrum voluptate animi? Quidem, modi?</p>
-                </div>
-
-                <!-- xl:TABLE breakpoint show icon -->
-                <svg class="xl:block xl:w-8 2xl:hidden" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M8.625 9.75a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 01.778-.332 48.294 48.294 0 005.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" stroke-linecap="round" stroke-linejoin="round"></path>
-                </svg>
-            </article>
-            
-            <!-- Comment -->
-            <article class="group 2xl:h-56 m-8 p-4 rounded-lg shadow-lg dark:bg-gradient-to-br from-d-surface via-d-background to-d-background dark:text-d-soft-white hover:h-fit cursor-pointer transition ease-in duration-200 overflow-hidden">
-                <div class="flex justify-between mb-2 xl:hidden xl:h-fit 2xl:flex">
-                    <svg class="w-8 dark:text-d-muted" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M3.375 19.5h17.25m-17.25 0a1.125 1.125 0 01-1.125-1.125M3.375 19.5h1.5C5.496 19.5 6 18.996 6 18.375m-3.75 0V5.625m0 12.75v-1.5c0-.621.504-1.125 1.125-1.125m18.375 2.625V5.625m0 12.75c0 .621-.504 1.125-1.125 1.125m1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125m0 3.75h-1.5A1.125 1.125 0 0118 18.375M20.625 4.5H3.375m17.25 0c.621 0 1.125.504 1.125 1.125M20.625 4.5h-1.5C18.504 4.5 18 5.004 18 5.625m3.75 0v1.5c0 .621-.504 1.125-1.125 1.125M3.375 4.5c-.621 0-1.125.504-1.125 1.125M3.375 4.5h1.5C5.496 4.5 6 5.004 6 5.625m-3.75 0v1.5c0 .621.504 1.125 1.125 1.125m0 0h1.5m-1.5 0c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125m1.5-3.75C5.496 8.25 6 7.746 6 7.125v-1.5M4.875 8.25C5.496 8.25 6 8.754 6 9.375v1.5m0-5.25v5.25m0-5.25C6 5.004 6.504 4.5 7.125 4.5h9.75c.621 0 1.125.504 1.125 1.125m1.125 2.625h1.5m-1.5 0A1.125 1.125 0 0118 7.125v-1.5m1.125 2.625c-.621 0-1.125.504-1.125 1.125v1.5m2.625-2.625c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125M18 5.625v5.25M7.125 12h9.75m-9.75 0A1.125 1.125 0 016 10.875M7.125 12C6.504 12 6 12.504 6 13.125m0-2.25C6 11.496 5.496 12 4.875 12M18 10.875c0 .621-.504 1.125-1.125 1.125M18 10.875c0 .621.504 1.125 1.125 1.125m-2.25 0c.621 0 1.125.504 1.125 1.125m-12 5.25v-5.25m0 5.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125m-12 0v-1.5c0-.621-.504-1.125-1.125-1.125M18 18.375v-5.25m0 5.25v-1.5c0-.621.504-1.125 1.125-1.125M18 13.125v1.5c0 .621.504 1.125 1.125 1.125M18 13.125c0-.621.504-1.125 1.125-1.125M6 13.125v1.5c0 .621-.504 1.125-1.125 1.125M6 13.125C6 12.504 5.496 12 4.875 12m-1.5 0h1.5m-1.5 0c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125M19.125 12h1.5m0 0c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125m-17.25 0h1.5m14.25 0h1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                    <div class="flex items-center">
-
-                        <svg class="w-6 mr-1" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" stroke-linecap="round" stroke-linejoin="round"></path>
-                        </svg>
-                        <p>8.4</p>
+                    
+                    <div class="opacity-0 group-hover/link:opacity-100 absolute -right-14 h-6 w-6 z-20 rotate-45 dark:bg-d-background transition ease-in duration-150"></div>
+                    <div class="opacity-0 group-hover/link:opacity-100 flex justify-center items-center absolute -right-40 w-[115px] h-8 rounded-r-full dark:bg-gradient-to-r dark:from-d-background dark:to-d-surface transition ease-in duration-150">
+                        <p class="text-base dark:text-d-secondary tracking-widest">Ver perfil</p>
                     </div>
-                </div>
-                <h3 class="mb-4 text-lg font-bold tracking-wider dark:text-d-soft-white xl:hidden 2xl:block">Spider Man</h3>
-                <div class="xl:hidden 2xl:block">
-                    <a href="#" class="flex items-center mb-4 group transition ease-in duration-150">
-                        <li class="flex items-center group-hover:text-d-secondary transition ease-in duration-150">
-                            <div class="w-10 h-10 rounded-full border-2 border-custom-white-text overflow-hidden flex justify-center items-center"><img src="../assets/Images/Profiles/01.jpg" alt="userImage"></div>
-                            <p class="pl-4">Sara</p>
-                        </li>
-                    </a>
-                </div>
-                <div class="transition-all ease-in duration-200 xl:hidden 2xl:block">
-                    <p class="text-ellipsis overflow-hidden dark:text-d-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci porro doloremque similique repellendus ipsam debitis officiis temporibus odio nemo quam laborum deserunt recusandae voluptas natus, nostrum voluptate animi? Quidem, modi?</p>
-                </div>
+                </li>
 
-                <!-- xl:TABLE breakpoint show icon -->
-                <svg class="xl:block xl:w-8 2xl:hidden" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M8.625 9.75a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 01.778-.332 48.294 48.294 0 005.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" stroke-linecap="round" stroke-linejoin="round"></path>
-                </svg>
-            </article>
+            </router-link>
 
         </section>
     </aside>
@@ -295,7 +189,8 @@ export default {
     return{
         cookie: false,
         user: [],
-        following: []
+        following: [],
+        contributors: [],
     }
   },
   components: {
@@ -334,6 +229,14 @@ export default {
         .then(data => {
                 // Get actual user
                 data.forEach(user => {
+
+                    if(user.role.includes('Colaborador') || user.role == "Colaborador"){
+                        this.contributors.push({id: user.id, name: user.name, profile_img: user.profile.profile_img, reviews_count: user.reviews_count})
+                    }
+
+                    // Sort by reviews count num
+                    this.contributors = this.contributors.sort((a, b) => (a.reviews_count < b.reviews_count) ? 1 : -1)
+
                     if(document.cookie == ('authCookie=' + user.cookie)){
                         this.user = user
                         friends = user.profile.friends_list

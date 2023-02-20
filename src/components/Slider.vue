@@ -188,9 +188,11 @@ export default {
 
                 <!-- Main Content container -->
                 <div id="bannerGradient" class="h-full w-full lg:pt-10 xl:pt-16 2xl:pl-28 xl:pl-24 lg:pl-20">
-                    <h1 id="1-movie-title" class="2xl:text-5xl xl:text-3xl lg:text-xl font-bold dark:text-d-soft-white tracking-wider">{{ movie.title }}</h1>
+                    <h1 id="1-movie-title" class="mb-2 2xl:text-5xl xl:text-3xl lg:text-xl font-bold dark:text-d-soft-white tracking-wider">{{ movie.title }}</h1>
 
-                    <div class="h-16 w-48 2xl:mb-28 xl:mb-16 lg:mb-12 flex flex-row justify-between dark:text-d-soft-white">
+                    <h2 class="2xl:text-xl xl:text-xl lg:text-md dark:text-d-soft-white tracking-wider">{{ movie.subtitle }}</h2>
+
+                    <div class="h-16 w-48 2xl:mb-20 xl:mb-16 lg:mb-12 flex flex-row justify-between dark:text-d-soft-white">
                         <!-- Score -->
                         <div class="w-fit flex flex-row items-center lg:text-sm xl:text-base">
                             <img src="../assets/Icons/star-00.png" alt="star-image" class="w-8 mr-2">
@@ -208,31 +210,10 @@ export default {
                         <router-link :to="{name: 'review', params: {movie_id: movie.id}}" class="2xl:px-5 2xl:py-2.5 xl:w-24 xl:py-2 lg:py-1 lg:px-2 text-l-surface-color bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-bold tracking-wider rounded-lg text-sm dark:text-d-soft-white dark:bg-d-background dark:hover:bg-d-secondary dark:hover:text-d-surface transition ease-in duration-150">
                             + INFO
                         </router-link>
-
-                        <!-- Friends who watched the movie -->
-                        <!-- <div class="relative w-96 h-10 flex flex-row justify-between items-center">
-                            <div class="absolute top-0 left-8 w-10 h-10 flex flex-row justify-center items-center text-d-soft-white rounded-full bg-d-variant-1 border-2 border-d-muted">
-                            H
-                            </div>
-
-                            <div class="absolute top-0 left-16 w-10 h-10 flex flex-row justify-center items-center text-d-soft-white rounded-full bg-d-variant-1 border-2 border-d-muted">
-                            H
-                            </div>
-
-                            <div class="absolute top-0 left-24 w-10 h-10 flex flex-row justify-center items-center text-d-soft-white rounded-full bg-d-variant-1 border-2 border-d-muted">
-                                H
-                            </div>
-
-                            <div class="absolute top-0 left-32 w-10 h-10 flex flex-row justify-center items-center text-d-soft-white rounded-full bg-d-variant-1 border-2 border-d-muted">
-                                H
-                            </div>
-
-                            <p class="absolute top-2 lg:left-48 sm:text-sm dark:text-d-muted">Visto por <span class="text-d-soft-white">4 +</span> seguidores.</p>
-                        </div> -->
                     </div>
                 </div>
 
-                <img id="1-banner-alt" :src="movie.banner" class="absolute -z-20 block w-[60%] top-0 right-0 h-full bg-cover bg-no-repeat" :alt="movie.title">
+                <img id="1-banner-alt" :src="movie.banner_size_xl" class="absolute -z-20 block w-[60%] top-0 right-0 h-full bg-cover bg-no-repeat" :alt="movie.title">
             </div>
 
         </div>

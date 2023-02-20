@@ -5,8 +5,9 @@
         <HeaderComp :renderLogotype="true" class="col-start-3 col-end-11 mt-6"/>
 
         <!-- Banner -->
-        <div class="col-start-3 row-start-2 col-span-4 row-span-4 relative rounded-tl-xl rounded-bl-xl overflow-hidden bg-cover bg-center bg-[url('src/assets/Images/Login-register-banner/Section_4.png')]">
-            <!-- <img class="" src="../assets/Images/Login-register-banner/Section 2.png" alt="background-image"> -->
+        <div class="col-start-3 row-start-2 col-span-4 row-span-4 relative rounded-tl-xl rounded-bl-xl overflow-hidden bg-cover bg-center">
+            
+            <img src="src/assets/Images/Login-register-banner/Section_4.png" alt="background-image" >
 
             <div class="absolute inset-y-0 px-12 py-12 bg-gradient-to-bl from-d-background via-transparent dark:to-d-surface backdrop-brightness-50">
                 <p class="text-2xl font-sans dark:text-d-soft-white select-none">
@@ -98,14 +99,7 @@ export default {
             },
         }
     },
-    created(){
-        fetch('http://localhost:3000/users')
-        .then((response) => response.json())
-        .then((data) => {
-            this.users = data
-        })
 
-    },
     methods: {
         async register(){
 
@@ -236,8 +230,13 @@ export default {
                     email: email,
                     password: password,
                     created_at: time.getDay()+'/'+time.getMonth()+' - '+time.getHours()+':'+time.getMinutes(),
+                    role: 'Colaborador',
+                    messages: [{id:1, content: "Bienvenido a la comunidad de Movies Replay!"}],
+                    notifications: [{id:1, content: "Configura tu perfil para poder subir tu foto o desbloquear la función de 'Publicar review' seleccionando el rol de 'Colaborador' para que puedas crear contenido!"}],
                     profile: {
                         profile_img: 'none',
+                        movies_reviews: [],
+                        reviews_count: 0,
                         friends_list: [],
                         groups: [],
                         movies_seen: [],
@@ -245,6 +244,7 @@ export default {
                         movies_favourite: [],
                         movies_voted: []
                     },
+                    reviews_count: 0,
                     cookie: cookie
                 }
 
@@ -254,6 +254,14 @@ export default {
                 console.log('Register ok')
             }
         },
+    },
+
+    created(){
+        fetch('http://localhost:3000/users')
+        .then((response) => response.json())
+        .then((data) => {
+            this.users = data
+        })
     },
 }
 </script>
