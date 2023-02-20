@@ -1,8 +1,8 @@
-# Vue 3 + Vite
 
 <p align="center">
   <img width="300px" src="https://user-images.githubusercontent.com/77643882/220013803-aabc9946-10ac-4c67-adbc-a26e89d988d7.png" />
   <h1 align="center"> DIW - Diseño Interfaces Web Práctica 3 </h1>
+  <p align="center"> VueJS </p>
 </p>
 
 <div align="center">
