@@ -221,10 +221,10 @@
               <path d="M12 18a3.75 3.75 0 00.495-7.467 5.99 5.99 0 00-1.925 3.546 5.974 5.974 0 01-2.133-1A3.75 3.75 0 0012 18z" stroke-linecap="round" stroke-linejoin="round"></path>
             </svg>
 
-            <p class="ml-4 text-3xl font-bold italic tracking-wider shadow-sm dark:text-d-soft-white select-none">Tendencias</p>
+            <p class="ml-4 text-3xl font-bold italic tracking-wider shadow-sm dark:text-d-soft-white select-none">Tendencias · <span class="dark:text-d-muted">Top 16 más vistas en 7 Días</span></p>
           </div>
           
-          <router-link :to="{name: 'login'}" class="flex items-center text-sm dark:text-d-soft-white italic dark:hover:text-d-secondary transition ease-in duration-150 group">
+          <router-link :to="{name: 'home'}" class="flex items-center text-sm dark:text-d-soft-white italic dark:hover:text-d-secondary transition ease-in duration-150 group">
             Ver todas
             <svg class="w-6 group-hover:translate-x-2 transition ease-in duration-150" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path d="M8.25 4.5l7.5 7.5-7.5 7.5" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -233,7 +233,7 @@
         </div>
 
         <!-- Cards container -->
-        <div class="grid 3xl:grid-cols-8 2xl:grid-cols-6 xl:grid-cols-6 lg:grid-cols-4 xl:gap-x-8 xl:gap-y-24 lg:gap-x-4 lg:gap-y-24">
+        <div class="grid 3xl:grid-cols-8 2xl:grid-cols-6 xl:grid-cols-6 lg:grid-cols-4 xl:gap-x-8 xl:gap-y-24 lg:gap-x-4 lg:gap-y-24 md:grid-cols-2 md:gap-x-12 md:gap-y-20">
 
           <!-- Card -->
           <router-link :to="{name: 'review', params: {movie_id: movie.id}}" v-for="movie in trendingMovies" class="relative lg:col-span-2 h-[480px] rounded-lg overflow-visible shadow-2xl shadow-d-surface hover:shadow-md transition ease-in-out duration-300 cursor-pointer group">

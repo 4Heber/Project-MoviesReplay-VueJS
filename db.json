@@ -10,12 +10,12 @@
       "generes": [
         "Aventura",
         "Drama",
-        "Ciencia-ficción",
-        ""
+        "Ciencia-ficción"
       ],
       "vote_average": "10.0",
-      "vote_count": 1,
+      "vote_count": 2,
       "vote_values": [
+        10,
         10
       ],
       "total_views": 0,
@@ -39,8 +39,7 @@
       "generes": [
         "Animación",
         "Acción",
-        "Fantasía",
-        ""
+        "Fantasía"
       ],
       "vote_average": "8.0",
       "vote_count": 1,
@@ -69,11 +68,12 @@
         "Acción",
         "Ciencia-ficción"
       ],
-      "vote_average": "9.5",
-      "vote_count": 2,
+      "vote_average": "9.7",
+      "vote_count": 3,
       "vote_values": [
         10,
-        9
+        9,
+        10
       ],
       "total_views": 0,
       "views_24h": 0,
@@ -126,10 +126,11 @@
         "Fantasía",
         "Ciencia-ficción"
       ],
-      "vote_average": "7.0",
-      "vote_count": 1,
+      "vote_average": "6.5",
+      "vote_count": 2,
       "vote_values": [
-        7
+        7,
+        6
       ],
       "total_views": 0,
       "views_24h": 0,
@@ -154,9 +155,11 @@
         "Drama"
       ],
       "vote_average": "9.0",
-      "vote_count": 1,
+      "vote_count": 3,
       "vote_values": [
-        9
+        9,
+        8,
+        10
       ],
       "total_views": 0,
       "views_24h": 0,
@@ -181,9 +184,11 @@
         "Aventura",
         "Ciencia-ficción"
       ],
-      "vote_average": "0",
-      "vote_count": 0,
-      "vote_values": [],
+      "vote_average": "9.0",
+      "vote_count": 1,
+      "vote_values": [
+        9
+      ],
       "total_views": 0,
       "views_24h": 0,
       "views_7d": 0,
@@ -251,60 +256,6 @@
       "id": 14
     },
     {
-      "title": "Avatar: El sentido del agua",
-      "original_title": "Avatar: The Way of Water",
-      "subtitle": "Esta familia es nuestra fortaleza.",
-      "overview": "Ambientada más de una década después de los acontecimientos de la primera película, 'Avatar: The Way of Water' empieza contando la historia de la familia Sully (Jake, Neytiri y sus hijos), los problemas que los persiguen, lo que tienen que hacer para mantenerse a salvo, las batallas que libran para seguir con vida y las tragedias que sufren.",
-      "release_date": "2022-12-14",
-      "duration": "192 min",
-      "generes": [
-        "Ciencia-ficción",
-        "Aventura",
-        "Acción"
-      ],
-      "vote_average": "0",
-      "vote_count": 0,
-      "vote_values": [],
-      "total_views": 0,
-      "views_24h": 0,
-      "views_7d": 0,
-      "views_1m": 0,
-      "poster": "https://image.tmdb.org/t/p/w500/kUAG4ZQcsNbRyiPyAr3hLdsVgAq.jpg",
-      "banner_size_xl": "https://image.tmdb.org/t/p/w1280/s16H6tpK2utvwDtzZ8Qy4qm5Emw.jpg",
-      "banner_size_md": "https://image.tmdb.org/t/p/w500/s16H6tpK2utvwDtzZ8Qy4qm5Emw.jpg",
-      "trailer_iframe_url": "",
-      "published_by": "4Heber",
-      "id": 15
-    },
-    {
-      "title": "El Gato con Botas: El último deseo",
-      "original_title": "Puss in Boots: The Last Wish",
-      "subtitle": "Say hola to his little friends.",
-      "overview": "Secuela de 'El gato con botas' (2011). El Gato con Botas descubre que su pasión por la aventura le ha pasado factura: ha consumido ocho de sus nueve vidas, por ello emprende un viaje épico para encontrar el mítico Último Deseo y restaurar sus nueve vidas...",
-      "release_date": "2022-12-07",
-      "duration": "103 min",
-      "generes": [
-        "Animación",
-        "Aventura",
-        "Comedia",
-        "Familia",
-        "Fantasía"
-      ],
-      "vote_average": "0",
-      "vote_count": 0,
-      "vote_values": [],
-      "total_views": 0,
-      "views_24h": 0,
-      "views_7d": 0,
-      "views_1m": 0,
-      "poster": "https://image.tmdb.org/t/p/w500/lyP4WNmUiiOgl4g2z7ywE0z6SGF.jpg",
-      "banner_size_xl": "https://image.tmdb.org/t/p/w1280/jr8tSoJGj33XLgFBy6lmZhpGQNu.jpg",
-      "banner_size_md": "https://image.tmdb.org/t/p/w500/jr8tSoJGj33XLgFBy6lmZhpGQNu.jpg",
-      "trailer_iframe_url": "",
-      "published_by": "4Heber",
-      "id": 16
-    },
-    {
       "title": "Spider-Man: No Way Home",
       "original_title": "Spider-Man: No Way Home",
       "subtitle": "El multiverso desatado.",
@@ -316,10 +267,11 @@
         "Aventura",
         "Ciencia-ficción"
       ],
-      "vote_average": "8.0",
-      "vote_count": 1,
+      "vote_average": "9.0",
+      "vote_count": 2,
       "vote_values": [
-        8
+        8,
+        10
       ],
       "total_views": 0,
       "views_24h": 0,
@@ -345,10 +297,11 @@
         "Aventura",
         "Fantasía"
       ],
-      "vote_average": "9.0",
-      "vote_count": 1,
+      "vote_average": "9.5",
+      "vote_count": 2,
       "vote_values": [
-        9
+        9,
+        10
       ],
       "total_views": 0,
       "views_24h": 0,
@@ -373,10 +326,11 @@
         "Comedia",
         "Suspense"
       ],
-      "vote_average": "8.0",
-      "vote_count": 1,
+      "vote_average": "7.5",
+      "vote_count": 2,
       "vote_values": [
-        8
+        8,
+        7
       ],
       "total_views": 0,
       "views_24h": 0,
@@ -444,6 +398,1060 @@
       "trailer_iframe_url": "",
       "published_by": "Sebas",
       "id": 21
+    },
+    {
+      "title": "Your Name",
+      "original_title": "君の名は。",
+      "subtitle": "Te conozco, pero jamás nos hemos visto.",
+      "overview": "Taki y Mitsuha descubren un día que durante el sueño sus cuerpos se intercambian, y comienzan a comunicarse por medio de notas. A medida que consiguen superar torpemente un reto tras otro, se va creando entre los dos un vínculo que poco a poco se convierte en algo más romántico.",
+      "release_date": "2016-08-26",
+      "duration": "106 min",
+      "generes": [
+        "Romance",
+        "Animación",
+        "Drama"
+      ],
+      "vote_average": "8.0",
+      "vote_count": 1,
+      "vote_values": [
+        8
+      ],
+      "total_views": 0,
+      "views_24h": 0,
+      "views_7d": 0,
+      "views_1m": 0,
+      "poster": "https://image.tmdb.org/t/p/w500/iaiy3tg9QVkDpObm1IGqmbC9A5C.jpg",
+      "banner_size_xl": "https://image.tmdb.org/t/p/w1280/dIWwZW7dJJtqC6CgWzYkNVKIUm8.jpg",
+      "banner_size_md": "https://image.tmdb.org/t/p/w500/dIWwZW7dJJtqC6CgWzYkNVKIUm8.jpg",
+      "trailer_iframe_url": "",
+      "published_by": "Perryelornitorrinco",
+      "id": 22
+    },
+    {
+      "title": "Shrek Tercero",
+      "original_title": "Shrek the Third",
+      "subtitle": "Vuelve el rey",
+      "overview": "Shrek se casó con Fiona, pero lo que no tuvo en cuenta es que al casarse con una princesa... tarde o temprano uno termina siendo rey. Cuando su suegro, el Rey Harold, cae enfermo, Shrek se encuentra en riesgo de tener que abandonar su amado pantano por el trono. A menos claro que encuentre un heredero. Junto con Asno y el Gato con Botas, Shrek viaja para en busca del primo de Fiona, Arturo. Mientras, en Muy Muy Lejano, el Principe Encantador recluta un ejército de villanos de cuento para tomar el trono por la fuerza. Pero no cuentan con que Fiona y la Reina Lillian también han reunido su grupo de heroínas de cuento para hacerles frente...",
+      "release_date": "2007-05-17",
+      "duration": "92 min",
+      "generes": [
+        "Fantasía",
+        "Aventura",
+        "Animación",
+        "Comedia",
+        "Familia"
+      ],
+      "vote_average": "10.0",
+      "vote_count": 1,
+      "vote_values": [
+        10
+      ],
+      "total_views": 0,
+      "views_24h": 0,
+      "views_7d": 0,
+      "views_1m": 0,
+      "poster": "https://image.tmdb.org/t/p/w500/2ogCqOTY7VlKcOHzELeLP71BGLJ.jpg",
+      "banner_size_xl": "https://image.tmdb.org/t/p/w1280/lxbKrBo1wZ2U9BS1jiZyNe3qI4J.jpg",
+      "banner_size_md": "https://image.tmdb.org/t/p/w500/lxbKrBo1wZ2U9BS1jiZyNe3qI4J.jpg",
+      "trailer_iframe_url": "",
+      "published_by": "Perryelornitorrinco",
+      "id": 23
+    },
+    {
+      "title": "Parasite",
+      "original_title": "Parasite",
+      "subtitle": "",
+      "overview": "An abandoned oil rig in the middle of the North Sea. Dr. Christine Hansen is charged with the task of testing an experimental cleaning fluid which could revolutionize the oil industry. Hired to carry out the tests is Jacob Rasmussen and his rough and ready crew of deconstruction engineers. But within hours one of them is missing under suspicious circumstances. Things go from bad to worse when environmental activist Mickey Hennessey and his hard-bitten associates seize control of the rig, taking everybody on board hostage. But very soon oil workers and environmentalists will be compelled to join forces in an evolutionary battle for survival. For a savage new life-form has made its home on the rig. And it is hungry.",
+      "release_date": "2004-01-01",
+      "duration": "93 min",
+      "generes": [
+        "Terror"
+      ],
+      "vote_average": "8.0",
+      "vote_count": 1,
+      "vote_values": [
+        8
+      ],
+      "total_views": 0,
+      "views_24h": 0,
+      "views_7d": 0,
+      "views_1m": 0,
+      "poster": "https://image.tmdb.org/t/p/w500/4N55tgxDW0RRATyrZHbx0q9HUKv.jpg",
+      "banner_size_xl": "https://image.tmdb.org/t/p/w1280null",
+      "banner_size_md": "https://image.tmdb.org/t/p/w500null",
+      "trailer_iframe_url": "",
+      "published_by": "Perryelornitorrinco",
+      "id": 24
+    },
+    {
+      "title": "Spider-Man: El hombre araña",
+      "original_title": "Spider-Man",
+      "subtitle": "",
+      "overview": "Una extraña ola de crímenes está teniendo lugar en Nueva York. Un extraño personaje controla las mentes de personas anónimas y respetables obligándolas a comportarse como vulgares criminales. Peter Parker es un joven estudiante a punto de doctorarse, por accidente una araña radioactiva le muerde en la mano y le dota de una fuerza y agilidad sobrehumana además de la capacidad de trepar por las paredes. La hija de uno de los detenidos por los robos, Judy Tyler, entra en la vida de Peter cuando este está sacando fotos para el periódico donde trabaja. Al ver que la gente a su alrededor e incluso toda la ciudad está en peligro, decide crearse un disfraz para detener al villano evitando un chantaje de millones de dólares. Gracias a sus recién adquiridos poderes podrá plantar cara a tan peligrosa amenaza.",
+      "release_date": "1978-03-15",
+      "duration": "90 min",
+      "generes": [
+        "Ciencia-ficción",
+        "Acción",
+        "Crimen",
+        "Película",
+        "de",
+        "TV"
+      ],
+      "vote_average": "10.0",
+      "vote_count": 1,
+      "vote_values": [
+        10
+      ],
+      "total_views": 0,
+      "views_24h": 0,
+      "views_7d": 0,
+      "views_1m": 0,
+      "poster": "https://image.tmdb.org/t/p/w500/4cw1Vpp68ec518BHiS6gfa3yDoU.jpg",
+      "banner_size_xl": "https://image.tmdb.org/t/p/w1280/zlpZzccypkAYFZIyYLQcchl90ZC.jpg",
+      "banner_size_md": "https://image.tmdb.org/t/p/w500/zlpZzccypkAYFZIyYLQcchl90ZC.jpg",
+      "trailer_iframe_url": "",
+      "published_by": "Perryelornitorrinco",
+      "id": 25
+    },
+    {
+      "title": "Regreso al futuro",
+      "original_title": "Back to the Future",
+      "subtitle": "Nunca llegaba a tiempo a clase. No llegaba a tiempo para cenar. Hasta que un día desapareció de su tiempo.",
+      "overview": "Marty McFly, un estudiante de secundaria de 17 años, es enviado accidentalmente treinta años al pasado en un DeLorean que viaja en el tiempo, inventado por su gran amigo, el excéntrico científico Doc Brown.",
+      "release_date": "1985-07-03",
+      "duration": "116 min",
+      "generes": [
+        "Aventura",
+        "Comedia",
+        "Ciencia-ficción"
+      ],
+      "vote_average": "7.0",
+      "vote_count": 1,
+      "vote_values": [
+        7
+      ],
+      "total_views": 0,
+      "views_24h": 0,
+      "views_7d": 0,
+      "views_1m": 0,
+      "poster": "https://image.tmdb.org/t/p/w500/ldJzO9D40mCVeDaZQ1986t8rguZ.jpg",
+      "banner_size_xl": "https://image.tmdb.org/t/p/w1280/5bzPWQ2dFUl2aZKkp7ILJVVkRed.jpg",
+      "banner_size_md": "https://image.tmdb.org/t/p/w500/5bzPWQ2dFUl2aZKkp7ILJVVkRed.jpg",
+      "trailer_iframe_url": "",
+      "published_by": "Perryelornitorrinco",
+      "id": 26
+    },
+    {
+      "title": "Klaus",
+      "original_title": "Klaus",
+      "subtitle": "¿Has escrito tu carta?",
+      "overview": "Cuando Jesper se distingue como el peor estudiante de la Academia Postal, es enviado a Smeerensburg, un pequeño pueblo situado en una isla helada cercana al Círculo Polar Ártico, donde los gruñones habitantes apenas intercambian palabras… y mucho menos cartas. Jesper está a punto de rendirse y abandonar sus deberes como cartero cuando conoce a la profesora local, Alva, y a Klaus, un misterioso carpintero que vive solo en una cabaña llena de juguetes hechos a mano.",
+      "release_date": "2019-11-08",
+      "duration": "97 min",
+      "generes": [
+        "Animación",
+        "Familia",
+        "Aventura",
+        "Comedia",
+        "Fantasía"
+      ],
+      "vote_average": "10.0",
+      "vote_count": 1,
+      "vote_values": [
+        10
+      ],
+      "total_views": 0,
+      "views_24h": 0,
+      "views_7d": 0,
+      "views_1m": 0,
+      "poster": "https://image.tmdb.org/t/p/w500/aLniylyJlbXEdxvaGSuQkRACWUx.jpg",
+      "banner_size_xl": "https://image.tmdb.org/t/p/w1280/2u1YG0pgm5bIOXO2OVWLNdMl23f.jpg",
+      "banner_size_md": "https://image.tmdb.org/t/p/w500/2u1YG0pgm5bIOXO2OVWLNdMl23f.jpg",
+      "trailer_iframe_url": "",
+      "published_by": "Perryelornitorrinco",
+      "id": 27
+    },
+    {
+      "title": "Vengadores: Infinity War",
+      "original_title": "Avengers: Infinity War",
+      "subtitle": "Un universo entero. De una vez por todas.",
+      "overview": "El todopoderoso Thanos ha despertado con la promesa de arrasar con todo a su paso, portando el Guantelete del Infinito, que le confiere un poder incalculable. Los únicos capaces de pararle los pies son los Vengadores y el resto de superhéroes de la galaxia, que deberán estar dispuestos a sacrificarlo todo por un bien mayor. Capitán América e Ironman deberán limar sus diferencias, Black Panther apoyará con sus tropas desde Wakanda, Thor y los Guardianes de la Galaxia e incluso Spider-Man se unirán antes de que los planes de devastación y ruina pongan fin al universo. ¿Serán capaces de frenar el avance del titán del caos?",
+      "release_date": "2018-04-25",
+      "duration": "156 min",
+      "generes": [
+        "Aventura",
+        "Acción",
+        "Ciencia-ficción"
+      ],
+      "vote_average": "9.0",
+      "vote_count": 1,
+      "vote_values": [
+        9
+      ],
+      "total_views": 0,
+      "views_24h": 0,
+      "views_7d": 0,
+      "views_1m": 0,
+      "poster": "https://image.tmdb.org/t/p/w500/ksBQ4oHQDdJwND8H90ay8CbMihU.jpg",
+      "banner_size_xl": "https://image.tmdb.org/t/p/w1280/mDfJG3LC3Dqb67AZ52x3Z0jU0uB.jpg",
+      "banner_size_md": "https://image.tmdb.org/t/p/w500/mDfJG3LC3Dqb67AZ52x3Z0jU0uB.jpg",
+      "trailer_iframe_url": "",
+      "published_by": "Perryelornitorrinco",
+      "id": 28
+    },
+    {
+      "title": "El rey león",
+      "original_title": "The Lion King",
+      "subtitle": "El ciclo de la vida.",
+      "overview": "La sabana africana es el escenario en el que tienen lugar las aventuras de Simba, un pequeño león que es el heredero del trono. Sin embargo, se ve forzado a exiliarse al ser injustamente acusado de la muerte de su padre. Durante su destierro, hará buenas amistades y, finalmente, regresará para recuperar lo que legítimamente le corresponde.",
+      "release_date": "1994-06-23",
+      "duration": "85 min",
+      "generes": [
+        "Familia",
+        "Animación",
+        "Drama"
+      ],
+      "vote_average": "10.0",
+      "vote_count": 1,
+      "vote_values": [
+        10
+      ],
+      "total_views": 0,
+      "views_24h": 0,
+      "views_7d": 0,
+      "views_1m": 0,
+      "poster": "https://image.tmdb.org/t/p/w500/b0MxU37dNmMwKtoPVYPKOZSIrIn.jpg",
+      "banner_size_xl": "https://image.tmdb.org/t/p/w1280/wXsQvli6tWqja51pYxXNG1LFIGV.jpg",
+      "banner_size_md": "https://image.tmdb.org/t/p/w500/wXsQvli6tWqja51pYxXNG1LFIGV.jpg",
+      "trailer_iframe_url": "",
+      "published_by": "Perryelornitorrinco",
+      "id": 29
+    },
+    {
+      "title": "Cómo entrenar a tu dragón",
+      "original_title": "How to Train Your Dragon",
+      "subtitle": "Una aventura cambiará dos mundos.",
+      "overview": "Ambientada en el mítico mundo de los rudos vikingos y los dragones salvajes, y basada en el libro infantil de Cressida Cowell, esta comedia de acción narra la historia de Hipo, un vikingo adolescente que no encaja exactamente en la antiquísima reputación de su tribu como cazadores de dragones. El mundo de Hipo se trastoca al encontrar a un dragón que le desafía a él y a sus compañeros vikingos, a ver el mundo desde un punto de vista totalmente diferente.",
+      "release_date": "2010-03-18",
+      "duration": "98 min",
+      "generes": [
+        "Fantasía",
+        "Aventura",
+        "Animación",
+        "Familia"
+      ],
+      "vote_average": "10.0",
+      "vote_count": 1,
+      "vote_values": [
+        10
+      ],
+      "total_views": 0,
+      "views_24h": 0,
+      "views_7d": 0,
+      "views_1m": 0,
+      "poster": "https://image.tmdb.org/t/p/w500/e9f225xZbo7qTzCnOyvGdOREXXY.jpg",
+      "banner_size_xl": "https://image.tmdb.org/t/p/w1280/aH9KWmXFMamXkHMgLjnQmSYjScL.jpg",
+      "banner_size_md": "https://image.tmdb.org/t/p/w500/aH9KWmXFMamXkHMgLjnQmSYjScL.jpg",
+      "trailer_iframe_url": "",
+      "published_by": "Perryelornitorrinco",
+      "id": 30
+    },
+    {
+      "title": "Los fantasmas del Chapelier",
+      "original_title": "Les Fantômes du chapelier",
+      "subtitle": "",
+      "overview": "En una pequeña ciudad de provincias francesa se suceden una serie de asesinatos de mujeres de mediana edad. Un oscuro inmigrante armenio, que es sastre, sospecha que el asesino es un burgués muy influyente en la ciudad que tiene una sombrerería delante de su casa.",
+      "release_date": "1982-05-26",
+      "duration": "120 min",
+      "generes": [
+        "Crimen",
+        "Misterio",
+        "Suspense"
+      ],
+      "vote_average": "6.0",
+      "vote_count": 1,
+      "vote_values": [
+        6
+      ],
+      "total_views": 0,
+      "views_24h": 0,
+      "views_7d": 0,
+      "views_1m": 0,
+      "poster": "https://image.tmdb.org/t/p/w500/jTlIYjvS16XOpsfvYCTmtEHV10K.jpg",
+      "banner_size_xl": "https://image.tmdb.org/t/p/w1280/1A4OTl5yRkFxVi60tGUpr7YNWSw.jpg",
+      "banner_size_md": "https://image.tmdb.org/t/p/w500/1A4OTl5yRkFxVi60tGUpr7YNWSw.jpg",
+      "trailer_iframe_url": "",
+      "published_by": "Perryelornitorrinco",
+      "id": 31
+    },
+    {
+      "title": "Múltiple",
+      "original_title": "Split",
+      "subtitle": "Kevin tiene 23 personalidades distintas. La 24 está a punto de desatarse.",
+      "overview": "A pesar de que Kevin le ha demostrado a su psiquiatra de confianza, la Dra. Fletcher, que posee 23 personalidades diferentes, aún queda una por emerger, decidida a dominar a todas las demás. Obligado a raptar a tres chicas adolescentes encabezadas por la decidida y observadora Casey, Kevin lucha por sobrevivir contra todas sus personalidades y la gente que le rodea, a medida que las paredes de sus compartimentos mentales se derrumban.",
+      "release_date": "2016-11-15",
+      "duration": "117 min",
+      "generes": [
+        "Terror",
+        "Suspense"
+      ],
+      "vote_average": "5.0",
+      "vote_count": 1,
+      "vote_values": [
+        5
+      ],
+      "total_views": 0,
+      "views_24h": 0,
+      "views_7d": 0,
+      "views_1m": 0,
+      "poster": "https://image.tmdb.org/t/p/w500/Ag51YF1ZTNTefjhVMVGBCFv8h5s.jpg",
+      "banner_size_xl": "https://image.tmdb.org/t/p/w1280/9pkZesKMnblFfKxEhQx45YQ2kIe.jpg",
+      "banner_size_md": "https://image.tmdb.org/t/p/w500/9pkZesKMnblFfKxEhQx45YQ2kIe.jpg",
+      "trailer_iframe_url": "",
+      "published_by": "Perryelornitorrinco",
+      "id": 32
+    },
+    {
+      "title": "Dragon Ball Super: Super Hero",
+      "original_title": "ドラゴンボール超 スーパーヒーロー",
+      "subtitle": "Nace un súper despertar y calamidad.",
+      "overview": "Son Goku destruyó en su momento al Ejército Red Ribbon. Ahora, ciertos individuos han decidido continuar con su legado y han creado a los androides definitivos: Gamma 1 y Gamma 2. Estos dos androides se autoproclaman \"superhéroes\" y deciden atacar a Piccolo y a Gohan. ¿Cuál es el objetivo del Nuevo Ejército Red Ribbon?  Ante un peligro inminente, ¡llega el momento del despertar del Superhéroe!",
+      "release_date": "2022-06-11",
+      "duration": "100 min",
+      "generes": [
+        "Animación",
+        "Ciencia-ficción",
+        "Acción"
+      ],
+      "vote_average": "5.0",
+      "vote_count": 1,
+      "vote_values": [
+        5
+      ],
+      "total_views": 0,
+      "views_24h": 0,
+      "views_7d": 0,
+      "views_1m": 0,
+      "poster": "https://image.tmdb.org/t/p/w500/rugyJdeoJm7cSJL1q4jBpTNbxyU.jpg",
+      "banner_size_xl": "https://image.tmdb.org/t/p/w1280/uR0FopHrAjDlG5q6PZB07a1JOva.jpg",
+      "banner_size_md": "https://image.tmdb.org/t/p/w500/uR0FopHrAjDlG5q6PZB07a1JOva.jpg",
+      "trailer_iframe_url": "",
+      "published_by": "Perryelornitorrinco",
+      "id": 33
+    },
+    {
+      "title": "Jurassic Park (Parque Jurásico)",
+      "original_title": "Jurassic Park",
+      "subtitle": "Una aventura de 65 millones de años.",
+      "overview": "El multimillonario John Hammond tiene una idea para un espectacular parque temático: una isla retirada donde los visitantes puedan observar dinosaurios reales. Con la última tecnología en el desarrollo de ADN, los científicos pueden clonar braquiosaurios, triceratops, velociraptors y un tiranosaurio rex, utilizando para ello la sangre fosilizada en ámbar contenida en insectos que los mordieron hace millones de años. Los paleontólogos Alan Grant, Ellie Sattler y Ian Malcolm visitan el parque y quedan muy sorprendidos con los resultados obtenidos. Pero cuando un problemático empleado manipula el sofisticado sistema de seguridad los dinosaurios escapan, obligando a los visitantes a luchar por su supervivencia.",
+      "release_date": "1993-06-11",
+      "duration": "120 min",
+      "generes": [
+        "Aventura",
+        "Ciencia-ficción"
+      ],
+      "vote_average": "4.0",
+      "vote_count": 1,
+      "vote_values": [
+        4
+      ],
+      "total_views": 0,
+      "views_24h": 0,
+      "views_7d": 0,
+      "views_1m": 0,
+      "poster": "https://image.tmdb.org/t/p/w500/hT1ZVEIcCcai8Q1X5yfGYSVcw52.jpg",
+      "banner_size_xl": "https://image.tmdb.org/t/p/w1280/1FN6pHFDDlhT7oVhABKKGtG6ga7.jpg",
+      "banner_size_md": "https://image.tmdb.org/t/p/w500/1FN6pHFDDlhT7oVhABKKGtG6ga7.jpg",
+      "trailer_iframe_url": "",
+      "published_by": "Perryelornitorrinco",
+      "id": 34
+    },
+    {
+      "title": "Captain Fantastic",
+      "original_title": "Captain Fantastic",
+      "subtitle": "Les preparó para todo, excepto para el mundo real",
+      "overview": "Ben es un padre que ha pasado diez años viviendo en los remotos bosques situados al noroeste del Pacífico criando a sus seis hijos. Sin embargo un día la familia debe abandonar su modo de vida en la naturaleza y volver a la civilización. Asimilar su nueva situación y adaptarse de nuevo a la sociedad moderna no les va a resultar nada sencillo.",
+      "release_date": "2016-07-08",
+      "duration": "118 min",
+      "generes": [
+        "Aventura",
+        "Drama"
+      ],
+      "vote_average": "9.0",
+      "vote_count": 1,
+      "vote_values": [
+        9
+      ],
+      "total_views": 0,
+      "views_24h": 0,
+      "views_7d": 0,
+      "views_1m": 0,
+      "poster": "https://image.tmdb.org/t/p/w500/kZHOnykzKPuEVldrzZKqvsNG7sL.jpg",
+      "banner_size_xl": "https://image.tmdb.org/t/p/w1280/tMyVb5CXHnBLQ8V7s0FuFA5V9nP.jpg",
+      "banner_size_md": "https://image.tmdb.org/t/p/w500/tMyVb5CXHnBLQ8V7s0FuFA5V9nP.jpg",
+      "trailer_iframe_url": "",
+      "published_by": "Perryelornitorrinco",
+      "id": 35
+    },
+    {
+      "title": "El gran showman",
+      "original_title": "The Greatest Showman",
+      "subtitle": "Lo imposible se hace realidad.",
+      "overview": "Biopic sobre Phineas Taylor Barnum (1810-1891), un empresario circense estadounidense que fundó el \"Ringling Bros. and Barnum & Bailey Circus\", conocido como \"el mayor espectáculo en la tierra\".",
+      "release_date": "2017-12-20",
+      "duration": "105 min",
+      "generes": [
+        "Drama"
+      ],
+      "vote_average": "8.0",
+      "vote_count": 1,
+      "vote_values": [
+        8
+      ],
+      "total_views": 0,
+      "views_24h": 0,
+      "views_7d": 0,
+      "views_1m": 0,
+      "poster": "https://image.tmdb.org/t/p/w500/4ssLEvNQ5oM9sJnV6FkDVgOtyAE.jpg",
+      "banner_size_xl": "https://image.tmdb.org/t/p/w1280/lrNKm3HNvGdZoAfiBKu7b04FLHN.jpg",
+      "banner_size_md": "https://image.tmdb.org/t/p/w500/lrNKm3HNvGdZoAfiBKu7b04FLHN.jpg",
+      "trailer_iframe_url": "",
+      "published_by": "Perryelornitorrinco",
+      "id": 36
+    },
+    {
+      "title": "En busca de la felicidad",
+      "original_title": "The Pursuit of Happyness",
+      "subtitle": "Un Film de Gabriele Muccino",
+      "overview": "Chris Gardner es un vendedor brillante y con talento, pero su empleo no le permite cubrir sus necesidades más básicas. Tanto es así que acaban echándolo, junto a su hijo de cinco años, de su piso de San Francisco y no tienen ningún lugar al que ir. Cuando Gardner consigue hacer unas prácticas en una prestigiosa correduría de bolsa, los dos protagonistas tendrán que afrontar muchas adversidades parar hacer realidad su sueño de una vida mejor. Basada en hechos reales.",
+      "release_date": "2006-12-14",
+      "duration": "115 min",
+      "generes": [
+        "Drama"
+      ],
+      "vote_average": "10.0",
+      "vote_count": 1,
+      "vote_values": [
+        10
+      ],
+      "total_views": 0,
+      "views_24h": 0,
+      "views_7d": 0,
+      "views_1m": 0,
+      "poster": "https://image.tmdb.org/t/p/w500/qF6JFr6IdfNep0x6yw3i7S8avAb.jpg",
+      "banner_size_xl": "https://image.tmdb.org/t/p/w1280/nKOQiWjhv6LXXSR3PiIab3LrKtU.jpg",
+      "banner_size_md": "https://image.tmdb.org/t/p/w500/nKOQiWjhv6LXXSR3PiIab3LrKtU.jpg",
+      "trailer_iframe_url": "",
+      "published_by": "Perryelornitorrinco",
+      "id": 37
+    },
+    {
+      "title": "Harry Potter y la Orden del Fénix",
+      "original_title": "Harry Potter and the Order of the Phoenix",
+      "subtitle": "Comienza la rebelión.",
+      "overview": "Harry Potter regresa por quinto año a Hogwarts aún sacudido por la tragedia ocurrida en el Torneo de los Tres Magos. Debido a que el Ministro de la Magia niega el regreso de Lord Voldemort, Harry se convierte en el centro de atención de la comunidad mágica. Mientras lucha con sus problemas en el colegio, incluyendo a la nueva profesora Dolores Umbridge, intentará aprender más sobre la misteriosa Orden del Fénix.",
+      "release_date": "2007-06-28",
+      "duration": "138 min",
+      "generes": [
+        "Aventura",
+        "Fantasía",
+        "Misterio"
+      ],
+      "vote_average": "0",
+      "vote_count": 0,
+      "vote_values": [],
+      "total_views": 0,
+      "views_24h": 0,
+      "views_7d": 0,
+      "views_1m": 0,
+      "poster": "https://image.tmdb.org/t/p/w500/vYUjcTKDXOHJOlilNK953m8zJww.jpg",
+      "banner_size_xl": "https://image.tmdb.org/t/p/w1280/sO2VWeJ8qagNtYoznyLRL8TeSkw.jpg",
+      "banner_size_md": "https://image.tmdb.org/t/p/w500/sO2VWeJ8qagNtYoznyLRL8TeSkw.jpg",
+      "trailer_iframe_url": "",
+      "published_by": "tu papi chulo ",
+      "id": 38
+    },
+    {
+      "title": "Blade",
+      "original_title": "Blade",
+      "subtitle": "El poder de un inmortal. El alma de un humano. El corazón de un héroe.",
+      "overview": "En un mundo cohabitado en guerra por hombres y vampiros Blade es un vampiro que, al contrario que el resto, no se alimenta de humanos, y que pretende acabar con la raza de \"seres superiores\" que mordieron a su madre cuando estaba embarazada.",
+      "release_date": "1998-08-21",
+      "duration": "120 min",
+      "generes": [
+        "Terror",
+        "Acción"
+      ],
+      "vote_average": "7.0",
+      "vote_count": 1,
+      "vote_values": [
+        7
+      ],
+      "total_views": 0,
+      "views_24h": 0,
+      "views_7d": 0,
+      "views_1m": 0,
+      "poster": "https://image.tmdb.org/t/p/w500/dCsTsFX4PT9wewpKYaddwPHYI3A.jpg",
+      "banner_size_xl": "https://image.tmdb.org/t/p/w1280/hZnnUq0mrUQ3e54SJVca4mf2oAQ.jpg",
+      "banner_size_md": "https://image.tmdb.org/t/p/w500/hZnnUq0mrUQ3e54SJVca4mf2oAQ.jpg",
+      "trailer_iframe_url": "",
+      "published_by": "tu papi chulo ",
+      "id": 39
+    },
+    {
+      "title": "Avatar: El sentido del agua",
+      "original_title": "Avatar: The Way of Water",
+      "subtitle": "Esta familia es nuestra fortaleza.",
+      "overview": "Ambientada más de una década después de los acontecimientos de la primera película, 'Avatar: The Way of Water' empieza contando la historia de la familia Sully (Jake, Neytiri y sus hijos), los problemas que los persiguen, lo que tienen que hacer para mantenerse a salvo, las batallas que libran para seguir con vida y las tragedias que sufren.",
+      "release_date": "2022-12-14",
+      "duration": "192 min",
+      "generes": [
+        "Ciencia-ficción",
+        "Aventura",
+        "Acción"
+      ],
+      "vote_average": "8.0",
+      "vote_count": 1,
+      "vote_values": [
+        8
+      ],
+      "total_views": 0,
+      "views_24h": 0,
+      "views_7d": 0,
+      "views_1m": 0,
+      "poster": "https://image.tmdb.org/t/p/w500/kUAG4ZQcsNbRyiPyAr3hLdsVgAq.jpg",
+      "banner_size_xl": "https://image.tmdb.org/t/p/w1280/s16H6tpK2utvwDtzZ8Qy4qm5Emw.jpg",
+      "banner_size_md": "https://image.tmdb.org/t/p/w500/s16H6tpK2utvwDtzZ8Qy4qm5Emw.jpg",
+      "trailer_iframe_url": "",
+      "published_by": "tu papi chulo ",
+      "id": 40
+    },
+    {
+      "title": "Dragon Ball Z: Estalla el duelo",
+      "original_title": "ドラゴンボールＺ 燃え尽きろ!!熱戦・烈戦・超激戦",
+      "subtitle": "",
+      "overview": "Un desconocido saiyan, Paragus, llega a la Tierra en busca de Vegeta para pedirle que gobierne el nuevo mundo de los saiyan y así reestablecer el antiguo poder de su raza. Trunks, Goku, Piccolo y Gohan acompañan a Vegeta al planeta de los saiyans. Pero el objetivo real de Paragus es que Broly, el súper saiyan legendario, extermine a los últimos saiyans que quedaban en la Tierra.",
+      "release_date": "1993-03-06",
+      "duration": "72 min",
+      "generes": [
+        "Animación",
+        "Ciencia-ficción",
+        "Acción"
+      ],
+      "vote_average": "10.0",
+      "vote_count": 1,
+      "vote_values": [
+        10
+      ],
+      "total_views": 0,
+      "views_24h": 0,
+      "views_7d": 0,
+      "views_1m": 0,
+      "poster": "https://image.tmdb.org/t/p/w500/ohLUrudLh5WggTa3f7eb4WyJhMo.jpg",
+      "banner_size_xl": "https://image.tmdb.org/t/p/w1280/eN1TMy5hT72G2v92x5cNM5trdFv.jpg",
+      "banner_size_md": "https://image.tmdb.org/t/p/w500/eN1TMy5hT72G2v92x5cNM5trdFv.jpg",
+      "trailer_iframe_url": "",
+      "published_by": "tu papi chulo ",
+      "id": 41
+    },
+    {
+      "title": "Torrente 5: Operación Eurovegas",
+      "original_title": "Torrente 5: Operación Eurovegas",
+      "subtitle": "La banca no siempre gana",
+      "overview": "Año 2018. Torrente sale de la cárcel y se encuentra aturdido ante una España convulsa y dividida. Debe encontrar respuestas en su interior para despejar su confusión, y por ello decide convertirse en un \"fuera de la ley\", así que se propone atracar un casino con una banda de incompetentes. A través de un contacto de su estancia en prisión, localiza a John Marshall, la persona que se ocupó de supervisar la seguridad cuando se planificó el principal casino-hotel de Eurovegas. Marshall, el más indicado para planificar un golpe, le explica la necesidad de organizar una banda de especialistas, que Torrente se encargará de reclutar entre sus contactos.",
+      "release_date": "2014-10-03",
+      "duration": "102 min",
+      "generes": [
+        "Acción",
+        "Comedia"
+      ],
+      "vote_average": "0",
+      "vote_count": 0,
+      "vote_values": [],
+      "total_views": 0,
+      "views_24h": 0,
+      "views_7d": 0,
+      "views_1m": 0,
+      "poster": "https://image.tmdb.org/t/p/w500/dfd0rTS4g6J7EqJDxWZm8KJjGKT.jpg",
+      "banner_size_xl": "https://image.tmdb.org/t/p/w1280/vIX3kOne1TzYO57cWPAWNtTV7dH.jpg",
+      "banner_size_md": "https://image.tmdb.org/t/p/w500/vIX3kOne1TzYO57cWPAWNtTV7dH.jpg",
+      "trailer_iframe_url": "",
+      "published_by": "tu papi chulo ",
+      "id": 42
+    },
+    {
+      "title": "Harry Potter y la piedra filosofal",
+      "original_title": "Harry Potter and the Philosopher's Stone",
+      "subtitle": "Viaja más allá de tu imaginación.",
+      "overview": "Harry Potter es un huérfano que vive con sus desagradables tíos, los Dursley, y su repelente primo Dudley. Se acerca su undécimo cumpleaños y tiene pocas esperanzas de recibir algún regalo, ya que nunca nadie se acuerda de él. Sin embargo, pocos días antes de su cumpleaños, una serie de misteriosas cartas dirigidas a él y escritas con una estridente tinta verde rompen la monotonía de su vida: Harry es un mago y sus padres también lo eran.",
+      "release_date": "2001-11-16",
+      "duration": "152 min",
+      "generes": [
+        "Aventura",
+        "Fantasía"
+      ],
+      "vote_average": "0",
+      "vote_count": 0,
+      "vote_values": [],
+      "total_views": 0,
+      "views_24h": 0,
+      "views_7d": 0,
+      "views_1m": 0,
+      "poster": "https://image.tmdb.org/t/p/w500/roKMM6S9DRGFNujmvqlk8l5YbN3.jpg",
+      "banner_size_xl": "https://image.tmdb.org/t/p/w1280/hziiv14OpD73u9gAak4XDDfBKa2.jpg",
+      "banner_size_md": "https://image.tmdb.org/t/p/w500/hziiv14OpD73u9gAak4XDDfBKa2.jpg",
+      "trailer_iframe_url": "",
+      "published_by": "tu papi chulo ",
+      "id": 43
+    },
+    {
+      "title": "Harry Potter y la cámara secreta",
+      "original_title": "Harry Potter and the Chamber of Secrets",
+      "subtitle": "¡Algo maligno ha vuelto a Hogwarts!",
+      "overview": "Harry regresa a su segundo año a Hogwarts, pero descubre que cosas malas ocurren debido a que un sitio llamado la Cámara de los Secretos ha sido abierto por el heredero de Slytherin y hará que los hijos de muggles, los impuros, aparezcan petrificados misteriosamente por un animal monstruoso.",
+      "release_date": "2002-11-13",
+      "duration": "150 min",
+      "generes": [
+        "Aventura",
+        "Fantasía"
+      ],
+      "vote_average": "0",
+      "vote_count": 0,
+      "vote_values": [],
+      "total_views": 0,
+      "views_24h": 0,
+      "views_7d": 0,
+      "views_1m": 0,
+      "poster": "https://image.tmdb.org/t/p/w500/3nvGqfZE3yrsqehpF107byUdUSq.jpg",
+      "banner_size_xl": "https://image.tmdb.org/t/p/w1280/1stUIsjawROZxjiCMtqqXqgfZWC.jpg",
+      "banner_size_md": "https://image.tmdb.org/t/p/w500/1stUIsjawROZxjiCMtqqXqgfZWC.jpg",
+      "trailer_iframe_url": "",
+      "published_by": "tu papi chulo ",
+      "id": 44
+    },
+    {
+      "title": "Harry Potter y el prisionero de Azkaban",
+      "original_title": "Harry Potter and the Prisoner of Azkaban",
+      "subtitle": "Todo cambiará.",
+      "overview": "Harry está deseando que termine el verano para comenzar un nuevo curso en Hogwarts, y abandonar lo antes posible la casa de sus despreciables tíos, los Dursley. Lo que desconoce Harry es que va a tener que abandonar Privet Drive antes de tiempo e inesperadamente después de convertir a su tía Marge en un globo gigante. Un autobús noctámbulo, y encantado por supuesto, le llevará a la taberna El Caldero Chorreante, donde le espera nada menos que Cornelius Fudge, el Ministro de Magia.",
+      "release_date": "2004-05-31",
+      "duration": "141 min",
+      "generes": [
+        "Aventura",
+        "Fantasía"
+      ],
+      "vote_average": "0",
+      "vote_count": 0,
+      "vote_values": [],
+      "total_views": 0,
+      "views_24h": 0,
+      "views_7d": 0,
+      "views_1m": 0,
+      "poster": "https://image.tmdb.org/t/p/w500/xBph7rrwtxUuDxyZVDQtbP2H0sM.jpg",
+      "banner_size_xl": "https://image.tmdb.org/t/p/w1280/vbk5CfaAHOjQPSAcYm6AoRRz2Af.jpg",
+      "banner_size_md": "https://image.tmdb.org/t/p/w500/vbk5CfaAHOjQPSAcYm6AoRRz2Af.jpg",
+      "trailer_iframe_url": "",
+      "published_by": "tu papi chulo ",
+      "id": 45
+    },
+    {
+      "title": "Harry Potter y la piedra filosofal",
+      "original_title": "Harry Potter and the Philosopher's Stone",
+      "subtitle": "Viaja más allá de tu imaginación.",
+      "overview": "Harry Potter es un huérfano que vive con sus desagradables tíos, los Dursley, y su repelente primo Dudley. Se acerca su undécimo cumpleaños y tiene pocas esperanzas de recibir algún regalo, ya que nunca nadie se acuerda de él. Sin embargo, pocos días antes de su cumpleaños, una serie de misteriosas cartas dirigidas a él y escritas con una estridente tinta verde rompen la monotonía de su vida: Harry es un mago y sus padres también lo eran.",
+      "release_date": "2001-11-16",
+      "duration": "152 min",
+      "generes": [
+        "Aventura",
+        "Fantasía"
+      ],
+      "vote_average": "0",
+      "vote_count": 0,
+      "vote_values": [],
+      "total_views": 0,
+      "views_24h": 0,
+      "views_7d": 0,
+      "views_1m": 0,
+      "poster": "https://image.tmdb.org/t/p/w500/sYPh29MkZTWewIL5adMwj5stqgA.jpg",
+      "banner_size_xl": "https://image.tmdb.org/t/p/w1280/hziiv14OpD73u9gAak4XDDfBKa2.jpg",
+      "banner_size_md": "https://image.tmdb.org/t/p/w500/hziiv14OpD73u9gAak4XDDfBKa2.jpg",
+      "trailer_iframe_url": "",
+      "published_by": "tu papi chulo ",
+      "id": 46
+    },
+    {
+      "title": "Harry Potter y la piedra filosofal",
+      "original_title": "Harry Potter and the Philosopher's Stone",
+      "subtitle": "Viaja más allá de tu imaginación.",
+      "overview": "Harry Potter es un huérfano que vive con sus desagradables tíos, los Dursley, y su repelente primo Dudley. Se acerca su undécimo cumpleaños y tiene pocas esperanzas de recibir algún regalo, ya que nunca nadie se acuerda de él. Sin embargo, pocos días antes de su cumpleaños, una serie de misteriosas cartas dirigidas a él y escritas con una estridente tinta verde rompen la monotonía de su vida: Harry es un mago y sus padres también lo eran.",
+      "release_date": "2001-11-16",
+      "duration": "152 min",
+      "generes": [
+        "Aventura",
+        "Fantasía"
+      ],
+      "vote_average": "0",
+      "vote_count": 0,
+      "vote_values": [],
+      "total_views": 0,
+      "views_24h": 0,
+      "views_7d": 0,
+      "views_1m": 0,
+      "poster": "https://image.tmdb.org/t/p/w500/tO0UGkNuQoxyXve0mvwtXP49NAO.jpg",
+      "banner_size_xl": "https://image.tmdb.org/t/p/w1280/hziiv14OpD73u9gAak4XDDfBKa2.jpg",
+      "banner_size_md": "https://image.tmdb.org/t/p/w500/hziiv14OpD73u9gAak4XDDfBKa2.jpg",
+      "trailer_iframe_url": "",
+      "published_by": "tu papi chulo ",
+      "id": 47
+    },
+    {
+      "title": "Harry Potter y el misterio del príncipe",
+      "original_title": "Harry Potter and the Half-Blood Prince",
+      "subtitle": "Oscuros secretos serán revelados.",
+      "overview": "En medio de los desastres que azotan a Inglaterra, Harry y sus compañeros vuelven a Hogwarts para cursar su sexto año de estudios; y aunque las medidas de seguridad han convertido al colegio en una fortaleza, algunos estudiantes son víctimas de ataques inexplicables. Harry sospecha que Draco Malfoy es el responsable de los mismos y decide averiguar la razón. Mientras tanto, Albus Dumbledore y el protagonista exploran el pasado de Lord Voldemort mediante recuerdos que el director ha recolectado. Con esto, Dumbledore planea preparar al muchacho para el día de la batalla final.",
+      "release_date": "2009-07-07",
+      "duration": "153 min",
+      "generes": [
+        "Aventura",
+        "Fantasía"
+      ],
+      "vote_average": "0",
+      "vote_count": 0,
+      "vote_values": [],
+      "total_views": 0,
+      "views_24h": 0,
+      "views_7d": 0,
+      "views_1m": 0,
+      "poster": "https://image.tmdb.org/t/p/w500/w6wsYKdXERaXRdByPsI2O9rn20b.jpg",
+      "banner_size_xl": "https://image.tmdb.org/t/p/w1280/urDWNffjwmNi5IQaezw9GwqkUXa.jpg",
+      "banner_size_md": "https://image.tmdb.org/t/p/w500/urDWNffjwmNi5IQaezw9GwqkUXa.jpg",
+      "trailer_iframe_url": "",
+      "published_by": "tu papi chulo ",
+      "id": 48
+    },
+    {
+      "title": "Harry Potter y la piedra filosofal",
+      "original_title": "Harry Potter and the Philosopher's Stone",
+      "subtitle": "Viaja más allá de tu imaginación.",
+      "overview": "Harry Potter es un huérfano que vive con sus desagradables tíos, los Dursley, y su repelente primo Dudley. Se acerca su undécimo cumpleaños y tiene pocas esperanzas de recibir algún regalo, ya que nunca nadie se acuerda de él. Sin embargo, pocos días antes de su cumpleaños, una serie de misteriosas cartas dirigidas a él y escritas con una estridente tinta verde rompen la monotonía de su vida: Harry es un mago y sus padres también lo eran.",
+      "release_date": "2001-11-16",
+      "duration": "152 min",
+      "generes": [
+        "Aventura",
+        "Fantasía"
+      ],
+      "vote_average": "0",
+      "vote_count": 0,
+      "vote_values": [],
+      "total_views": 0,
+      "views_24h": 0,
+      "views_7d": 0,
+      "views_1m": 0,
+      "poster": "https://image.tmdb.org/t/p/w500/wjKy2wSlDiLLLIkM7tHnxsXG8Tp.jpg",
+      "banner_size_xl": "https://image.tmdb.org/t/p/w1280/hziiv14OpD73u9gAak4XDDfBKa2.jpg",
+      "banner_size_md": "https://image.tmdb.org/t/p/w500/hziiv14OpD73u9gAak4XDDfBKa2.jpg",
+      "trailer_iframe_url": "",
+      "published_by": "tu papi chulo ",
+      "id": 49
+    },
+    {
+      "title": "El Gato con Botas: El último deseo",
+      "original_title": "Puss in Boots: The Last Wish",
+      "subtitle": "",
+      "overview": "Secuela de 'El gato con botas' (2011). El Gato con Botas descubre que su pasión por la aventura le ha pasado factura: ha consumido ocho de sus nueve vidas, por ello emprende un viaje épico para encontrar el mítico Último Deseo y restaurar sus nueve vidas...",
+      "release_date": "2022-12-07",
+      "duration": "103 min",
+      "generes": [
+        "Animación",
+        "Aventura",
+        "Comedia",
+        "Familia",
+        "Fantasía"
+      ],
+      "vote_average": "0",
+      "vote_count": 0,
+      "vote_values": [],
+      "total_views": 0,
+      "views_24h": 0,
+      "views_7d": 0,
+      "views_1m": 0,
+      "poster": "https://image.tmdb.org/t/p/w500/lyP4WNmUiiOgl4g2z7ywE0z6SGF.jpg",
+      "banner_size_xl": "https://image.tmdb.org/t/p/w1280/b1Y8SUb12gPHCSSSNlbX4nB3IKy.jpg",
+      "banner_size_md": "https://image.tmdb.org/t/p/w500/b1Y8SUb12gPHCSSSNlbX4nB3IKy.jpg",
+      "trailer_iframe_url": "",
+      "published_by": "tu papi chulo ",
+      "id": 50
+    },
+    {
+      "title": "El gato con botas",
+      "original_title": "Puss in Boots",
+      "subtitle": "Live for danger. Fight for justice. Pray for mercy.",
+      "overview": "Mucho antes de que conociera a Shrek, el conocido espadachín, amante y fuera de la ley Gato con Botas se convierte en un héroe al emprender una aventura junto a la dura y espabilada Kitty Zarpassuaves y el astuto Humpty Dumpty para salvar a su pueblo. Complicándoles las cosas por el camino están los infames forajidos Jack y Jill, que harán cualquier cosa para que Gato y su banda no lo consigan.",
+      "release_date": "2011-10-27",
+      "duration": "90 min",
+      "generes": [
+        "Acción",
+        "Animación",
+        "Aventura",
+        "Comedia",
+        "Familia",
+        "Western"
+      ],
+      "vote_average": "0",
+      "vote_count": 0,
+      "vote_values": [],
+      "total_views": 0,
+      "views_24h": 0,
+      "views_7d": 0,
+      "views_1m": 0,
+      "poster": "https://image.tmdb.org/t/p/w500/hC65iC1wphKzxlhbALFiavzSSFZ.jpg",
+      "banner_size_xl": "https://image.tmdb.org/t/p/w1280/eSdpZZQubPSZ47qppFfUPbKsWlw.jpg",
+      "banner_size_md": "https://image.tmdb.org/t/p/w500/eSdpZZQubPSZ47qppFfUPbKsWlw.jpg",
+      "trailer_iframe_url": "",
+      "published_by": "tu papi chulo ",
+      "id": 51
+    },
+    {
+      "title": "Ad astra",
+      "original_title": "Ad Astra",
+      "subtitle": "Las respuestas que buscamos están fuera de nuestro alcance.",
+      "overview": "El futuro cercano, un tiempo en el que tanto la esperanza como la adversidad impulsan a la humanidad a mirar hacia las estrellas y más allá. Mientras un misterioso fenómeno amenaza con destruir la vida en el planeta Tierra, el astronauta Roy McBride emprende una misión a través de la inmensidad del espacio y sus muchos peligros para descubrir la verdad sobre una expedición perdida que décadas antes afrontó audazmente el vacío y el silencio en busca de lo desconocido.",
+      "release_date": "2019-09-17",
+      "duration": "123 min",
+      "generes": [
+        "Ciencia-ficción",
+        "Drama"
+      ],
+      "vote_average": "0",
+      "vote_count": 0,
+      "vote_values": [],
+      "total_views": 0,
+      "views_24h": 0,
+      "views_7d": 0,
+      "views_1m": 0,
+      "poster": "https://image.tmdb.org/t/p/w500/kK6Oq4JywUNXmJ299efUkv1h6Mn.jpg",
+      "banner_size_xl": "https://image.tmdb.org/t/p/w1280/AeDS2MKGFy6QcjgWbJBde0Ga6Hd.jpg",
+      "banner_size_md": "https://image.tmdb.org/t/p/w500/AeDS2MKGFy6QcjgWbJBde0Ga6Hd.jpg",
+      "trailer_iframe_url": "",
+      "published_by": "tu papi chulo ",
+      "id": 52
+    },
+    {
+      "title": "Expediente Warren: The Conjuring",
+      "original_title": "The Conjuring",
+      "subtitle": "Basada en los archivos reales de los Warren.",
+      "overview": "Basada en una historia real documentada por los reputados demonólogos Ed y Lorraine Warren. Narra los encuentros sobrenaturales que vivió la familia Perron en su casa de Rhode Island a principios de los 70. El matrimonio Warren, investigadores de renombre en el mundo de los fenómenos paranormales, acudieron a la llamada de esta familia aterrorizada por la presencia en su granja de un ser maligno.",
+      "release_date": "2013-07-18",
+      "duration": "112 min",
+      "generes": [
+        "Terror",
+        "Suspense"
+      ],
+      "vote_average": "0",
+      "vote_count": 0,
+      "vote_values": [],
+      "total_views": 0,
+      "views_24h": 0,
+      "views_7d": 0,
+      "views_1m": 0,
+      "poster": "https://image.tmdb.org/t/p/w500/sKuHxkCogdk6YWzTyXYPoo9qd9n.jpg",
+      "banner_size_xl": "https://image.tmdb.org/t/p/w1280/ecKQlAEG95k62SMGhvX83oEqANK.jpg",
+      "banner_size_md": "https://image.tmdb.org/t/p/w500/ecKQlAEG95k62SMGhvX83oEqANK.jpg",
+      "trailer_iframe_url": "",
+      "published_by": "tu papi chulo ",
+      "id": 53
+    },
+    {
+      "title": "Expediente Warren: El caso Enfield",
+      "original_title": "The Conjuring 2",
+      "subtitle": "La siguiente historia real de los expedientes de Ed y Lorraine Warren.",
+      "overview": "Secuela de la exitosa 'Expediente Warren' (2013), que lleva de nuevo a la pantalla otro caso real de los expedientes de los renombrados demonólogos Ed y Lorraine Warren. En este caso ambos viajarán al norte de Londres para ayudar a una madre soltera que tiene a su cargo cuatro hijos y que vive sola con ellos en una casa plagada de espíritus malignos.",
+      "release_date": "2016-06-08",
+      "duration": "134 min",
+      "generes": [
+        "Terror",
+        "Suspense"
+      ],
+      "vote_average": "0",
+      "vote_count": 0,
+      "vote_values": [],
+      "total_views": 0,
+      "views_24h": 0,
+      "views_7d": 0,
+      "views_1m": 0,
+      "poster": "https://image.tmdb.org/t/p/w500/x4jUJ0fF60SSOeUUTkaRtmnDvwG.jpg",
+      "banner_size_xl": "https://image.tmdb.org/t/p/w1280/4mfFtlGeInPrQVm1hpv7th02yjx.jpg",
+      "banner_size_md": "https://image.tmdb.org/t/p/w500/4mfFtlGeInPrQVm1hpv7th02yjx.jpg",
+      "trailer_iframe_url": "",
+      "published_by": "tu papi chulo ",
+      "id": 54
+    },
+    {
+      "title": "Expediente Warren: Obligado por el demonio",
+      "original_title": "The Conjuring: The Devil Made Me Do It",
+      "subtitle": "Una historia real de asesinato por posesión demoníaca.",
+      "overview": "Los investigadores paranormales Ed y Lorraine Warren se encuentran con lo que se convertiría en uno de los casos más sensacionales de sus archivos. La lucha por el alma de un niño los lleva más allá de todo lo que habían visto antes, para marcar la primera vez en la historia de los Estados Unidos que un sospechoso de asesinato reclamaría posesión demoníaca como defensa.",
+      "release_date": "2021-05-25",
+      "duration": "112 min",
+      "generes": [
+        "Terror",
+        "Misterio",
+        "Suspense"
+      ],
+      "vote_average": "0",
+      "vote_count": 0,
+      "vote_values": [],
+      "total_views": 0,
+      "views_24h": 0,
+      "views_7d": 0,
+      "views_1m": 0,
+      "poster": "https://image.tmdb.org/t/p/w500/ghMQALCyytc6W0wlOlMIKiMSRKV.jpg",
+      "banner_size_xl": "https://image.tmdb.org/t/p/w1280/qi6Edc1OPcyENecGtz8TF0DUr9e.jpg",
+      "banner_size_md": "https://image.tmdb.org/t/p/w500/qi6Edc1OPcyENecGtz8TF0DUr9e.jpg",
+      "trailer_iframe_url": "",
+      "published_by": "tu papi chulo ",
+      "id": 55
+    },
+    {
+      "title": "Pulp Fiction",
+      "original_title": "Pulp Fiction",
+      "subtitle": "No sabrás los hechos hasta que veas la ficción.",
+      "overview": "Jules y Vincent, dos asesinos a sueldo con muy pocas luces, trabajan para Marsellus Wallace. Vincent le confiesa a Jules que Marsellus le ha pedido que cuide de Mia, su mujer. Jules le recomienda prudencia porque es muy peligroso sobrepasarse con la novia del jefe. Cuando llega la hora de trabajar, ambos deben ponerse manos a la obra. Su misión: recuperar un misterioso maletín.",
+      "release_date": "1994-09-10",
+      "duration": "154 min",
+      "generes": [
+        "Suspense",
+        "Crimen"
+      ],
+      "vote_average": "7.0",
+      "vote_count": 1,
+      "vote_values": [
+        7
+      ],
+      "total_views": 0,
+      "views_24h": 0,
+      "views_7d": 0,
+      "views_1m": 0,
+      "poster": "https://image.tmdb.org/t/p/w500/hNcQAuquJxTxl2fJFs1R42DrWcf.jpg",
+      "banner_size_xl": "https://image.tmdb.org/t/p/w1280/suaEOtk1N1sgg2MTM7oZd2cfVp3.jpg",
+      "banner_size_md": "https://image.tmdb.org/t/p/w500/suaEOtk1N1sgg2MTM7oZd2cfVp3.jpg",
+      "trailer_iframe_url": "",
+      "published_by": "Perryelornitorrinco",
+      "id": 56
+    },
+    {
+      "title": "Haru en el reino de los gatos",
+      "original_title": "猫の恩返し",
+      "subtitle": "No es tan malo ser un gato, ¿verdad?",
+      "overview": "Esta es la historia de Haru, una joven cuya suerte cambiará un día al volver del instituto, cuando salvará a un gato de ser atropellado por un camión. Pero no es un gato común, es Lune, el Príncipe del Reino de los Gatos. En recompensa por su acción, Haru será invitada a pasar un tiempo en el Reino de los Gatos, aunque no es lo que ella esperaba....",
+      "release_date": "2002-07-19",
+      "duration": "75 min",
+      "generes": [
+        "Aventura",
+        "Fantasía",
+        "Animación",
+        "Drama",
+        "Familia"
+      ],
+      "vote_average": "10.0",
+      "vote_count": 1,
+      "vote_values": [
+        10
+      ],
+      "total_views": 0,
+      "views_24h": 0,
+      "views_7d": 0,
+      "views_1m": 0,
+      "poster": "https://image.tmdb.org/t/p/w500/gqtdSLSuTmpPAQISIcCKH1ChBec.jpg",
+      "banner_size_xl": "https://image.tmdb.org/t/p/w1280/cuiJ6e6kSatyRlnCJrvJG2ElpSg.jpg",
+      "banner_size_md": "https://image.tmdb.org/t/p/w500/cuiJ6e6kSatyRlnCJrvJG2ElpSg.jpg",
+      "trailer_iframe_url": "",
+      "published_by": "Perryelornitorrinco",
+      "id": 57
+    },
+    {
+      "title": "Transformers",
+      "original_title": "Transformers",
+      "subtitle": "Su guerra. Nuestro mundo.",
+      "overview": "Dos razas de robots extraterrestres transformables (los villanos \"decepticons\" y los amistosos \"autobots\") llegan a la Tierra en busca de una misteriosa fuente de poder. En la guerra que estalla entre las dos razas, los hombres toman partido por los \"autobots\". Sam Witwicky (Shia LaBeouf), un avispado adolescente, que sólo desea conquistar a la bella Mikaela (Megan Fox), se convierte en la clave de una guerra que puede destruir a la humanidad.",
+      "release_date": "2007-06-27",
+      "duration": "144 min",
+      "generes": [
+        "Aventura",
+        "Ciencia-ficción",
+        "Acción"
+      ],
+      "vote_average": "0",
+      "vote_count": 0,
+      "vote_values": [],
+      "total_views": 0,
+      "views_24h": 0,
+      "views_7d": 0,
+      "views_1m": 0,
+      "poster": "https://image.tmdb.org/t/p/w500/aS7D2qkMtLWWXnKVVOz9KSWhRJV.jpg",
+      "banner_size_xl": "https://image.tmdb.org/t/p/w1280/77P56ZcL8M9Cw7FIptMIGjhNJoj.jpg",
+      "banner_size_md": "https://image.tmdb.org/t/p/w500/77P56ZcL8M9Cw7FIptMIGjhNJoj.jpg",
+      "trailer_iframe_url": "",
+      "published_by": "Perryelornitorrinco",
+      "id": 58
+    },
+    {
+      "title": "Thor",
+      "original_title": "Thor",
+      "subtitle": "El valor es inmortal.",
+      "overview": "Thor es un arrogante y codicioso guerrero cuya imprudencia desata una antigua guerra. Por ese motivo, su padre Odín lo castiga desterrándolo a la Tierra para que viva entre los hombres y descubra así el verdadero sentido de la humildad. Cuando el villano más peligroso de su mundo envía a la Tierra a las fuerzas más oscuras de Asgard, Thor se dará cuenta de lo que realmente hace falta para ser un verdadero héroe.",
+      "release_date": "2011-04-21",
+      "duration": "115 min",
+      "generes": [
+        "Aventura",
+        "Fantasía",
+        "Acción",
+        ""
+      ],
+      "vote_average": "7.0",
+      "vote_count": 1,
+      "vote_values": [
+        7
+      ],
+      "total_views": 0,
+      "views_24h": 0,
+      "views_7d": 0,
+      "views_1m": 0,
+      "poster": "https://image.tmdb.org/t/p/w500/qFAVW4XJaxhj7PcpiUI5hhO9bOX.jpg",
+      "banner_size_xl": "https://image.tmdb.org/t/p/w1280/cDJ61O1STtbWNBwefuqVrRe3d7l.jpg",
+      "banner_size_md": "https://image.tmdb.org/t/p/w500/cDJ61O1STtbWNBwefuqVrRe3d7l.jpg",
+      "trailer_iframe_url": "",
+      "published_by": "4Heber",
+      "id": 59
+    },
+    {
+      "title": "Kill Bill: Volumen 1",
+      "original_title": "Kill Bill: Vol. 1",
+      "subtitle": "La sangrienta historia de una venganza",
+      "overview": "Uma Thurman es una asesina que, el día de su boda, es atacada por los miembros de la banda de su jefe, Bill (David Carradine). Logra sobrevivir al ataque, aunque queda en coma. Cinco años después despierta con un trozo de metal en la cabeza y un gran deseo de venganza en su corazón.",
+      "release_date": "2003-10-10",
+      "duration": "111 min",
+      "generes": [
+        "Acción",
+        "Crimen",
+        ""
+      ],
+      "vote_average": "9.0",
+      "vote_count": 1,
+      "vote_values": [
+        9
+      ],
+      "total_views": 0,
+      "views_24h": 0,
+      "views_7d": 0,
+      "views_1m": 0,
+      "poster": "https://image.tmdb.org/t/p/w500/lfj709InbmljVqAXgUk2qjnujNN.jpg",
+      "banner_size_xl": "https://image.tmdb.org/t/p/w1280/lVy5Zqcty2NfemqKYbVJfdg44rK.jpg",
+      "banner_size_md": "https://image.tmdb.org/t/p/w500/lVy5Zqcty2NfemqKYbVJfdg44rK.jpg",
+      "trailer_iframe_url": "",
+      "published_by": "4Heber",
+      "id": 60
     }
   ],
   "users": [
@@ -459,7 +1467,10 @@
         "profile_img": "none",
         "movies_reviews": [],
         "reviews_count": 0,
-        "friends_list": [6],
+        "friends_list": [
+          6,
+          7
+        ],
         "groups": [],
         "movies_seen": [
           6,
@@ -470,7 +1481,8 @@
           11,
           13,
           14,
-          17
+          17,
+          60
         ],
         "movies_pendent": [
           6,
@@ -484,7 +1496,8 @@
           5,
           7,
           8,
-          14
+          14,
+          60
         ],
         "movies_voted": [
           6,
@@ -496,12 +1509,14 @@
           11,
           13,
           14,
-          17
+          17,
+          59,
+          60
         ]
       },
-      "cookie": "ñIfwchw256-w",
+      "cookie": "QR1JGLMm11u5",
       "id": 5,
-      "reviews_count": 10
+      "reviews_count": 12
     },
     {
       "name": "Sebas",
@@ -515,7 +1530,9 @@
         "profile_img": "none",
         "movies_reviews": [],
         "reviews_count": 0,
-        "friends_list": [5],
+        "friends_list": [
+          5
+        ],
         "groups": [],
         "movies_seen": [
           18,
@@ -541,6 +1558,132 @@
       "reviews_count": 5,
       "cookie": "430fPibPe_QN",
       "id": 6
+    },
+    {
+      "name": "Perryelornitorrinco",
+      "email": "perryperry@gmail.com",
+      "password": "perryperry1",
+      "created_at": "2/1 - 15:16",
+      "role": "Colaborador",
+      "messages": [],
+      "notifications": [],
+      "profile": {
+        "profile_img": "none",
+        "movies_reviews": [],
+        "reviews_count": 0,
+        "friends_list": [],
+        "groups": [],
+        "movies_seen": [
+          6,
+          22,
+          19,
+          12,
+          56
+        ],
+        "movies_pendent": [],
+        "movies_favourite": [
+          22,
+          23,
+          17,
+          18
+        ],
+        "movies_voted": [
+          6,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          19,
+          12,
+          11,
+          16,
+          10,
+          15,
+          17,
+          18,
+          56,
+          57,
+          8
+        ]
+      },
+      "reviews_count": 20,
+      "cookie": "Bw6vxtVkox9R",
+      "id": 7
+    },
+    {
+      "name": "Javi Potter",
+      "email": "javi16tg@gmail.com",
+      "password": "tunegritofav",
+      "created_at": "2/1 - 16:46",
+      "role": "Colaborador",
+      "messages": [
+        {
+          "id": 1,
+          "content": "Bienvenido a la comunidad de Movies Replay!"
+        }
+      ],
+      "notifications": [
+        {
+          "id": 1,
+          "content": "Configura tu perfil para poder subir tu foto o desbloquear la función de 'Publicar review' seleccionando el rol de 'Colaborador' para que puedas crear contenido!"
+        }
+      ],
+      "profile": {
+        "profile_img": "none",
+        "movies_reviews": [],
+        "reviews_count": 0,
+        "friends_list": [],
+        "groups": [],
+        "movies_seen": [],
+        "movies_pendent": [],
+        "movies_favourite": [
+          11
+        ],
+        "movies_voted": [
+          11,
+          39,
+          40,
+          41
+        ]
+      },
+      "reviews_count": 18,
+      "cookie": "IpYX1pRvkisp",
+      "id": 8
+    },
+    {
+      "name": "random02",
+      "email": "random@gmail.com",
+      "password": "random02",
+      "created_at": "2/1 - 18:35",
+      "role": "Colaborador",
+      "messages": [],
+      "notifications": [],
+      "profile": {
+        "profile_img": "none",
+        "movies_reviews": [],
+        "reviews_count": 0,
+        "friends_list": [],
+        "groups": [],
+        "movies_seen": [],
+        "movies_pendent": [],
+        "movies_favourite": [],
+        "movies_voted": []
+      },
+      "reviews_count": 0,
+      "cookie": "Wbg3sVm3yÑ4w",
+      "id": 9
     }
   ],
   "groups": [

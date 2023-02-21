@@ -9,6 +9,7 @@ export default {
             topMovies: [],
             user: [],
             friendsMovies: [],
+            bannerGradientTheme: "darkBannerGradient",
         }
     },
     components: {
@@ -170,8 +171,12 @@ export default {
 <!-- CUSTOM STYLES SECTION -->
 <style lang="scss">
 
-    #bannerGradient {
+    #darkBannerGradient {
         background-image: radial-gradient( circle farthest-corner at 5% 10%, #1C1E32 -15%, #11111F 30%, #11111F 50%, rgba(0, 0, 0, 0.075) 70% );
+    }
+
+    #lightBannerGradient {
+        background-image: radial-gradient( circle farthest-corner at 5% 10%, #d0dde9 -15%, #FFF 30%, #C2D7EB 50%, rgba(0, 0, 0, 0.075) 70% );
     }
 
 </style>
@@ -187,19 +192,19 @@ export default {
             <div v-for="movie in topMovies" :id="movie.carousel" class="hidden duration-700 ease-in-out">
 
                 <!-- Main Content container -->
-                <div id="bannerGradient" class="h-full w-full lg:pt-10 xl:pt-16 2xl:pl-28 xl:pl-24 lg:pl-20">
+                <div class="h-full w-full md:pt-10 xl:pt-16 2xl:pl-28 xl:pl-24 md:pl-20 dark:bg-gradient-to-r dark:from-d-surface dark:via-d-surface dark:to-transparent bg-gradient-to-r from-d-soft-white via-l-theme-from to-transparent">
                     <h1 id="1-movie-title" class="mb-2 2xl:text-5xl xl:text-3xl lg:text-xl font-bold dark:text-d-soft-white tracking-wider">{{ movie.title }}</h1>
 
-                    <h2 class="2xl:text-xl xl:text-xl lg:text-md dark:text-d-soft-white tracking-wider">{{ movie.subtitle }}</h2>
+                    <h2 class="2xl:text-xl xl:text-xl lg:text-md md:text-sm dark:text-d-soft-white tracking-wider">{{ movie.subtitle }}</h2>
 
                     <div class="h-16 w-48 2xl:mb-20 xl:mb-16 lg:mb-12 flex flex-row justify-between dark:text-d-soft-white">
                         <!-- Score -->
-                        <div class="w-fit flex flex-row items-center lg:text-sm xl:text-base">
+                        <div class="w-fit flex flex-row items-center md:text-sm xl:text-base">
                             <img src="../assets/Icons/star-00.png" alt="star-image" class="w-8 mr-2">
                             <p id="1-vote-average">{{ movie.vote_average }}</p>
                         </div>
                         <!-- Time -->
-                        <div class="w-fit flex flex-row items-center lg:text-sm xl:text-base">
+                        <div class="w-fit flex flex-row items-center md:text-sm xl:text-base">
                             <img src="../assets/Icons/wall-clock.png" alt="time-image" class="w-8 mr-2">
                             <p id="1-duration">{{ movie.duration }}</p>
                         </div>
@@ -207,7 +212,7 @@ export default {
 
                     <div class="2xl:w-[40%] xl:w-[60%] flex flex-row items-center">
                         <!-- +Info bttn -->
-                        <router-link :to="{name: 'review', params: {movie_id: movie.id}}" class="2xl:px-5 2xl:py-2.5 xl:w-24 xl:py-2 lg:py-1 lg:px-2 text-l-surface-color bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-bold tracking-wider rounded-lg text-sm dark:text-d-soft-white dark:bg-d-background dark:hover:bg-d-secondary dark:hover:text-d-surface transition ease-in duration-150">
+                        <router-link :to="{name: 'review', params: {movie_id: movie.id}}" class="2xl:px-5 2xl:py-2.5 xl:w-24 xl:py-2 md:py-1 md:px-2 text-l-surface-color bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-bold tracking-wider rounded-lg text-sm dark:text-d-soft-white dark:bg-d-background dark:hover:bg-d-secondary dark:hover:text-d-surface transition ease-in duration-150">
                             + INFO
                         </router-link>
                     </div>

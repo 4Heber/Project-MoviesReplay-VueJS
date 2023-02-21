@@ -14,7 +14,7 @@
             <Logotype v-if="this.renderLogotype" />
 
             <!-- Searchbar -->
-            <form v-else class="xl:w-[50%] lg:w-[55%] md:w-full">
+            <form v-else class="xl:w-[50%] lg:w-[55%] md:w-full md:mr-10">
                 <label for="default-search" class="mb-2 text-base dark:text-d-soft-white sr-only">Search</label>
                 <div class="relative">
                     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none ">
@@ -120,9 +120,9 @@
                     </a>
                 
                     <!-- Default Profile Image -->
-                    <div v-if="no_profile_img" class="dark:text-d-secondary bg-d-soft-white dark:bg-d-surface text-4xl w-16 h-16 flex justify-center items-center rounded-full cursor-pointer">
+                    <router-link :to="{name: 'perfil'}" v-if="no_profile_img" class="dark:text-d-secondary bg-d-soft-white dark:bg-d-surface text-4xl w-16 h-16 flex justify-center items-center rounded-full cursor-pointer">
                         {{ default_img }}
-                    </div>
+                    </router-link>
 
                     <!-- User profile image -->
                     <router-link v-else :to="{name: 'profile'}" class="w-16 h-16 flex justify-center items-center rounded-full overflow-hidden">

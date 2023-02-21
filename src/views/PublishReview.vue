@@ -57,7 +57,7 @@
                         <!-- Movie title to search -->
                         <div class="relative inline-block mb-8 mr-4 w-80">
                             <label for="username" class="block mb-2 text-sm lg:text-base font-medium text-gray-900 dark:text-white">Título de la película</label>
-                            <input type="text" id="title_to_search" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-l-soft-black focus:border-l-soft-black block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-d-soft-white dark:shadow-sm-light" placeholder="Nombre usuario" required>
+                            <input type="text" id="title_to_search" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-l-soft-black focus:border-l-soft-black block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-d-soft-white dark:shadow-sm-light" placeholder="Título" required>
 
                             <!-- Error message -->
                             <p v-show="this.errorMessageTitleSearch" class="absolute -bottom-6 text-sm dark:text-d-warning">El título no puede estar vacío.</p>
@@ -140,9 +140,19 @@
                 <path d="M4.5 12.75l6 6 9-13.5" stroke-linecap="round" stroke-linejoin="round"></path>
             </svg>
 
-            <div class="flex flex-col mx-4">
+            <div v-show="this.popupModal.check_icon" class="flex flex-col mx-4">
                 <p class="ml-2 dark:text-d-secondary text-d-surface">{{ this.popupModal.message }}</p>
                 <router-link :to="{name: 'review', params: {movie_id: this.routeParamID}}" class="ml-2 underline underline-offset-2 dark:text-d-secondary text-d-surface">Ver review creada</router-link>
+            </div>
+
+            <!-- Info icon -->
+            <svg v-show="this.popupModal.info_icon" class="w-8 dark:text-d-warning" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+
+            <div v-show="this.popupModal.info_icon" class="flex flex-col mx-4">
+                <p class="ml-2 dark:text-d-warning text-d-surface">{{ this.popupModal.message }}</p>
+                <router-link :to="{name: 'review', params: {movie_id: this.routeParamID}}" class="ml-2 underline underline-offset-2 dark:text-d-soft-white text-d-surface">Ver review</router-link>
             </div>
 
             <svg @click="this.popupModal.class = 'opacity-0'" class="w-8 dark:text-d-soft-white ml-4 hover:dark:opacity-75 cursor-pointer" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -183,10 +193,12 @@ export default{
             opacityStep2: "opacity-30",
             opacityStep3: "opacity-20",
             routeParamID: Number,
+            reviewExists: false,
             popupModal: {
                 message: String,
                 class: String,
-                check_icon: false
+                check_icon: false,
+                info_icon: false
             },
             apiKey: "b5ab218aac775c0e33a4f30ee0fd1e3c"
         }
@@ -211,6 +223,7 @@ export default{
 
                             // Clear previous posters and names
                             this.postersURL = [];
+                            this.moviesOptions = [];
 
                             for(var i=0; i < 4; i++){
 
@@ -332,84 +345,109 @@ export default{
                     var movieReviewContent = document.getElementById('movieOverviewResult').value
                 }
 
-                // GET more details of the movie
-                var detailsBaseURL = "https://api.themoviedb.org/3/movie/"+ this.movieToPublish.id +"?api_key="+ this.apiKey +"&language=es";
-
-                await fetch(detailsBaseURL)
+                // Check if movie selected is already published
+                await fetch('http://localhost:3000/movies')
                     .then(response => response.json())
-                    .then(data => {
-                        this.movieToPublish.duration = data.runtime+" min"
-                        this.movieToPublish.subtitle = data.tagline
-                    })
+                    .then(movies => {
 
-                const newMovie = {
-                    title: movieTitle,
-                    original_title: this.movieToPublish.original_title,
-                    subtitle: this.movieToPublish.subtitle,
-                    overview: movieReviewContent,
-                    release_date: movieReleaseDate,
-                    duration: this.movieToPublish.duration,
-                    generes: movieGeneres,
-                    vote_average: "0",
-                    vote_count: 0,
-                    vote_values: [],
-                    total_views: 0,
-                    views_24h: 0,
-                    views_7d: 0,
-                    views_1m: 0,
-                    poster: this.movieToPublish.urlPoster,
-                    banner_size_xl: this.movieToPublish.banner_1,
-                    banner_size_md: this.movieToPublish.banner_2,
-                    trailer_iframe_url: "",
-                    published_by: this.user.name
-                }
+                        movies.forEach(movie => {
+                            if(movie.title == movieTitle && movie.release_date == movieReleaseDate){
+                                this.popupModal.message = "La película '"+ movieTitle +"' ya tiene una review!"
+                                this.routeParamID = movie.id
+                                this.popupModal.class = "dark:border-d-warning opacity-100"
+                                this.popupModal.check_icon = false
+                                this.popupModal.info_icon = true
 
-                try{
-
-                    const base_URL = 'http://localhost:3000/'
-
-                    // POST new movie review
-                    await fetch(base_URL+'movies',{
-                        method: 'POST',
-                        mode: 'cors',
-                        credentials: 'same-origin',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(newMovie)
-                    })
-                        .then(response => response.json())
-                        .then(data => console.log('MOVIE REVIEW PUBLISHED'))
-
-                    // GET published review id on db
-                    await fetch(base_URL+'movies')
-                        .then(response => response.json())
-                        .then(movies => {
-
-                            movies.forEach(movie => {
-                                if(movie.title == this.movieToPublish.title && movie.release_date == this.movieToPublish.release_date){
-                                    this.routeParamID = movie.id
-                                }
-                            })
+                                this.reviewExists = true
+                            }
                         })
 
-                    // PATCH user reviews_count +1
-                    this.user.reviews_count += 1;
-
-                    await fetch(base_URL+'users/'+this.user.id,{
-                        method: 'PATCH',
-                        mode: 'cors',
-                        credentials: 'same-origin',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(this.user)
                     })
-                    .then(response => response.json())
-                    .then(data => console.log('USER REVIEWS_COUNT +1'))
 
-                    this.popupModal.message = "Nueva review de '"+ this.movieToPublish.title +"' publicada!"
-                    this.popupModal.check_icon = true;
-                    this.popupModal.class = "opacity-100 dark:border-d-secondary"
+                if(this.reviewExists){
+                    return
+                }
+                else{
 
-                }catch(err){
-                    console.error('PublishReview.vue - Error en PublishReview() POST new movie review: '+ err);
+                    // GET more details of the movie
+                    var detailsBaseURL = "https://api.themoviedb.org/3/movie/"+ this.movieToPublish.id +"?api_key="+ this.apiKey +"&language=es";
+
+                    await fetch(detailsBaseURL)
+                        .then(response => response.json())
+                        .then(data => {
+                            this.movieToPublish.duration = data.runtime+" min"
+                            this.movieToPublish.subtitle = data.tagline
+                        })
+
+                    const newMovie = {
+                        title: movieTitle,
+                        original_title: this.movieToPublish.original_title,
+                        subtitle: this.movieToPublish.subtitle,
+                        overview: movieReviewContent,
+                        release_date: movieReleaseDate,
+                        duration: this.movieToPublish.duration,
+                        generes: movieGeneres,
+                        vote_average: "0",
+                        vote_count: 0,
+                        vote_values: [],
+                        total_views: 0,
+                        views_24h: 0,
+                        views_7d: 0,
+                        views_1m: 0,
+                        poster: this.movieToPublish.urlPoster,
+                        banner_size_xl: this.movieToPublish.banner_1,
+                        banner_size_md: this.movieToPublish.banner_2,
+                        trailer_iframe_url: "",
+                        published_by: this.user.name
+                    }
+
+                    try{
+
+                        const base_URL = 'http://localhost:3000/'
+
+                        // POST new movie review
+                        await fetch(base_URL+'movies',{
+                            method: 'POST',
+                            mode: 'cors',
+                            credentials: 'same-origin',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(newMovie)
+                        })
+                            .then(response => response.json())
+                            .then(data => console.log('MOVIE REVIEW PUBLISHED'))
+
+                        // GET published review id on db
+                        await fetch(base_URL+'movies')
+                            .then(response => response.json())
+                            .then(movies => {
+
+                                movies.forEach(movie => {
+                                    if(movie.title == this.movieToPublish.title && movie.release_date == this.movieToPublish.release_date){
+                                        this.routeParamID = movie.id
+                                    }
+                                })
+                            })
+
+                        // PATCH user reviews_count +1
+                        this.user.reviews_count += 1;
+
+                        await fetch(base_URL+'users/'+this.user.id,{
+                            method: 'PATCH',
+                            mode: 'cors',
+                            credentials: 'same-origin',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(this.user)
+                        })
+                        .then(response => response.json())
+                        .then(data => console.log('USER REVIEWS_COUNT +1'))
+
+                        this.popupModal.message = "Nueva review de '"+ this.movieToPublish.title +"' publicada!"
+                        this.popupModal.check_icon = true;
+                        this.popupModal.class = "opacity-100 dark:border-d-secondary"
+
+                    }catch(err){
+                        console.error('PublishReview.vue - Error en PublishReview() POST new movie review: '+ err);
+                    }
                 }
             }
     },

@@ -7,6 +7,7 @@ const routes = [
     { path: '/perfil', name: 'perfil', component: () => import('./views/Perfil.vue') },
     { path: '/review/:movie_id', name: 'review', component: () => import('./views/ReviewShow.vue') },
     { path: '/publicar-review', name: 'publish', component: () => import('./views/PublishReview.vue') },
+    { path: '/explorar', name: 'explore', component: () => import('./views/Explore.vue')}
 ]
 
 const router = createRouter({

@@ -32,10 +32,11 @@
         <!-- Menu -->
         <section class="relative h-4/5 flex-col">
             <!-- Views -->
-            <h2 @click="goTop" class="2xl:block lg:hidden md:text-xl pb-8 pt-4 pl-8 sticky top-0 dark:text-d-primary dark:bg-d-surface dark:hover:text-d-variant-0 text-2xl italic tracking-wider font-bold cursor-pointer">MENU</h2>
+            <h2 @click="goTop" class="2xl:block lg:hidden md:text-xl pb-8 pt-4 pl-8 sticky top-0 z-40 dark:text-d-primary dark:bg-d-surface dark:hover:text-d-variant-0 text-2xl italic tracking-wider font-bold cursor-pointer">MENU</h2>
 
             <div class="2xl:hidden lg:block md:hidden w-full mb-8 border-b-2 border-d-background"></div>
 
+            <!-- Main links -->
             <ul class="lg:flex-col 2xl:text-lg mb-8 dark:text-d-soft-white">
                 <!-- Home link -->
                 <router-link :to="{name: 'home'}" class="flex 2xl:justify-start items-center 2xl:pl-8 mb-4 border-l-4 border-d-surface group/link hover:border-l-4 active:border-l-8 hover:border-d-secondary transition ease-in duration-150 lg:justify-center lg:pl-0 xl:text-lg lg:text-base md:pl-8">
@@ -48,7 +49,7 @@
                 </router-link>
 
                 <!-- Explorar link -->
-                <router-link :to="{name: 'home'}" class="flex 2xl:justify-start items-center 2xl:pl-8 mb-4 border-l-4 border-d-surface group/link hover:border-l-4 active:border-l-8 hover:border-d-secondary transition ease-in duration-150 lg:justify-center lg:pl-0 xl:text-lg lg:text-base md:pl-8">
+                <router-link :to="{name: 'explore'}" class="flex 2xl:justify-start items-center 2xl:pl-8 mb-4 border-l-4 border-d-surface group/link hover:border-l-4 active:border-l-8 hover:border-d-secondary transition ease-in duration-150 lg:justify-center lg:pl-0 xl:text-lg lg:text-base md:pl-8">
                     <svg class="lg:w-8 md:w-8" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M15.75 15.75l-2.489-2.489m0 0a3.375 3.375 0 10-4.773-4.773 3.375 3.375 0 004.774 4.774zM21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"></path>
                     </svg>
@@ -100,7 +101,7 @@
             </ul>
 
             <!-- Following users -->
-            <h2 v-if="cookie" @click="goTop" class="pb-8 pl-8 sticky top-16 md:text-xl dark:text-d-primary dark:bg-d-surface dark:hover:text-d-variant-0 text-2xl italic tracking-wider font-bold cursor-pointer 2xl:block lg:hidden">
+            <h2 v-if="cookie" @click="goTop" class="pb-8 pl-8 sticky top-16 z-40 md:text-xl dark:text-d-primary dark:bg-d-surface dark:hover:text-d-variant-0 text-2xl italic tracking-wider font-bold cursor-pointer 2xl:block lg:hidden">
                 SIGUIENDO
             </h2>
 
@@ -136,7 +137,7 @@
             <div class="lg:block 2xl:hidden md:hidden w-full mb-8 border-b-2 border-d-background"></div>
 
             <!-- Logout -->
-            <div @click="logout" class="flex items-center 2xl:justify-start 2xl:pl-8 2xl:pt-8 mb-8 2xl:text-lg border-l-4 border-d-surface group/logout hover:border-l-4 hover:border-d-secondary active:border-l-8 transition ease-in duration-150 lg:justify-center lg:pl-0 md:pl-8 cursor-pointer">
+            <div v-show="cookie" @click="logout" class="flex items-center 2xl:justify-start 2xl:pl-8 2xl:pt-8 mb-8 2xl:text-lg border-l-4 border-d-surface group/logout hover:border-l-4 hover:border-d-secondary active:border-l-8 transition ease-in duration-150 lg:justify-center lg:pl-0 md:pl-8 cursor-pointer">
                 <svg class="w-8 lg:w-10 md:w-8 md:dark:text-d-soft-white" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" stroke-linecap="round" stroke-linejoin="round"></path>
                 </svg>
@@ -162,13 +163,13 @@
                         <p class="text-2xl">{{ contributor.name.charAt(0).toUpperCase() }}</p>
                     </div>
 
-                    <div class="w-full flex flex-row justify-between items-center">
+                    <div class="w-full flex flex-col justify-start items-start">
                         <p class="pl-4 2xl:text-base lg:hidden 2xl:block dark:text-d-soft-white">{{ contributor.name }}</p>
-                        <span class="dark:text-d-warning mr-4">{{ contributor.reviews_count }} - Publicaciones</span>
+                        <p class="dark:text-d-warning mr-4 pl-4">{{ contributor.reviews_count }} <span class="dark:text-d-muted text-d-surface"> - Publicaciones</span></p>
                     </div>
                     
-                    <div class="opacity-0 group-hover/link:opacity-100 absolute -right-14 h-6 w-6 z-20 rotate-45 dark:bg-d-background transition ease-in duration-150"></div>
-                    <div class="opacity-0 group-hover/link:opacity-100 flex justify-center items-center absolute -right-40 w-[115px] h-8 rounded-r-full dark:bg-gradient-to-r dark:from-d-background dark:to-d-surface transition ease-in duration-150">
+                    <div class="opacity-0 group-hover/link:opacity-100 absolute right-5 h-6 w-6 z-20 rotate-45 dark:bg-d-background transition ease-in duration-150"></div>
+                    <div class="opacity-0 group-hover/link:opacity-100 flex justify-center items-center absolute -right-20 w-[115px] h-8 rounded-r-full dark:bg-gradient-to-r dark:from-d-background dark:to-d-surface transition ease-in duration-150">
                         <p class="text-base dark:text-d-secondary tracking-widest">Ver perfil</p>
                     </div>
                 </li>
@@ -215,7 +216,24 @@ export default {
     
     //Get authenticated user
     if(document.cookie == ""){
-        return this.user = []
+        
+        this.user = []
+
+        // GET ALL
+        await fetch(baseURL)
+        .then(response => response.json())
+        .then(data => {
+                // Get contributors
+                data.forEach(user => {
+
+                    if(user.role.includes('Colaborador') || user.role == "Colaborador"){
+                        this.contributors.push({id: user.id, name: user.name, profile_img: user.profile.profile_img, reviews_count: user.reviews_count})
+                    }
+
+                    // Sort by reviews count num
+                    this.contributors = this.contributors.sort((a, b) => (a.reviews_count < b.reviews_count) ? 1 : -1)
+                });
+        });
     }
     else{
         this.cookie = true;
