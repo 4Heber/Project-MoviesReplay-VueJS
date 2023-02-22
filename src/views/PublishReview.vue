@@ -133,7 +133,7 @@
         <!-- Modals fixed section -->
 
         <!-- Pop-up Modal successful published -->
-        <span class="opacity-0 fixed bottom-10 right-14 px-8 py-4 flex flex-row items-center rounded-lg text-l-soft-black dark:border-l-8 dark:bg-d-surface bg-d-soft-white transition ease-in-out duration-200" :class="this.popupModal.class">
+        <span class="opacity-0 fixed z-40 bottom-10 right-14 px-8 py-4 flex flex-row items-center rounded-lg text-l-soft-black dark:border-l-8 dark:bg-d-surface bg-d-soft-white transition ease-in-out duration-200" :class="this.popupModal.class">
 
             <!-- Success icon -->
             <svg v-show="this.popupModal.check_icon" class="w-8 dark:text-d-secondary" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -239,6 +239,8 @@ export default{
 
                                 this.postersURL.push(movieOption)
                             }
+
+                            console.log(this.moviesOptions)
                         });
                         
                         // Change images placeholders by 4 posters options
@@ -262,6 +264,13 @@ export default{
                 this.movieToPublish.urlPoster = this.postersURL[movie_index].url
                 this.movieToPublish.banner_1 = "https://image.tmdb.org/t/p/w1280" + movieSelected.backdrop_path;
                 this.movieToPublish.banner_2 = "https://image.tmdb.org/t/p/w500" + movieSelected.backdrop_path;
+
+                // GET selected movie to find youtube id for build iframe embedded url
+                await fetch("https://api.themoviedb.org/3/movie/"+ movieSelected.id +"/videos?api_key="+ this.apiKey +"&language=es")
+                    .then(response => response.json())
+                    .then(data => {
+                        this.movieToPublish.trailer_id = data.results[0].key
+                    })
 
                 // console.log(this.movieToPublish)
 
@@ -397,7 +406,7 @@ export default{
                         poster: this.movieToPublish.urlPoster,
                         banner_size_xl: this.movieToPublish.banner_1,
                         banner_size_md: this.movieToPublish.banner_2,
-                        trailer_iframe_url: "",
+                        trailer_iframe_url: "https://www.youtube.com/embed/" + this.movieToPublish.trailer_id,
                         published_by: this.user.name
                     }
 

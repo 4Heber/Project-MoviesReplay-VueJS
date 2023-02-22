@@ -25,7 +25,7 @@
       "poster": "https://image.tmdb.org/t/p/w500/nrSaXF39nDfAAeLKksRCyvSzI2a.jpg",
       "banner_size_xl": "https://image.tmdb.org/t/p/w1280/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg",
       "banner_size_md": "https://image.tmdb.org/t/p/w500/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg",
-      "trailer_iframe_url": "",
+      "trailer_iframe_url": "https://www.youtube.com/embed/UoSSbmD9vqc",
       "published_by": "4Heber",
       "id": 6
     },
@@ -139,7 +139,7 @@
       "poster": "https://image.tmdb.org/t/p/w500/mPTzXksC8HcAj6EM6WjZFJVJEzF.jpg",
       "banner_size_xl": "https://image.tmdb.org/t/p/w1280/bQXAqRx2Fgc46uCVWgoPz5L5Dtr.jpg",
       "banner_size_md": "https://image.tmdb.org/t/p/w500/bQXAqRx2Fgc46uCVWgoPz5L5Dtr.jpg",
-      "trailer_iframe_url": "",
+      "trailer_iframe_url": "https://www.youtube.com/embed/Z4LnanvJh3I",
       "published_by": "4Heber",
       "id": 10
     },
@@ -1452,6 +1452,33 @@
       "trailer_iframe_url": "",
       "published_by": "4Heber",
       "id": 60
+    },
+    {
+      "title": "Alien, el octavo pasajero",
+      "original_title": "Alien",
+      "subtitle": "En el espacio nadie podrá oír tus gritos.",
+      "overview": "De regreso a la Tierra, la nave de carga Nostromo interrumpe su viaje y despierta a sus siete tripulantes. El ordenador central, MADRE, ha detectado la misteriosa transmisión de una forma de vida desconocida, procedente de un planeta cercano aparentemente deshabitado. La nave se dirige entonces al extraño planeta para investigar el origen de la comunicación.",
+      "release_date": "1979-05-25",
+      "duration": "117 min",
+      "generes": [
+        "Terror",
+        "Ciencia-ficción"
+      ],
+      "vote_average": "9.0",
+      "vote_count": 1,
+      "vote_values": [
+        9
+      ],
+      "total_views": 0,
+      "views_24h": 0,
+      "views_7d": 0,
+      "views_1m": 0,
+      "poster": "https://image.tmdb.org/t/p/w500/pZ9cAe5FxexJjpCaeiETbXzz3Fs.jpg",
+      "banner_size_xl": "https://image.tmdb.org/t/p/w1280/AmR3JG1VQVxU8TfAvljUhfSFUOx.jpg",
+      "banner_size_md": "https://image.tmdb.org/t/p/w500/AmR3JG1VQVxU8TfAvljUhfSFUOx.jpg",
+      "trailer_iframe_url": "https://www.youtube.com/embed/D3oC17nILkw",
+      "published_by": "4Heber",
+      "id": 61
     }
   ],
   "users": [
@@ -1482,7 +1509,8 @@
           13,
           14,
           17,
-          60
+          60,
+          61
         ],
         "movies_pendent": [
           6,
@@ -1497,7 +1525,9 @@
           7,
           8,
           14,
-          60
+          60,
+          10,
+          61
         ],
         "movies_voted": [
           6,
@@ -1511,12 +1541,13 @@
           14,
           17,
           59,
-          60
+          60,
+          61
         ]
       },
-      "cookie": "QR1JGLMm11u5",
+      "cookie": "UbtylaRUec-r",
       "id": 5,
-      "reviews_count": 12
+      "reviews_count": 13
     },
     {
       "name": "Sebas",
@@ -1661,29 +1692,6 @@
       "reviews_count": 18,
       "cookie": "IpYX1pRvkisp",
       "id": 8
-    },
-    {
-      "name": "random02",
-      "email": "random@gmail.com",
-      "password": "random02",
-      "created_at": "2/1 - 18:35",
-      "role": "Colaborador",
-      "messages": [],
-      "notifications": [],
-      "profile": {
-        "profile_img": "none",
-        "movies_reviews": [],
-        "reviews_count": 0,
-        "friends_list": [],
-        "groups": [],
-        "movies_seen": [],
-        "movies_pendent": [],
-        "movies_favourite": [],
-        "movies_voted": []
-      },
-      "reviews_count": 0,
-      "cookie": "Wbg3sVm3yÑ4w",
-      "id": 9
     }
   ],
   "groups": [
